@@ -4,7 +4,7 @@ This repository contains the normative architecture, engineering principles, con
 
 ## Purpose
 
-The ecosystem is based on independently evolvable **bounded capabilities** implemented as Nuxt Layers and composed by thin Nuxt application shells. Repository boundaries support, but do not themselves define, architectural boundaries.
+The ecosystem consists of independent capabilities, implemented as Nuxt Layers, that can evolve separately and are combined into lightweight Nuxt applications. Repository structure supports these architectural boundaries but does not define them.
 
 The governing principles include capability-oriented decomposition, contract-first interaction, encapsulation, acyclic dependency direction, composition over deep inheritance, replaceable infrastructure, server-side security enforcement, privacy by design, WCAG 2.2 AA accessibility, internationalisation by design, semantic presentation and accessible user-customisable theming.
 
