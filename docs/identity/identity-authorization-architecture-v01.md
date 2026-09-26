@@ -5,13 +5,13 @@
 ## 1. Separation of concerns
 
 ### Authentication
-Establishes that a principal has authenticated and manages secure session lifecycle.
+Establishes who has signed in and manages the secure lifecycle of that authenticated session.
 
 ### Identity
 Owns users, groups, memberships and identity/profile concepts required by applications.
 
 ### Authorization
-Evaluates whether an actor may perform an action on a resource.
+Decides whether an actor may perform an action on a resource.
 
 These capabilities MUST remain conceptually and contractually distinct.
 
@@ -29,7 +29,7 @@ Group membership MUST be represented explicitly rather than by a single `groupId
 
 ## 3. Authorization model
 
-Authorization MUST be resource-aware. Simple global roles such as ADMIN/EDITOR/USER MAY exist but MUST NOT be the only mechanism where resources have owners or scoped access.
+Authorization MUST consider the resource being accessed. Simple global roles such as ADMIN, EDITOR or USER MAY exist, but they MUST NOT be the only access-control mechanism when resources have owners or scoped access.
 
 A decision conceptually evaluates:
 
@@ -41,7 +41,7 @@ Resources MAY support user ownership, group ownership, explicit grants, role/per
 
 ## 4. Enforcement
 
-Authoritative authorization MUST occur on the server for every protected operation. Route middleware and hidden UI elements MAY improve user experience but MUST NOT be relied upon as enforcement.
+Every protected operation MUST be authorized on the server. Route middleware and hidden UI elements MAY improve the user experience, but they MUST NOT be treated as security enforcement.
 
 Database row-level security MAY be used as an additional containment mechanism.
 
