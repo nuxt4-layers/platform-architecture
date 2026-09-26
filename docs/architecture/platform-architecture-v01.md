@@ -44,8 +44,10 @@ A composition application MUST NOT become the default location for domain behavi
 8. Authoritative authorization MUST be enforced server-side.
 9. Persistent resources requiring isolation MUST have explicit ownership/access semantics.
 10. Infrastructure providers MUST be replaceable where practical through ports/adapters or equivalent boundaries.
-11. Security and privacy are architectural properties, not late deployment additions.
-12. A separately deployed service is not required merely because a capability is separately bounded.
+11. Security, privacy, accessibility and internationalisation are architectural properties, not late additions.
+12. User-customisable presentation MUST preserve mandatory accessibility constraints.
+13. Public presentation SHOULD use semantic HTML and appropriate structured metadata.
+14. A separately deployed service is not required merely because a capability is separately bounded.
 
 ## 4. Modular-monolith default
 
@@ -88,15 +90,19 @@ Reusable layers SHOULD expose route capabilities without assuming one universal 
 
 A consuming application MAY distinguish public and authenticated management projections. For example, an application may expose a public resource under one namespace and its management surface under an authenticated workspace namespace. Concrete route choices are application architecture unless explicitly standardized by this repository.
 
-## 9. Security and privacy
+## 9. Presentation, internationalisation and semantics
 
-The ecosystem targets OWASP ASVS Level 2 as the initial application-security verification baseline unless a consuming application's risk classification requires stronger controls.
+WCAG 2.2 Level AA is the minimum accessibility engineering target for web presentation. Internationalisation MUST be supported as a standard platform capability even where an initial application enables only one locale. Reusable UI MUST use semantic presentation primitives and a coherent design-token model. User preferences MAY alter colour schemes, typography, density and selected layout characteristics but MUST NOT invalidate accessibility requirements. Public-facing capabilities MUST prefer semantic HTML and SHOULD provide appropriate Schema.org structured data from authoritative domain data.
+
+## 10. Security and privacy
+
+The ecosystem SHALL target OWASP ASVS 5.0 Level 2 across application capabilities as its minimum application-security baseline. Applicable Level 3 requirements SHALL be applied to security-sensitive capabilities and operations where technically and operationally appropriate. NIST CSF 2.0 provides the overarching programme structure, NIST SP 800-218 SSDF informs secure development, and NIST SP 800-63-4 informs digital identity assurance. Cost constraints MUST NOT silently weaken normative security requirements; deferred controls MUST be explicit risk decisions.
 
 Security controls MUST be layered across browser, server, persistence, dependency/supply-chain and deployment boundaries.
 
 Privacy MUST follow data-protection-by-design principles. Storage/access technologies, telemetry and third-party integrations MUST be purpose-classified rather than introduced implicitly.
 
-## 10. Evolution
+## 11. Evolution
 
 Architecture changes that alter an invariant, public contract model, dependency rule, or ecosystem-wide standard require an ADR or an explicit revision to the governing normative document.
 
