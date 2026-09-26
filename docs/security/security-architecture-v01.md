@@ -4,17 +4,17 @@
 
 ## 1. Assurance baseline
 
-Security is an architectural property and continuous engineering obligation.
+Security is part of the architecture and an ongoing engineering responsibility.
 
-The ecosystem SHALL target **OWASP ASVS 5.0 Level 2** across application capabilities as its minimum application-security baseline. Verification records MUST identify the exact ASVS release and SHOULD use version-qualified requirement identifiers.
+The platform SHALL use **OWASP ASVS 5.0 Level 2** as its minimum application-security target. Verification records MUST state the exact ASVS release and SHOULD use version-qualified requirement identifiers.
 
-Security-sensitive capabilities and operations SHALL apply applicable ASVS Level 3 requirements where technically and operationally appropriate. This includes authentication, authorization, privileged administration, session management, tenant/resource isolation, secrets and key management, and highly sensitive data handling.
+Security-sensitive capabilities and operations SHALL also apply relevant ASVS Level 3 requirements where they are technically and operationally appropriate. This includes authentication, authorization, privileged administration, session management, tenant and resource isolation, secrets and key management, and highly sensitive data handling.
 
 A consuming application MAY impose stronger requirements but MUST NOT silently weaken this baseline.
 
 ## 2. Security programme
 
-The ecosystem uses one coherent control programme rather than independent compliance projects:
+The platform uses one coordinated security-control programme rather than treating each standard as a separate compliance project:
 
 - NIST Cybersecurity Framework 2.0 provides the overarching Govern, Identify, Protect, Detect, Respond and Recover structure;
 - NIST SP 800-218 Secure Software Development Framework informs secure-development practice;
@@ -43,7 +43,7 @@ Reference to a framework MUST NOT be represented as certification, formal compli
 
 ## 4. Digital identity
 
-Authenticated-user systems SHOULD be designed toward NIST SP 800-63-4 AAL2 where the application's risk and identity model make that assurance level applicable. Where AAL2 is claimed, its complete applicable requirements MUST be satisfied rather than selecting isolated controls.
+Systems with authenticated users SHOULD be designed toward NIST SP 800-63-4 AAL2 when the application's risk and identity model make that assurance level appropriate. If an application claims AAL2, it MUST meet all applicable AAL2 requirements rather than selecting only convenient controls.
 
 Phishing-resistant authentication MUST be available for elevated-risk accounts and SHALL be required for privileged platform-administration access unless a documented risk treatment establishes an equivalent or stronger control.
 
@@ -59,7 +59,7 @@ Client-side access controls are user-experience mechanisms only and MUST NOT con
 
 Every protected operation MUST receive authoritative server-side authorization.
 
-Multi-user and multi-tenant resources MUST have explicit ownership, tenancy and access semantics. Client-supplied tenant or resource identifiers MUST NOT themselves establish authority.
+Multi-user and multi-tenant resources MUST clearly define ownership, tenancy and access rules. A tenant or resource identifier supplied by the client MUST NOT, by itself, grant access.
 
 Database row-level security SHOULD be used where appropriate as an additional containment boundary, particularly for tenant or owner-isolated relational data, but MUST NOT replace application authorization policy.
 
@@ -97,7 +97,7 @@ The ecosystem SHOULD maintain a unified security control register mapping implem
 
 ## 12. Cost constraints and deferred controls
 
-Cost constraints MAY affect implementation choice or timing, but MUST NOT silently redefine a normative security requirement.
+Cost may affect how or when a security control is implemented, but it MUST NOT silently weaken a required security standard.
 
 A required control that cannot yet be implemented MUST be recorded as a known gap with its rationale, affected assets/data/capabilities, risk, compensating controls where available and intended treatment or acceptance decision.
 
