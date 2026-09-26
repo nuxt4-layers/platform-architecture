@@ -4,7 +4,7 @@
 
 ## 1. Composition root
 
-The host Nuxt application is the primary composition root. It chooses layer versions, supplies configuration, binds infrastructure adapters, resolves application-specific routes and composes cross-capability integrations.
+The host Nuxt application is the main composition root. It chooses layer versions, supplies configuration, connects infrastructure adapters, defines application-specific routes and connects capabilities where the application needs them to work together.
 
 ## 2. Dependency graph
 
@@ -12,11 +12,11 @@ Capability dependencies MUST form a directed acyclic graph (DAG).
 
 Circular dependencies are prohibited. If A requires B, B MUST NOT require A directly or transitively.
 
-When two capabilities appear mutually dependent, extract the shared abstraction, introduce an event/port boundary, or reconsider the capability boundaries.
+If two capabilities appear to depend on each other, move their shared contract to an appropriate boundary, communicate through an event or port, or reconsider where the capability boundaries belong.
 
 ## 3. Contracts over internals
 
-A dependency targets a capability contract rather than implementation topology.
+A dependency targets a capability's public contract, not the way that capability is implemented or deployed.
 
 A domain capability requiring authorization asks for an AuthorizationService contract; authorization does not gain knowledge of that domain's internals. Domain resources are represented through agreed generic or domain-owned contract types.
 
@@ -24,7 +24,7 @@ A domain capability requiring authorization asks for an AuthorizationService con
 
 Nuxt `extends` is an implementation mechanism, not the architectural dependency model.
 
-Avoid chains in which application layers extend platform layers that extend identity layers that extend authentication layers. Prefer the composition root assembling peers and explicit adapters wiring their contracts.
+Avoid chains in which application layers extend platform layers that extend identity layers that extend authentication layers. Prefer the composition root to combine peer capabilities and use explicit adapters to connect their contracts.
 
 ## 5. Dependency declaration
 

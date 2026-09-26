@@ -4,7 +4,7 @@
 
 ## 1. Objective
 
-Composition must select known-compatible capability versions rather than implicitly tracking another repository's default branch.
+Applications must use known-compatible capability versions rather than silently following another repository's changing default branch.
 
 ## 2. Semantic versioning
 
@@ -18,7 +18,7 @@ Capability contract versions MAY evolve independently from package versions. A p
 
 ## 4. Reproducibility
 
-Production composition MUST pin dependencies through normal package-manager lockfiles and version constraints. Direct consumption of mutable default branches is unsuitable as the production compatibility mechanism.
+Production applications MUST pin dependencies using normal package-manager lockfiles and version constraints. They MUST NOT rely on a changing default branch as their production compatibility mechanism.
 
 ## 5. Compatibility testing
 

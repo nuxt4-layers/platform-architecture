@@ -4,7 +4,7 @@
 
 ## 1. Repository eligibility
 
-Create a separate layer repository when the candidate represents a cohesive capability and independent versioning, reuse, ownership, testing, release, or isolation provides material value.
+Create a separate layer repository only when it represents a cohesive capability and separate versioning, reuse, ownership, testing, release or isolation provides clear value.
 
 Do not create repositories for individual buttons, composables, entities, endpoints or similarly microscopic units.
 
@@ -49,4 +49,4 @@ Architecture-changing work MUST reference the governing architecture or an ADR w
 
 ## 6. Private implementation
 
-Repository visibility does not define API visibility. Even in an open-source repository, undocumented/internal implementation remains outside the supported cross-layer contract.
+Whether a repository is public or private does not define its API. Undocumented or internal implementation remains outside the supported cross-layer contract, even in an open-source repository.

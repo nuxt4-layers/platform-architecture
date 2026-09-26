@@ -6,9 +6,9 @@
 
 ## 1. Purpose
 
-The Nuxt 4 Layers ecosystem provides independently evolvable application capabilities that can be assembled into one or more Nuxt applications. A consuming application is a composition root: it selects capabilities, supplies configuration and infrastructure bindings, and owns deployment-specific concerns.
+The ecosystem consists of bounded capabilities, implemented as Nuxt Layers, that can evolve independently and are combined into lightweight Nuxt applications. Each application acts as a composition root: it selects the capabilities it needs, supplies configuration, connects infrastructure and owns deployment-specific concerns.
 
-This architecture deliberately separates reusable ecosystem rules from the route, branding, product, and deployment decisions of any single consuming application.
+This architecture keeps reusable ecosystem rules separate from the routing, branding, product and deployment choices of any one application.
 
 ## 2. Architectural model
 
@@ -28,7 +28,7 @@ Bounded business or application domains, such as an Architecture Registry or a g
 
 ### 2.4 Composition applications
 
-Thin Nuxt applications that assemble capabilities, bind infrastructure, establish application-specific route namespaces, provide branding and environment configuration, and define deployment topology.
+Lightweight Nuxt applications that combine capabilities, connect infrastructure, define application-specific routes, provide branding and environment configuration, and decide how the application is deployed.
 
 A composition application MUST NOT become the default location for domain behaviour that belongs to a bounded capability.
 
@@ -68,11 +68,11 @@ Each independently consumed layer MUST declare, as applicable:
 - public errors;
 - compatibility requirements.
 
-Internal persistence models, framework glue, implementation services, and provider SDKs MUST NOT become de facto public contracts without an explicit architectural decision.
+Internal database models, framework integration code, implementation services and provider SDKs MUST NOT become public contracts by accident. Making any of them public requires an explicit architectural decision.
 
 ## 6. Identity and access
 
-Authentication proves or establishes an authenticated principal/session. Identity models users, groups, memberships and related identity information. Authorization decides whether an actor may perform an action upon a resource.
+Authentication establishes who has signed in and manages the authenticated session. Identity models users, groups, memberships and related identity information. Authorization decides whether an actor may perform an action on a resource.
 
 These concerns MUST remain separable even where one implementation package supplies integrations between them.
 
@@ -82,7 +82,7 @@ The architecture MUST support a user belonging to zero, one, or multiple groups.
 
 Domain capabilities SHOULD depend upon repository/service ports rather than directly upon a hosted database vendor API.
 
-PostgreSQL is the preferred relational persistence model for initial platform applications because it permits managed hosting and later containerised/self-hosted deployment. Database row-level security MAY provide defence in depth but MUST NOT substitute for application authorization design.
+PostgreSQL is the preferred relational database for initial platform applications because it works with managed hosting and can later move to containerised or self-hosted deployment. Database row-level security MAY add another layer of protection, but it MUST NOT replace application-level authorization.
 
 ## 8. Routing principle
 
@@ -96,7 +96,9 @@ WCAG 2.2 Level AA is the minimum accessibility engineering target for web presen
 
 ## 10. Security and privacy
 
-The ecosystem SHALL target OWASP ASVS 5.0 Level 2 across application capabilities as its minimum application-security baseline. Applicable Level 3 requirements SHALL be applied to security-sensitive capabilities and operations where technically and operationally appropriate. NIST CSF 2.0 provides the overarching programme structure, NIST SP 800-218 SSDF informs secure development, and NIST SP 800-63-4 informs digital identity assurance. Cost constraints MUST NOT silently weaken normative security requirements; deferred controls MUST be explicit risk decisions.
+The minimum application-security target is OWASP ASVS 5.0 Level 2 across the platform. Security-sensitive capabilities and operations SHALL also apply relevant Level 3 requirements where they are technically and operationally appropriate.
+
+NIST CSF 2.0 structures the overall security programme. NIST SP 800-218 SSDF guides secure development, and NIST SP 800-63-4 guides digital identity assurance. Cost constraints MUST NOT silently weaken a required security control. If a control must be deferred, the gap and its risk treatment MUST be recorded explicitly.
 
 Security controls MUST be layered across browser, server, persistence, dependency/supply-chain and deployment boundaries.
 

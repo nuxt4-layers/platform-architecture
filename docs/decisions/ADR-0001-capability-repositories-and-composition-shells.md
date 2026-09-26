@@ -7,17 +7,17 @@
 
 The ecosystem is expected to host multiple Nuxt capabilities, including shared UI, authentication, identity, authorization, privacy, dashboard/workspace functionality and independently meaningful applications such as Architecture Registry.
 
-Keeping all capabilities inside one host repository would make independent reuse and versioning harder. Conversely, decomposing every component into its own repository would create excessive operational and dependency overhead.
+Keeping every capability in one host repository would make independent reuse and versioning harder. At the other extreme, giving every component its own repository would create unnecessary maintenance and dependency overhead.
 
 ## Decision
 
 The `nuxt4-layers` organisation will host separately versioned repositories for cohesive bounded capabilities where independent development provides material value.
 
-Consuming Nuxt applications will act as thin composition roots. They select compatible capability versions, provide deployment/application configuration, bind infrastructure and own application-specific routing/branding.
+Nuxt applications will remain lightweight composition roots. They select compatible capability versions, provide application and deployment configuration, connect infrastructure and own application-specific routing and branding.
 
 Cross-layer interaction occurs through declared public contracts. Repository separation does not permit consumers to depend upon another capability's private implementation.
 
-The default runtime topology remains a modular monolith; separate repositories do not imply separately deployed services.
+The default runtime remains a modular monolith. A separate repository does not mean that the capability must run as a separate service.
 
 ## Consequences
 
