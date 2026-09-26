@@ -50,3 +50,15 @@ Architecture-changing work MUST reference the governing architecture or an ADR w
 ## 6. Private implementation
 
 Whether a repository is public or private does not define its API. Undocumented or internal implementation remains outside the supported cross-layer contract, even in an open-source repository.
+
+## 7. Distribution and consumption
+
+An independently maintained layer repository SHOULD be package-ready even before it is published to a package registry.
+
+Its `package.json` SHOULD provide the metadata and dependency declarations needed for package-manager installation. Dependencies imported by the layer MUST be declared by the layer rather than relying on undeclared dependencies from the consuming application.
+
+During early development, consumers MAY install the repository directly as a Git-backed package dependency. Stable releases SHOULD normally be published and consumed as versioned packages, using the `@nuxt4-layers/` scope when appropriate.
+
+Direct remote Nuxt `extends` remains a supported Nuxt mechanism but is not the preferred ecosystem distribution method.
+
+Repository boundaries and package boundaries SHOULD normally align for independently released capabilities, while remaining architectural implementation choices rather than definitions of the capability boundary.
