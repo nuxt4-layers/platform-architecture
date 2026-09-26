@@ -4,7 +4,7 @@
 
 ## 1. Definition
 
-A Nuxt Layer in this ecosystem is an implementation vehicle for a bounded capability. A repository boundary MAY coincide with a layer boundary when independent ownership, versioning, reuse, testing, release, or security justify it.
+In this ecosystem, a Nuxt Layer implements a bounded capability. A capability MAY have its own repository when separate ownership, versioning, reuse, testing, release or security provides enough value to justify it.
 
 A small component, composable, entity, or endpoint is not by itself sufficient justification for a repository.
 
@@ -42,7 +42,7 @@ A layer MAY change private implementation without a breaking release provided it
 
 Prefer cohesive capability ownership over microscopic packages. UI primitives belong within a UI capability; login/logout mechanics belong within authentication; users/groups/memberships belong within identity.
 
-Repository proliferation is an architectural cost and requires a capability-level justification.
+Every additional repository adds maintenance and dependency-management cost, so a new repository needs a clear capability-level reason.
 
 ## 6. Testing
 
