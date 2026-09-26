@@ -48,6 +48,7 @@ Implementation is evidence of current behaviour; it is not automatically archite
 - [Privacy Architecture v0.1](docs/privacy/privacy-architecture-v01.md)
 - [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
+- [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
 
 ## Status
