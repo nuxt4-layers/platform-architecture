@@ -4,7 +4,7 @@
 
 ## 1. Objective
 
-Public contracts make layer boundaries enforceable, testable and replaceable.
+Public contracts make layer boundaries clear, testable and replaceable.
 
 ## 2. Contract categories
 
@@ -20,7 +20,7 @@ A layer MAY expose:
 
 ## 3. Rules
 
-Contracts MUST use domain terminology and MUST NOT expose a replaceable provider's SDK types unless that provider is itself intentionally the contract.
+Contracts MUST use the language of the domain. They MUST NOT expose types from a replaceable provider's SDK unless the architecture deliberately makes that provider part of the public contract.
 
 Public contract exports SHOULD be available from a deliberate package entry point such as `/contracts` or an equivalent documented export map.
 
@@ -40,7 +40,7 @@ This contract says what authorization provides without dictating its policy engi
 
 Removing a public member, narrowing accepted input, changing documented semantics, or changing a public data shape incompatibly is a breaking contract change.
 
-Additive changes are not automatically non-breaking: their behavioural and type-system effects MUST be considered.
+Adding something to a contract is not automatically safe. Its effects on behaviour and the type system MUST still be considered.
 
 ## 6. Validation
 
