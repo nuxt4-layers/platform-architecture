@@ -6,17 +6,7 @@ This repository contains the normative architecture, engineering principles, con
 
 The ecosystem is based on independently evolvable **bounded capabilities** implemented as Nuxt Layers and composed by thin Nuxt application shells. Repository boundaries support, but do not themselves define, architectural boundaries.
 
-The governing principles are:
-
-- capability-oriented decomposition rather than component-oriented fragmentation;
-- contract-first interaction between layers;
-- encapsulation of implementation details;
-- explicit dependency direction with no circular layer dependencies;
-- composition at application boundaries rather than deep inheritance chains;
-- independently testable and versionable capabilities;
-- infrastructure replaceability behind domain-owned ports;
-- server-side security enforcement and defence in depth;
-- privacy and data protection by design.
+The governing principles include capability-oriented decomposition, contract-first interaction, encapsulation, acyclic dependency direction, composition over deep inheritance, replaceable infrastructure, server-side security enforcement, privacy by design, WCAG 2.2 AA accessibility, internationalisation by design, semantic presentation and accessible user-customisable theming.
 
 ## Documentation authority
 
@@ -25,7 +15,7 @@ Where documents conflict, authority descends in this order:
 1. accepted Architecture Decision Records for the decision they explicitly settle;
 2. Platform Architecture;
 3. architecture and contract standards;
-4. security and privacy baselines;
+4. security, privacy, accessibility and other cross-cutting normative baselines;
 5. layer-specific normative documentation;
 6. application-specific documentation;
 7. implementation.
@@ -37,6 +27,7 @@ Implementation is evidence of current behaviour; it is not automatically archite
 - [Platform Architecture v0.1](docs/architecture/platform-architecture-v01.md)
 - [Layer Architecture v0.1](docs/architecture/layer-architecture-v01.md)
 - [Composition and Dependency Model v0.1](docs/architecture/composition-dependency-model-v01.md)
+- [Presentation, Internationalisation and Accessibility Architecture v0.1](docs/architecture/presentation-internationalisation-accessibility-v01.md)
 - [Layer Interface Standard v0.1](docs/contracts/layer-interface-standard-v01.md)
 - [Capability Manifest v0.1](docs/contracts/capability-manifest-v01.md)
 - [Identity and Authorization Architecture v0.1](docs/identity/identity-authorization-architecture-v01.md)
