@@ -4,7 +4,7 @@
 
 ## 1. Principle
 
-Privacy and data protection are platform capabilities and architectural concerns. Compliance MUST NOT depend solely on a cookie banner or privacy-policy page.
+Privacy and data protection are part of the platform architecture. Compliance MUST NOT depend only on a cookie banner or privacy-policy page.
 
 ## 2. Scope
 
@@ -34,7 +34,7 @@ Technically necessary mechanisms MUST still be documented transparently.
 
 ## 5. Jurisdiction
 
-Reusable capability contracts SHOULD avoid hard-coding one jurisdiction's rules. Consuming platforms MAY provide jurisdiction policy/adapters.
+Reusable capability contracts SHOULD avoid hard-coding the rules of one jurisdiction. Applications MAY provide policies or adapters for the jurisdictions they need to support.
 
 The initial personal platform is expected to design first for applicable UK data-protection and electronic-communications requirements while preserving extension points for other jurisdictions.
 
@@ -44,4 +44,4 @@ The architecture SHOULD support data access/export, correction where applicable,
 
 ## 7. Security relationship
 
-Privacy and security overlap but are not interchangeable. Authorization protects access; privacy additionally governs whether data should be collected, processed, retained, disclosed or transferred at all.
+Privacy and security overlap, but they are not the same. Authorization controls who can access data. Privacy also asks whether the data should be collected, processed, retained, disclosed or transferred at all.
