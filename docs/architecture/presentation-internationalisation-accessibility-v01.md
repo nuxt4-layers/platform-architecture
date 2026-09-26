@@ -4,21 +4,21 @@
 
 ## 1. Purpose
 
-Presentation quality, internationalisation, accessibility and semantic web support are platform concerns and MUST be designed into capabilities from inception rather than retrofitted after feature completion.
+Presentation quality, internationalisation, accessibility and semantic web support are platform-wide concerns. They MUST be designed in from the start rather than added after a feature is complete.
 
 ## 2. Presentation system
 
-Reusable presentation capabilities MUST use a coherent design system based on semantic design tokens rather than application-specific hard-coded presentation values.
+Reusable presentation capabilities MUST use a shared design system built from semantic design tokens. Applications MUST NOT rely on scattered hard-coded presentation values.
 
-The presentation system MUST support, where applicable, semantic colour roles, typography/font preferences, spacing/sizing/density/radius tokens, responsive layout primitives, light/dark/high-contrast presentation, operating-system preferences, user-selectable presentation preferences and persistence through an appropriate settings contract.
+Where applicable, the presentation system MUST support semantic colour roles; typography and font preferences; spacing, sizing, density and radius tokens; responsive layouts; light, dark and high-contrast modes; operating-system preferences; user-selectable presentation preferences; and persistence through an appropriate settings contract.
 
-User customisation MUST NOT silently invalidate mandatory accessibility requirements. Theme and preference implementations MUST constrain, validate, derive or reject combinations where necessary to preserve required contrast, readability, focus visibility, reflow and interaction characteristics.
+User customisation MUST NOT break mandatory accessibility requirements. Theme and preference implementations MUST constrain, validate, adjust or reject combinations when needed to preserve contrast, readability, visible focus, reflow and usable interaction.
 
 ## 3. Internationalisation
 
 Internationalisation is a standard platform capability.
 
-Applications and reusable capabilities MUST avoid embedding user-facing language in domain logic, make user-facing strings localisable, declare document language correctly, support locale-aware formatting, preserve capability-owned translation resources and avoid requiring one monolithic shell-owned translation catalogue.
+Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Each capability MUST be able to own its translation resources; the application shell MUST NOT be forced to maintain one large translation catalogue.
 
 Locale-aware routing and translated metadata SHOULD be supported where public content requires them. An application MAY initially enable only one locale, but its architecture MUST NOT unnecessarily prevent additional locales.
 
@@ -36,7 +36,7 @@ Automated accessibility testing SHOULD form part of CI, but MUST NOT be treated 
 
 Public-facing capabilities MUST prefer semantic HTML and meaningful document structure.
 
-Where structured data materially describes public content, applications SHOULD expose appropriate Schema.org vocabulary using a machine-readable representation such as JSON-LD. Structured data MUST describe visible resource data truthfully and MUST NOT invent facts solely for search presentation.
+When structured data is useful for public content, applications SHOULD use appropriate Schema.org vocabulary in a machine-readable form such as JSON-LD. Structured data MUST truthfully describe the resource and MUST NOT invent information purely for search presentation.
 
 Metadata, canonical URLs, locale alternates and structured data SHOULD be generated from authoritative domain data rather than duplicated manually where practical.
 
