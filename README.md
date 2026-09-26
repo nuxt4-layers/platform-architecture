@@ -6,7 +6,20 @@ This repository contains the normative architecture, engineering principles, con
 
 The ecosystem consists of bounded capabilities, implemented as Nuxt Layers, that can evolve independently and are combined into lightweight Nuxt applications. Repository structure supports these architectural boundaries but does not define them.
 
-The governing principles include capability-oriented decomposition, contract-first interaction, encapsulation, acyclic dependency direction, composition over deep inheritance, replaceable infrastructure, server-side security enforcement, privacy by design, WCAG 2.2 AA accessibility, internationalisation by design, semantic presentation and accessible user-customisable theming.
+The main principles are:
+
+- organise the system around bounded capabilities;
+- define clear public contracts between layers;
+- keep private implementation details inside each layer;
+- keep dependencies one-way and free of cycles;
+- combine capabilities rather than building deep inheritance chains;
+- keep infrastructure replaceable where practical;
+- enforce security on the server;
+- design for privacy from the start;
+- meet WCAG 2.2 Level AA as the accessibility baseline;
+- design for internationalisation from the start;
+- use meaningful semantic markup; and
+- allow users to customise presentation without breaking accessibility.
 
 ## Documentation authority
 
