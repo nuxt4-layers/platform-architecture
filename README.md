@@ -50,6 +50,7 @@ Implementation is evidence of current behaviour; it is not automatically archite
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
 - [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
+- [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
 
 ## Status
 
