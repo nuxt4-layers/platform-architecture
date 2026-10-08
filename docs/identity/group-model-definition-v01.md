@@ -1,6 +1,6 @@
 # Group Model Definition v0.1
 
-**Status:** Proposed architectural extension — for review and acceptance; not yet normative  
+**Status:** Normative — accepted by [ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)  
 **Authority:** Subject to the accepted ADRs and the Platform Architecture, Identity and Authorisation standards  
 **Scope:** Identity groups, membership, hierarchy, resource ownership and access semantics
 
@@ -58,4 +58,4 @@ Acceptance tests MUST cover: atomic personal-group provisioning; exactly-one-per
 
 ## 10. Adoption and compatibility
 
-This document proposes an extension to the current Identity and Authorisation architecture. It does not supersede accepted ADRs or existing published capability contracts until reviewed and accepted. Implementations MUST assess migration and compatibility impacts before introducing new mandatory group invariants. Changes to governing invariants require an accepted ADR or explicit normative architecture revision.
+This document extends the Identity and Authorisation architecture and was accepted by [ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md). It does not supersede earlier accepted ADRs. Implementations MUST assess migration and compatibility impacts before introducing new mandatory group invariants. Changes to governing invariants require an accepted ADR or explicit normative architecture revision.

@@ -44,13 +44,16 @@ Implementation is evidence of current behaviour; it is not automatically archite
 - [Layer Interface Standard v0.1](docs/contracts/layer-interface-standard-v01.md)
 - [Capability Manifest v0.1](docs/contracts/capability-manifest-v01.md)
 - [Identity and Authorization Architecture v0.1](docs/identity/identity-authorization-architecture-v01.md)
+- [Group Model Definition v0.1](docs/identity/group-model-definition-v01.md)
 - [Security Architecture v0.1](docs/security/security-architecture-v01.md)
 - [Privacy Architecture v0.1](docs/privacy/privacy-architecture-v01.md)
 - [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
 - [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
+- [Capability Development Catalogue v0.3](docs/catalogue/nuxt-layers-capability-development-catalogue-v0.3.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
 - [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
+- [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
 
 ## Status
 

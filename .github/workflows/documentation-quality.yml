@@ -19,3 +19,12 @@ jobs:
           persist-credentials: false
       - name: Check Markdown headings and local links
         run: python3 scripts/check_markdown.py
+
+  # Gate for the `quality` status check that the master ruleset requires of
+  # every repository. It passes only when every check above has passed.
+  quality:
+    needs: [markdown]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "Documentation checks passed."
