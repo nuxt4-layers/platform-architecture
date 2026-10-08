@@ -1,6 +1,6 @@
 # Nuxt 4 Layers — Capability Development Catalogue v0.3
 
-**Status:** Proposed implementation catalogue; group-model extension proposed for review, not yet normative. Reconciled against Platform Architecture v0.1 and accepted ADR-0001/ADR-0002  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001/ADR-0002/ADR-0003  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
 
@@ -14,7 +14,7 @@
 6. Public contracts should be exposed through deliberate entry points such as `/contracts`.
 7. Independently versioned layers should declare capability metadata using the existing manifest standard.
 8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations. No shared persistence service is permitted.
-9. Identity owns users, groups, single-parent group hierarchies and memberships; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the proposed group model.
+9. Identity owns users, groups, single-parent group hierarchies and memberships; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the accepted group model.
 10. Required persistence must fail closed when its provider is absent.
 11. All protected operations require server-side authorisation.
 12. Security follows OWASP ASVS 5.0 Level 2, with applicable Level 3 controls for security-sensitive operations.
@@ -30,7 +30,7 @@
 | `ui` | Owns reusable accessible presentation components and interaction primitives. Consumes theme contracts. |
 | `identity` | Owns canonical users, one system-managed personal (unary) group per human identity, general-purpose groups, direct memberships, single-parent/multiple-child group hierarchies, group lifecycle and baseline identity/profile information. Group relationships do not automatically confer access. |
 | `authentication` | Owns authentication, credential verification, authenticated sessions, rotation, revocation and reauthentication. |
-| `authorisation` | Owns server-side, resource-aware access decisions using identities, effective memberships, group hierarchy, explicit grants, ownership, tenant context and policy. No automatic privilege inheritance; membership-derived access must be revocable. Existing implementation retained pending contract reconciliation. |
+| `authorisation` | Owns server-side, resource-aware access decisions using identities, effective memberships, group hierarchy, explicit grants, ownership, tenant context and policy. No automatic privilege inheritance; membership-derived access must be revocable. Implemented in `nuxt4-layers/authorisation`; contract version 2 is reconciled with the accepted group model. |
 | `privacy` | Owns reusable privacy governance contracts, purpose classification, consent and privacy preference mechanisms. |
 | `logging-service` | Owns structured diagnostic logging, context, redaction, severity and replaceable transports. |
 | `uuidv7-generator` | Provides UUIDv7 generation and validation without business-domain responsibilities. May be a lightweight library rather than an independent Nuxt layer. |
@@ -149,7 +149,7 @@ The composition root supplies database connections and secrets. Each persistence
 - Treat `api-services` and `integrations` as composition/integration concerns rather than monolithic business layers.
 - Preserve existing published repository names and contracts unless an independently reviewed change justifies migration.
 
-## 8. Group ownership and membership model (proposed)
+## 8. Group ownership and membership model
 
 - Each human identity has exactly one immutable, system-managed personal (unary) group; other group memberships are optional and many-to-many.
 - Each group has **at most one parent** and **zero or more children**; roots have no parent. Cycles are forbidden. This is a forest of rooted trees, not a multiple-parent graph.
@@ -158,7 +158,7 @@ The composition root supplies database connections and secrets. Each persistence
 - When a user leaves a group, all access derived from that membership, including any explicitly inherited or delegated access, must be revoked, with stale sessions and caches accounted for. Independently granted access is evaluated separately.
 - Group membership alone does not grant unrestricted access. Authorisation is evaluated server-side against actor, action, resource and context.
 - Companies, departments, clubs, committees, events and similar domains may associate their records with groups but retain ownership of their domain-specific rules and data.
-- Full proposed definitions and acceptance criteria: [Group Model Definition v0.1](../identity/group-model-definition-v01.md). Adoption as normative architecture requires review and approval.
+- Full definitions and acceptance criteria: [Group Model Definition v0.1](../identity/group-model-definition-v01.md), accepted as normative by [ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md).
 
 ## 9. Minimum development definition
 
@@ -175,11 +175,12 @@ Every proposed implementation must identify:
 
 ## 10. Development order
 
-1. Preserve and verify the existing Theme Manager and Authorisation implementations.
-2. Implement Logging Service as the next foundational reference capability.
-3. Build missing identity/authentication/privacy capabilities according to actual application requirements.
-4. Validate a complete domain-to-management-interface composition.
-5. Add platform and business capabilities incrementally, driven by consumers.
-6. Introduce separate infrastructure capabilities only where reusable contracts and multiple consumers justify them.
+1. Preserve and verify the existing Theme Manager, Authentication and Authorisation implementations.
+2. Implement Identity next, following the accepted group model ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)); it unblocks Authorisation persistence and Authentication host integration.
+3. Implement Logging Service as the next foundational reference capability.
+4. Build remaining privacy and supporting foundation capabilities according to actual application requirements.
+5. Validate a complete domain-to-management-interface composition.
+6. Add platform and business capabilities incrementally, driven by consumers.
+7. Introduce separate infrastructure capabilities only where reusable contracts and multiple consumers justify them.
 
 **Implementation policy:** Do not create a repository solely because a capability appears in this catalogue. Establish its bounded responsibility, public contract, dependency requirements and independent lifecycle justification first.
