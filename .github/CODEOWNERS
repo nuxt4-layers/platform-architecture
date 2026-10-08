@@ -1,0 +1,8 @@
+# Review ownership; enforcement requires a branch protection rule or ruleset.
+* @steve-r-lewis
+/docs/security/ @steve-r-lewis
+/docs/identity/ @steve-r-lewis
+/docs/contracts/ @steve-r-lewis
+/docs/decisions/ @steve-r-lewis
+/SECURITY.md @steve-r-lewis
+/.github/ @steve-r-lewis
