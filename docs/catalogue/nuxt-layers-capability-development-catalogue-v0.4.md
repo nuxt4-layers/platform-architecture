@@ -1,6 +1,6 @@
 # Nuxt 4 Layers — Capability Development Catalogue v0.4
 
-**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0005  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0006  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
 
@@ -17,7 +17,7 @@ This catalogue is an index ([ADR-0004](../decisions/ADR-0004-documentation-place
 5. Dependencies must be directed, acyclic, explicit and contract-based.
 6. Public contracts should be exposed through deliberate entry points such as `/contracts`.
 7. Independently versioned layers should declare capability metadata using the existing manifest standard.
-8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations. No shared persistence service is permitted.
+8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations, and any other stores they use under [ADR-0006](../decisions/ADR-0006-polyglot-persistence-and-data-store-security.md). No shared persistence service is permitted.
 9. Identity owns users, groups, single-parent group hierarchies and memberships; Profile owns personal data; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the accepted group model.
 10. Required persistence must fail closed when its provider is absent.
 11. All protected operations require server-side authorisation.
@@ -48,11 +48,11 @@ Foundation capabilities that cooperate through public contracts and host-supplie
 
 | Capability | Definition |
 |---|---|
-| `iam-integration` | Owns the suite's architecture, cross-capability processes and the reference adapters that connect the members' ports. Owns no identity, credential, permission or personal data. Distinct from the general-purpose `integrations` hub (§6). |
-| `authentication` | Owns credential verification, authenticated sessions, rotation, revocation and reauthentication. [`nuxt4-layers/authentication`](https://github.com/nuxt4-layers/authentication) |
+| `iam-integration` | Owns the suite's architecture, cross-capability processes and the reference adapters that connect the members' ports. Owns no identity, credential, permission or personal data. Distinct from the general-purpose `integrations` hub (§6). [`nuxt4-layers/iam-integration`](https://github.com/nuxt4-layers/iam-integration) |
+| `authentication` | Owns credential verification, sign-in identifiers, authenticated sessions, rotation, revocation and reauthentication. [`nuxt4-layers/authentication`](https://github.com/nuxt4-layers/authentication) |
 | `authorisation` | Owns server-side, resource-aware access decisions; no implicit inheritance through the group hierarchy. [`nuxt4-layers/authorisation`](https://github.com/nuxt4-layers/authorisation) |
 | `identity` | Owns identities, the personal group of each human identity, groups, the single-parent hierarchy, tenants and memberships with their lifecycle. Owns no personal data beyond opaque identifiers. Next to be built ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)). |
-| `profile` | Owns all personal data about an identity (names, contact details, preferences) and its disclosure. |
+| `profile` | Owns the personal data that describes a person (names, contact details, personal preferences), keyed by an opaque Identity identifier. Decides what each context may see, under the person's control. Answers the person's requests for access, correction, export and erasure, and anonymises by unlinking. Owns no credentials, memberships or access decisions. [`nuxt4-layers/profile`](https://github.com/nuxt4-layers/profile) |
 
 ## 3. Platform capabilities
 

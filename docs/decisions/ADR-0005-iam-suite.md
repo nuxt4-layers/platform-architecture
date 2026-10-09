@@ -17,9 +17,9 @@ The Identity and Access Management (IAM) suite has five members. Each is an inde
 
 | Member | Owns | Never owns |
 |---|---|---|
-| `authentication` | Credentials, authenticated sessions, step-up and reauthentication | Groups, personal data, access decisions |
+| `authentication` | Credentials, sign-in identifiers, authenticated sessions, step-up and reauthentication | Groups, personal data other than sign-in identifiers ([ADR-0006](ADR-0006-polyglot-persistence-and-data-store-security.md) §6), access decisions |
 | `identity` | Opaque identity identifiers and their lifecycle; personal groups; groups, the single-parent hierarchy and tenants; memberships and their states; group governance settings | Names, contact details or any other personal data; credentials; access decisions |
-| `profile` | All personal data about an identity, its disclosure settings and its anonymisation | Memberships; access decisions |
+| `profile` | The personal data that describes a person, keyed by an opaque Identity identifier; what each context may see; the person's access, correction, export and erasure requests; anonymisation by unlinking | Credentials, sign-in identifiers, memberships, access decisions |
 | `authorisation` | Roles, assignments, grants and server-side access decisions | Groups, memberships, personal data |
 | `iam-integration` | The suite's architecture, its cross-capability processes and reference adapters that connect members' ports | Any of the above data |
 
