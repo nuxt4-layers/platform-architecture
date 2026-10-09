@@ -45,6 +45,10 @@ Where documents conflict, authority descends in this order:
 
 Implementation is evidence of current behaviour; it is not automatically architectural authority.
 
+## Where to find things
+
+This repository holds what applies to the whole ecosystem: principles, cross-cutting standards, Architecture Decision Records and the capability catalogue as an index. A capability's own contracts, data model, threat model, roadmap and processes live in its repository's `docs/`; a suite's architecture and cross-capability processes live in the suite's integration repository, such as `nuxt4-layers/iam-integration`. Links from here to another repository's documents are pinned to a tag or commit. See [ADR-0004](docs/decisions/ADR-0004-documentation-placement.md).
+
 ## Documentation map
 
 - [Platform Architecture v0.1](docs/architecture/platform-architecture-v01.md)
@@ -60,10 +64,11 @@ Implementation is evidence of current behaviour; it is not automatically archite
 - [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
 - [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
-- [Capability Development Catalogue v0.3](docs/catalogue/nuxt-layers-capability-development-catalogue-v0.3.md)
+- [Capability Development Catalogue v0.4](docs/catalogue/nuxt-layers-capability-development-catalogue-v0.4.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
 - [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
 - [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
+- [ADR-0004 — Documentation Placement](docs/decisions/ADR-0004-documentation-placement.md)
 
 ## Status
 

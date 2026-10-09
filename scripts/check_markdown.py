@@ -1,10 +1,15 @@
-"""Validate Markdown headings and repository-local links."""
+"""Validate Markdown headings, repository-local links and pinned cross-repository links."""
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
 import sys
 
 root = Path(__file__).resolve().parents[1]
+# ADR-0004: links to nuxt4-layers documents must be pinned to a tag or commit.
+moving_ref = re.compile(
+    r"^https?://github\.com/nuxt4-layers/[^/]+/(?:blob|tree|raw)/(?:master|main|HEAD|develop)(?:/|$)",
+    re.IGNORECASE,
+)
 errors = []
 files = sorted(root.rglob("*.md"))
 for file in files:
@@ -23,6 +28,9 @@ for file in files:
         for match in re.finditer(r"!?\[[^\]]*\]\(([^\s)]+)\)", line):
             href = match.group(1).strip("<>")
             parsed = urlsplit(href)
+            if moving_ref.match(href):
+                errors.append(f"{file.relative_to(root)}:{number}: unpinned link to a moving branch {href}")
+                continue
             if parsed.scheme or parsed.netloc or not parsed.path:
                 continue
             target = (file.parent / unquote(parsed.path)).resolve()
@@ -31,4 +39,4 @@ for file in files:
 if errors:
     print("\n".join(errors), file=sys.stderr)
     sys.exit(1)
-print(f"Checked {len(files)} Markdown files for headings and local links")
+print(f"Checked {len(files)} Markdown files for headings, local links and pinned links")

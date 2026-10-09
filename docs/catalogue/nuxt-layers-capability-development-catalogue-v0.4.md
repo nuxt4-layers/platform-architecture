@@ -1,8 +1,12 @@
-# Nuxt 4 Layers — Capability Development Catalogue v0.3
+# Nuxt 4 Layers — Capability Development Catalogue v0.4
 
-**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001/ADR-0002/ADR-0003  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0004  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
+
+This catalogue is an index ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)). Each entry is one line. Once a capability has a repository, its README and `docs/` hold its detail and this entry links there.
+
+**Changes from v0.3:** the Identity and Access Management (IAM) suite is listed in its own section (§2a), with `profile` and `iam-integration` added; the group model section (§8) is reduced to a pointer; `iam-integration` is distinguished from the general-purpose `integrations` hub (§6). The [v0.3 text](https://github.com/nuxt4-layers/platform-architecture/blob/a8d5beef92806e01ba09b93f971b38d26c4ef6ba/docs/catalogue/nuxt-layers-capability-development-catalogue-v0.3.md) remains available at a pinned commit.
 
 ## 1. Governing rules
 
@@ -14,7 +18,7 @@
 6. Public contracts should be exposed through deliberate entry points such as `/contracts`.
 7. Independently versioned layers should declare capability metadata using the existing manifest standard.
 8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations. No shared persistence service is permitted.
-9. Identity owns users, groups, single-parent group hierarchies and memberships; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the accepted group model.
+9. Identity owns users, groups, single-parent group hierarchies and memberships; Profile owns personal data; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the accepted group model.
 10. Required persistence must fail closed when its provider is absent.
 11. All protected operations require server-side authorisation.
 12. Security follows OWASP ASVS 5.0 Level 2, with applicable Level 3 controls for security-sensitive operations.
@@ -28,9 +32,6 @@
 |---|---|
 | `theme-manager` | Owns theme definitions, semantic design tokens, selection and configuration. Existing implementation retained. |
 | `ui` | Owns reusable accessible presentation components and interaction primitives. Consumes theme contracts. |
-| `identity` | Owns canonical users, one system-managed personal (unary) group per human identity, general-purpose groups, direct memberships, single-parent/multiple-child group hierarchies, group lifecycle and baseline identity/profile information. Group relationships do not automatically confer access. |
-| `authentication` | Owns authentication, credential verification, authenticated sessions, rotation, revocation and reauthentication. |
-| `authorisation` | Owns server-side, resource-aware access decisions using identities, effective memberships, group hierarchy, explicit grants, ownership, tenant context and policy. No automatic privilege inheritance; membership-derived access must be revocable. Implemented in `nuxt4-layers/authorisation`; contract version 2 is reconciled with the accepted group model. |
 | `privacy` | Owns reusable privacy governance contracts, purpose classification, consent and privacy preference mechanisms. |
 | `logging-service` | Owns structured diagnostic logging, context, redaction, severity and replaceable transports. |
 | `uuidv7-generator` | Provides UUIDv7 generation and validation without business-domain responsibilities. May be a lightweight library rather than an independent Nuxt layer. |
@@ -38,6 +39,20 @@
 | `storage-service` | Provides optional object-storage operations through replaceable adapters. Does not own domain records. |
 | `configuration-service` | Candidate only: shared configuration validation and resolution where existing Nuxt mechanisms are insufficient. |
 | `clock-service` | Candidate utility for injectable time and deterministic tests. Prefer a small library unless broader capability needs arise. |
+
+The IAM capabilities are listed in §2a.
+
+## 2a. Identity and Access Management (IAM) suite
+
+Foundation capabilities that cooperate through public contracts and host-supplied ports. None imports another; the suite's architecture and the processes that span several members live in `iam-integration` ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)).
+
+| Capability | Definition |
+|---|---|
+| `iam-integration` | Owns the suite's architecture, cross-capability processes and the reference adapters that connect the members' ports. Owns no identity, credential, permission or personal data. Distinct from the general-purpose `integrations` hub (§6). |
+| `authentication` | Owns credential verification, authenticated sessions, rotation, revocation and reauthentication. [`nuxt4-layers/authentication`](https://github.com/nuxt4-layers/authentication) |
+| `authorisation` | Owns server-side, resource-aware access decisions; no implicit inheritance through the group hierarchy. [`nuxt4-layers/authorisation`](https://github.com/nuxt4-layers/authorisation) |
+| `identity` | Owns identities, the personal group of each human identity, groups, the single-parent hierarchy, tenants and memberships with their lifecycle. Owns no personal data beyond opaque identifiers. Next to be built ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)). |
+| `profile` | Owns all personal data about an identity (names, contact details, preferences) and its disclosure. |
 
 ## 3. Platform capabilities
 
@@ -134,6 +149,7 @@ These may be separately versioned presentation capabilities or components within
 | Component | Responsibility |
 |---|---|
 | `integration-adapters` | Catalogue of independently installable external-provider adapters, not one mandatory runtime layer. |
+| `integrations` | Candidate general-purpose integration hub connecting applications to external services through triggers and actions. Unrelated to `iam-integration` (§2a). |
 | `api-gateway` | Optional application-edge routing and API composition. Domain APIs remain capability-owned. |
 | `application-compositions` | Deployable Nuxt applications selecting capability versions, supplying adapters and configuring routes. |
 
@@ -146,19 +162,12 @@ The composition root supplies database connections and secrets. Each persistence
 - Keep session lifecycle within Authentication unless an explicit architectural decision authorises another boundary.
 - Consolidate `todo-manager` into `task-service` initially.
 - Treat `company-manager`, `office-manager`, `process-manager`, `training-manager` and `shop-manager` as conditional capabilities.
-- Treat `api-services` and `integrations` as composition/integration concerns rather than monolithic business layers.
+- Treat `api-services` as a composition concern rather than a monolithic business layer. `integrations` is reconsidered as a candidate hub of independently installable connectors (§6), not a monolithic business layer.
 - Preserve existing published repository names and contracts unless an independently reviewed change justifies migration.
 
 ## 8. Group ownership and membership model
 
-- Each human identity has exactly one immutable, system-managed personal (unary) group; other group memberships are optional and many-to-many.
-- Each group has **at most one parent** and **zero or more children**; roots have no parent. Cycles are forbidden. This is a forest of rooted trees, not a multiple-parent graph.
-- Group hierarchy is organisational structure, **not implicit permission inheritance**. Any inherited membership or authorisation must be explicitly specified and tested.
-- Resource ownership, creator provenance, membership, tenant isolation and access grants are distinct concepts. Domain capabilities own their business resources and reference public group identifiers.
-- When a user leaves a group, all access derived from that membership, including any explicitly inherited or delegated access, must be revoked, with stale sessions and caches accounted for. Independently granted access is evaluated separately.
-- Group membership alone does not grant unrestricted access. Authorisation is evaluated server-side against actor, action, resource and context.
-- Companies, departments, clubs, committees, events and similar domains may associate their records with groups but retain ownership of their domain-specific rules and data.
-- Full definitions and acceptance criteria: [Group Model Definition v0.1](../identity/group-model-definition-v01.md), accepted as normative by [ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md).
+The group model is defined in [Group Model Definition v0.1](../identity/group-model-definition-v01.md), accepted as normative by [ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md). It moves to the Identity repository once that exists ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)).
 
 ## 9. Minimum development definition
 
