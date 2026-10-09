@@ -1,6 +1,6 @@
 # Nuxt 4 Layers — Capability Development Catalogue v0.4
 
-**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0004  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0005  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
 
@@ -44,7 +44,7 @@ The IAM capabilities are listed in §2a.
 
 ## 2a. Identity and Access Management (IAM) suite
 
-Foundation capabilities that cooperate through public contracts and host-supplied ports. None imports another; the suite's architecture and the processes that span several members live in `iam-integration` ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)).
+Foundation capabilities that cooperate through public contracts and host-supplied ports, under [ADR-0005](../decisions/ADR-0005-iam-suite.md). None imports another; the suite's architecture and the processes that span several members live in `iam-integration` ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)).
 
 | Capability | Definition |
 |---|---|

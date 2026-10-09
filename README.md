@@ -69,6 +69,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
 - [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
 - [ADR-0004 — Documentation Placement](docs/decisions/ADR-0004-documentation-placement.md)
+- [ADR-0005 — Identity and Access Management Suite](docs/decisions/ADR-0005-iam-suite.md)
 
 ## Status
 
