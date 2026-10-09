@@ -72,6 +72,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [ADR-0004 — Documentation Placement](docs/decisions/ADR-0004-documentation-placement.md)
 - [ADR-0005 — Identity and Access Management Suite](docs/decisions/ADR-0005-iam-suite.md)
 - [ADR-0006 — Polyglot Persistence and Data-Store Security](docs/decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)
+- [ADR-0007 — Break-Glass Emergency Access](docs/decisions/ADR-0007-break-glass-emergency-access.md)
 
 ## Status
 
