@@ -9,7 +9,7 @@ The [Group Model Definition v0.1](../identity/group-model-definition-v01.md) was
 
 The Authorisation capability (`nuxt4-layers/authorisation`, contract version 2) has already been reconciled with that definition: hierarchy inheritance is opt-in per role assignment, tenant isolation is a separate check, creator provenance grants nothing, only active memberships count, and its directory port carries a revocation consistency guarantee.
 
-The [Capability Development Catalogue v0.3](../catalogue/nuxt-layers-capability-development-catalogue-v0.3.md) §10 placed Logging Service next. Authorisation's persistence and server functions, and Authentication's principal-to-actor integration, cannot be completed against a real implementation until Identity provides users, groups, hierarchy and memberships.
+The [Capability Development Catalogue v0.3](https://github.com/nuxt4-layers/platform-architecture/blob/a8d5beef92806e01ba09b93f971b38d26c4ef6ba/docs/catalogue/nuxt-layers-capability-development-catalogue-v0.3.md) §10 placed Logging Service next. Authorisation's persistence and server functions, and Authentication's principal-to-actor integration, cannot be completed against a real implementation until Identity provides users, groups, hierarchy and memberships.
 
 ## Decision
 
