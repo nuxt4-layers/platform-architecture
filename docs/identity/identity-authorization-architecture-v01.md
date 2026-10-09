@@ -8,12 +8,15 @@
 Establishes who has signed in and manages the secure lifecycle of that authenticated session.
 
 ### Identity
-Owns users, groups, memberships and identity/profile concepts required by applications.
+Owns users (as opaque identities), groups, memberships and their states. It holds no personal data; the personal data that describes a person belongs to Profile ([ADR-0005](../decisions/ADR-0005-iam-suite.md)).
+
+### Profile
+Owns the personal data that describes a person and what each context may see of it, under the person's control (ADR-0005).
 
 ### Authorization
 Decides whether an actor may perform an action on a resource.
 
-These capabilities MUST remain conceptually and contractually distinct.
+These capabilities MUST remain conceptually and contractually distinct. Together with `iam-integration` they form the Identity and Access Management suite defined by ADR-0005.
 
 ## 2. Core identity model
 
@@ -23,7 +26,7 @@ The baseline model supports:
 - Group;
 - GroupMembership;
 - zero-to-many group memberships per user;
-- application-defined profile information where appropriate.
+- profile information held by Profile and referenced by identity identifier, never stored in Identity (ADR-0005).
 
 Group membership MUST be represented explicitly rather than by a single `groupId` on a user.
 
