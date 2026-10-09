@@ -1,6 +1,6 @@
 # Nuxt 4 Layers — Capability Development Catalogue v0.4
 
-**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0005  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0006  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
 
@@ -17,7 +17,7 @@ This catalogue is an index ([ADR-0004](../decisions/ADR-0004-documentation-place
 5. Dependencies must be directed, acyclic, explicit and contract-based.
 6. Public contracts should be exposed through deliberate entry points such as `/contracts`.
 7. Independently versioned layers should declare capability metadata using the existing manifest standard.
-8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations. No shared persistence service is permitted.
+8. Stateful capabilities own their persistence ports, PostgreSQL schemas and migrations, and any other stores they use under [ADR-0006](../decisions/ADR-0006-polyglot-persistence-and-data-store-security.md). No shared persistence service is permitted.
 9. Identity owns users, groups, single-parent group hierarchies and memberships; Profile owns personal data; Authentication owns sessions; Authorisation owns access decisions. Human identities have one system-managed personal (unary) group under the accepted group model.
 10. Required persistence must fail closed when its provider is absent.
 11. All protected operations require server-side authorisation.

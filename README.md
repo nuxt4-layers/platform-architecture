@@ -64,12 +64,14 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
 - [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
+- [Data Store Security Standard v0.1](docs/standards/data-store-security-v01.md)
 - [Capability Development Catalogue v0.4](docs/catalogue/nuxt-layers-capability-development-catalogue-v0.4.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
 - [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
 - [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
 - [ADR-0004 — Documentation Placement](docs/decisions/ADR-0004-documentation-placement.md)
 - [ADR-0005 — Identity and Access Management Suite](docs/decisions/ADR-0005-iam-suite.md)
+- [ADR-0006 — Polyglot Persistence and Data-Store Security](docs/decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)
 
 ## Status
 
