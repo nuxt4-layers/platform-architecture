@@ -1,6 +1,6 @@
 # Nuxt 4 Layers — Capability Development Catalogue v0.4
 
-**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0006  
+**Status:** Proposed implementation catalogue; group-model extension accepted by ADR-0003. Reconciled against Platform Architecture v0.1 and accepted ADR-0001 to ADR-0007  
 **Authority:** `nuxt4-layers/platform-architecture`  
 **Purpose:** Practical starting point for independently developed, configurable, cohesive and loosely coupled Nuxt 4 capabilities.
 
