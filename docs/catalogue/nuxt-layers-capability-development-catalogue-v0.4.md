@@ -48,11 +48,11 @@ Foundation capabilities that cooperate through public contracts and host-supplie
 
 | Capability | Definition |
 |---|---|
-| `iam-integration` | Owns the suite's architecture, cross-capability processes and the reference adapters that connect the members' ports. Owns no identity, credential, permission or personal data. Distinct from the general-purpose `integrations` hub (§6). |
-| `authentication` | Owns credential verification, authenticated sessions, rotation, revocation and reauthentication. [`nuxt4-layers/authentication`](https://github.com/nuxt4-layers/authentication) |
+| `iam-integration` | Owns the suite's architecture, cross-capability processes and the reference adapters that connect the members' ports. Owns no identity, credential, permission or personal data. Distinct from the general-purpose `integrations` hub (§6). [`nuxt4-layers/iam-integration`](https://github.com/nuxt4-layers/iam-integration) |
+| `authentication` | Owns credential verification, sign-in identifiers, authenticated sessions, rotation, revocation and reauthentication. [`nuxt4-layers/authentication`](https://github.com/nuxt4-layers/authentication) |
 | `authorisation` | Owns server-side, resource-aware access decisions; no implicit inheritance through the group hierarchy. [`nuxt4-layers/authorisation`](https://github.com/nuxt4-layers/authorisation) |
 | `identity` | Owns identities, the personal group of each human identity, groups, the single-parent hierarchy, tenants and memberships with their lifecycle. Owns no personal data beyond opaque identifiers. Next to be built ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)). |
-| `profile` | Owns all personal data about an identity (names, contact details, preferences) and its disclosure. |
+| `profile` | Owns the personal data that describes a person (names, contact details, personal preferences), keyed by an opaque Identity identifier. Decides what each context may see, under the person's control. Answers the person's requests for access, correction, export and erasure, and anonymises by unlinking. Owns no credentials, memberships or access decisions. [`nuxt4-layers/profile`](https://github.com/nuxt4-layers/profile) |
 
 ## 3. Platform capabilities
 
