@@ -75,6 +75,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [ADR-0007 — Break-Glass Emergency Access](docs/decisions/ADR-0007-break-glass-emergency-access.md)
 - [ADR-0008 — Independent Layer Delivery](docs/decisions/ADR-0008-independent-layer-delivery.md)
 - [ADR-0009 — Headless Capability Layers](docs/decisions/ADR-0009-headless-capability-layers.md)
+- [ADR-0010 — Documentation Style](docs/decisions/ADR-0010-documentation-style.md)
 
 ## Status
 
