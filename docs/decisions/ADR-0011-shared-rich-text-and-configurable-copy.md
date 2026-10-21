@@ -1,47 +1,53 @@
 # ADR-0011 — Shared Rich Text and Configurable Copy
 
 **Status:** Proposed  
-**Date:** 2026-10-21
+**Date:** 2026-10-21  
+**Amended:** 2026-10-21: plain text is not rich text; `rich-text` is a library, not a layer; the editor is used only where formatting is allowed
 
-> **In short:** every piece of copy is data. It is written in one shared rich-text format, checked by the layer that stores it, and edited through one editor that offers exactly what each field allows, from a single label to a full document.
+> **In short:** every piece of copy is data. Plain text is an ordinary string in an ordinary form control. Formatted text is written in one shared format, checked by the layer that stores it, and edited, where a screen wants it, through one editor that offers exactly what the field allows.
 
 ## Why
 
-Copy appears everywhere: published articles, a person's bio, a site's notices, a button's label. If each layer chose its own format, its own safety rules and its own editor, the same text would behave differently in each place, and one weak spot would put every reader at risk. Copy written into code cannot be changed without a release.
+Copy appears everywhere: published articles, a person's bio, a site's notices, a button's label. If each layer chose its own format and safety rules, the same text would behave differently in each place, and one weak spot would put every reader at risk. Copy written into code cannot be changed without a release.
 
-Copy also differs in what it needs. A label needs a single line; an article needs headings, tables and images. One editor should serve both, without giving a label the powers of an article.
+Most copy needs no formatting at all. A name or a label is a string, and a standard input edits it perfectly well. Only text that carries formatting, such as emphasis, links, lists or tables, needs a shared format and an editor.
 
 ## The decision
 
-### 1. One rich-text format, in a shared library
+### 1. Plain text stays plain
 
-The platform has one rich-text format: a safe subset of Markdown. It lives in **`nuxt4-layers/rich-text`**, a stateless library holding:
+A label, name, title or setting is a **plain string** with a maximum length, validated by the owning layer's schema and edited with standard form controls (`<input>`, `<textarea>`). It never uses `rich-text` or `content-editor`.
+
+### 2. One format for formatted text, in a small library
+
+The platform has one rich-text format: a safe subset of Markdown. It lives in **`nuxt4-layers/rich-text`**, a stateless library, not a layer: no pages, routes, storage or ports. It holds:
 
 - the format's rules: which constructs and links are allowed;
 - the parser, which turns text into a **safe tree** that can never carry markup;
 - the checks a layer runs before saving;
 - the profiles below.
 
-### 2. Profiles, from label to document
+### 3. Profiles, from a caption to a document
 
-Every rich-text field declares a **profile** and a maximum length.
+Every formatted field declares a **profile** and a maximum length.
 
 | Profile | Allows | Typical use |
 |---|---|---|
-| **Label** | Plain text, one line | A button, a menu item, a setting's name |
 | **Inline** | Bold, italic, links | A tagline, a caption, a short notice |
 | **Block** | Paragraphs, lists, headings, quotes | A bio, a description, a summary |
 | **Document** | Everything, including tables, images and links between documents | An article or a page |
 
-### 3. The layer that stores it enforces it
+### 4. The layer that stores it enforces it
 
 The capability that owns a field checks every save against its profile, using `rich-text`. Anything beyond the profile is refused, whichever screen sent it. Readers receive only the safe tree.
 
-### 4. One editor, adapting to the profile
+### 5. The editor where formatting needs it
 
-**`nuxt4-layers/content-editor`** is the platform's editing component, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools: a plain text box for a label, a full writing surface for a document. It edits text and hands it back; it knows nothing about the capability that stores it.
+**`nuxt4-layers/content-editor`** is the platform's editing component for formatted fields, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools. It edits text and hands it back; it knows nothing about the capability that stores it.
 
-### 5. No hard-coded copy
+A screen uses it only where a field's formatting needs more than a standard control can give. A plain `<textarea>` remains a valid choice for any formatted field: safety comes from the storing layer's checks, never from the editor.
+
+### 6. No hard-coded copy
 
 Text a person reads is data, never code.
 
@@ -52,7 +58,7 @@ Text a person reads is data, never code.
 | A site's or organisation's text | Configuration |
 | Interface labels and messages | Translation resources the application can override |
 
-### 6. Capabilities may depend on stateless libraries
+### 7. Capabilities may depend on stateless libraries
 
 A capability may depend on a `nuxt4-layers` library that holds no state, no ports and no screens, such as `rich-text`, as it depends on `zod`. Capabilities still never depend on one another ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
 
@@ -60,22 +66,23 @@ A capability may depend on a `nuxt4-layers` library that holds no state, no port
 
 | Layer | Adopts it |
 |---|---|
-| `rich-text` | Created from the publisher's existing dialect, with profiles added |
-| `publisher` | Uses `rich-text` before its 1.0 release; its own dialect is removed |
+| `rich-text` | Created from the publisher's existing dialect, with the three profiles added |
+| `publisher` | Uses `rich-text` for formatted fields before its 1.0 release; its own dialect is removed |
 | `content-editor` | Built on `ui` and `rich-text` as a presentation layer ([ADR-0009](ADR-0009-headless-capability-layers.md)) |
-| Profile, Configuration and others | Use `rich-text` for any field longer than a label, in their next release |
+| Profile, Configuration and others | Use `rich-text` for formatted fields in their next release; plain fields stay as they are |
 
 ## What follows
 
 | Gains | Costs |
 |---|---|
-| Text behaves and is protected the same everywhere | Every capability depends on one library, so its releases must be careful |
-| A field's limits are clear to editors, servers and readers alike | Profiles must be chosen for every field |
+| Formatted text behaves and is protected the same everywhere | Every capability with formatted fields depends on one library, so its releases must be careful |
+| Plain fields stay simple: a string and a standard control | Each field must be classed as plain or formatted, and a profile chosen for the formatted ones |
 | Copy changes without a release | Interface wording needs translation resources the application can edit |
-| One editor to learn, build and test | `content-editor` must serve very different needs well |
+| One editor to learn, build and test, used only where it earns its place | `content-editor` must serve a caption and an article equally well |
 
 ## Guardrails
 
 - `rich-text` never renders HTML; it returns safe trees only.
+- A plain field never accepts formatting; turning it into a formatted field is a contract change for its layer.
 - A change that loosens a profile, or widens what the format allows, needs a new ADR.
 - A stateless library holds no storage, ports, screens or configuration of its own.
