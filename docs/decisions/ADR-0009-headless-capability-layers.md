@@ -19,7 +19,7 @@ Foundation and platform layers are **headless by default**.
 |---|---|
 | **Contracts:** types, schemas and pure helpers | **Screens:** pages, routes or layouts |
 | **Server functions:** one clear task each | **Components** or slots for other layers' components |
-| **An HTTP API**, which the host may switch off | **Styling:** styles, class maps or design tokens |
+| **An HTTP API**, which the host may switch off | **Styling:** styles or class maps |
 | **Events** it publishes, and **ports** it asks the host to fill | **Display wording** or its translations |
 | **Data formats** such as feeds and export files | |
 | **A typed client**, if useful, holding data and actions only | |
@@ -34,7 +34,7 @@ This includes Theme Manager: its themes, tokens, contrast checks and preferences
 | **Kits** (optional) | One capability's screens built from `ui`, such as a publishing console. Created only when a second application needs the same screens |
 | **Applications** | Compose capabilities and `ui`, build their own screens, and own routes, branding and wording |
 
-`ui`, kits and applications use capabilities only through their contracts and APIs. A capability never depends on a presentation layer. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn, and accessibility testing lives there too.
+`ui`, kits and applications use capabilities only through their contracts and APIs. A capability never depends on them. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn, and accessibility testing lives there too.
 
 ## Safety stays with the data
 
