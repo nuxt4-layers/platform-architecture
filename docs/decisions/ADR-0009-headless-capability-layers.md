@@ -24,16 +24,17 @@ Foundation and platform layers are **headless by default**.
 | **Data formats** such as feeds and export files | |
 | **A typed client**, if useful, holding data and actions only | |
 
-Layers whose purpose *is* presentation, such as Theme Manager, are presentation layers and are not affected.
+This includes Theme Manager: its themes, tokens, contrast checks and preferences are services, and its generated CSS is a data format. Its token vocabulary is the contract that presentation builds on.
 
 ## Where presentation lives
 
 | Who | Does what |
 |---|---|
-| **Presentation layers** | Draw one or more capabilities in the platform's design system: an administration console, a public site kit, an editor |
-| **Applications** | Compose capabilities and presentation, and own routes, branding and wording |
+| **`nuxt4-layers/ui`** | The component library: generic components built on Theme Manager's token vocabulary |
+| **Kits** (optional) | One capability's screens built from `ui`, such as a publishing console. Created only when a second application needs the same screens |
+| **Applications** | Compose capabilities and `ui`, build their own screens, and own routes, branding and wording |
 
-Presentation layers use capabilities only through their contracts and APIs. A capability never depends on a presentation layer. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn, and accessibility testing lives there too.
+`ui`, kits and applications use capabilities only through their contracts and APIs. A capability never depends on a presentation layer. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn, and accessibility testing lives there too.
 
 ## Safety stays with the data
 
@@ -55,13 +56,13 @@ A layer may keep an interface only if that interface carries a guarantee no othe
 | Layer | Adopts it |
 |---|---|
 | New, or not yet at 1.0 | Headless from the start. `publisher` is the first |
-| Released, with screens | Moves its screens to a presentation layer, deprecating them in a minor release and removing them in the next major ([ADR-0008](ADR-0008-independent-layer-delivery.md)) |
+| Released, with screens, including Theme Manager | Moves its screens to `ui`, a kit or its applications, deprecating them in a minor release and removing them in the next major ([ADR-0008](ADR-0008-independent-layer-delivery.md)) |
 
 ## What follows
 
 | Gains | Costs |
 |---|---|
-| A composed application looks and reads as one product | Every capability needs a presentation layer before people can use it |
+| A composed application looks and reads as one product | Every capability needs screens in `ui`, a kit or the application before people can use it |
 | Hosts compose services without competing routes or styles | Released layers face a major release to drop their screens |
 | Layers are smaller and quicker to test, with no design-system dependency | A capability's own tests no longer show how it looks |
 | Any front end can use a capability: console, website, app or another service | |
@@ -69,5 +70,5 @@ A layer may keep an interface only if that interface carries a guarantee no othe
 ## Guardrails
 
 - A capability's contract lists its public surface, and names any exception with its reason.
-- A capability's tests prove its services and API; a presentation layer's tests prove its screens, including accessibility in light and dark mode.
-- Presentation layers never reach a capability's storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
+- A capability's tests prove its services and API; `ui`'s and the application's tests prove the screens, including accessibility in light and dark mode.
+- `ui`, kits and applications never reach a capability's storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
