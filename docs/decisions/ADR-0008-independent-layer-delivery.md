@@ -1,7 +1,8 @@
 # ADR-0008 — Independent Layer Delivery
 
-**Status:** Proposed  
-**Date:** 2026-10-11
+**Status:** Accepted  
+**Date:** 2026-10-11  
+**Accepted:** 2026-10-23
 
 ## Context
 
