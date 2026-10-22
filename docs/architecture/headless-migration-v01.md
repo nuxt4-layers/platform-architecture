@@ -16,7 +16,8 @@ Six layers still ship screens, wording and styles. Removing them is a breaking c
 | Released layers | Deprecate in a minor release, remove in the next major ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md)). Theme Manager, before 1.0, removes them at 1.0 |
 | Order | Theme Manager, Configuration, Profile, Identity, Authorisation, Authentication: least depended-on first, sign-in last |
 | Exceptions | None. Sign-in and step-up are enforced on the server; their screens' duties go in Authentication's *Headless surface* |
-| Kits | Created when a second application needs them, or to receive a released layer's screens. No `content-ui` yet: no second application needs it |
+| Kits | One per capability, named `<capability>-ui`, created to receive a released layer's screens or when a second application needs them. No `publisher-ui` yet |
+| User management | Built in `company-console` first; moved to the composition kit `user-management-ui` when a second application needs it |
 | Wording | Capabilities publish codes and `messageKey`s; `ui` and kits hold the wording; applications override it |
 | Shared guarantees | Each contract lists its screens' duties; the [baseline's screen checklist](presentation-internationalisation-accessibility-v01.md#8-screen-checklist) says how they are proved |
 | Rich text | Profile and Configuration adopt `rich-text` in the same major release, so each contract breaks once |
@@ -37,13 +38,33 @@ Six layers still ship screens, wording and styles. Removing them is a breaking c
 
 ## Kits
 
-| Kit | Receives |
-|---|---|
-| `settings-ui` (new) | Theme Manager's library and editor; Configuration's settings and pending changes |
-| `user-management-ui` | Authentication's sign-in, sign-up, password, multi-factor, break-glass and security screens; Profile's own profile, disclosure, export, contact verification, person, requests and departures |
-| `group-management-ui` | Identity's account, groups, members, invitations, join requests, changes, safety periods and service identities; Authorisation's roles, assignments, sharing, access review and changes |
+| Kit | Audience | Receives |
+|---|---|---|
+| `theme-manager-ui` (new) | Administrators | Theme library and editor |
+| `configuration-ui` (new) | Administrators | Settings and pending changes |
+| `profile-ui` (new) | People; operators for requests and departures | Own profile, disclosure, export, contact verification, person, requests, departures |
+| `identity-ui` (new) | People; administrators | Account, groups, members, invitations, join requests, changes, safety periods, service identities. This is group management |
+| `authorisation-ui` (new) | Administrators | Roles, assignments, sharing, access review, changes |
+| `authentication-ui` (new) | People; operators for break-glass | Sign-in, sign-up, passwords, multi-factor, step-up, break-glass, security settings |
 
-Screens are moved, then rebuilt on `ui`'s primitives and Theme Manager's vocabulary. Each kit keeps its sources' accessibility tests and wording.
+Screens are moved, then rebuilt on `ui`'s components and Theme Manager's vocabulary. Each kit keeps its sources' accessibility tests and wording. The empty `group-management-ui` repository is retired; `user-management-ui` is kept for the composition kit.
+
+## Host application
+
+Built in the host first; moved to a kit when a second application needs it.
+
+| Concern | Why there |
+|---|---|
+| Routes, shell, navigation and layout | Only the product knows its structure |
+| Which theme each tenant uses | A choice of Theme Manager data |
+| Final wording and tenant overrides | Kits give defaults; the product decides |
+| Ports: persistence, key wrapper, signed-in person, tenant resolver, rate limits | The host supplies them ([ADR-0002](../decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)) |
+| Wiring between capabilities: names, `iam-integration`'s adapters | Capabilities never import one another |
+| Security per route: headers, step-up, administration on its own host | Depends on deployment |
+| Page metadata, search and structured data | Built from capabilities' answers |
+| Feature switches and tenant entitlements | Product and commercial decisions |
+| Journeys across capabilities, such as user management | Until a second application needs them |
+| Whole-page and workflow tests, accessibility included | [Baseline](presentation-internationalisation-accessibility-v01.md) §7 |
 
 ## Per layer
 
@@ -66,14 +87,14 @@ Each step is one draft pull request in one repository, against released tags.
 |---|---|---|
 | 1 | `ui`: the offers above | 0.1.0 |
 | 2 | Each released layer: *Headless surface* section, deprecation notices on its screens, API switch | Minor, in any order |
-| 3 | `settings-ui` | 0.1.0 |
+| 3 | `theme-manager-ui`, then `configuration-ui` | 0.1.0 each |
 | 4 | Theme Manager: screens removed | 1.0.0 |
 | 5 | Configuration: screens removed; long fields on `rich-text` | 2.0.0 |
-| 6 | `user-management-ui`: Profile's screens | 0.1.0 |
+| 6 | `profile-ui` | 0.1.0 |
 | 7 | Profile: screens removed; long fields on `rich-text` | 2.0.0 |
-| 8 | `group-management-ui` | 0.1.0 |
+| 8 | `identity-ui`, then `authorisation-ui` | 0.1.0 each |
 | 9 | Identity, then Authorisation: screens removed | 2.0.0 each |
-| 10 | `user-management-ui`: Authentication's screens | 0.2.0 |
+| 10 | `authentication-ui` | 0.1.0 |
 | 11 | Authentication: screens removed | 2.0.0 |
 
 `iam-integration` and the test harness are recomposed at each release, as ADR-0008 requires.
@@ -86,4 +107,4 @@ Each step is one draft pull request in one repository, against released tags.
 | A guarantee slips when a screen moves | The *Headless surface* section lists it; the kit's tests prove it against that contract |
 | Two majors for one layer | Rich text and screen removal share one major |
 | `ui` and Theme Manager drift | Theme Manager owns the vocabulary; `ui` only consumes it |
-| Kits outnumber their users | Three kits, one per area, not one per layer |
+| Kits outnumber their users | One per released layer with screens, no more; journeys stay in the application until a second one needs them |

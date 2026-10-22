@@ -31,7 +31,7 @@ This catalogue is an index ([ADR-0004](../decisions/ADR-0004-documentation-place
 | Capability | Definition |
 |---|---|
 | `theme-manager` | Owns theme definitions, semantic design tokens, selection and configuration. Existing implementation retained. |
-| `ui` | Owns reusable accessible presentation components and interaction primitives. Consumes theme contracts. |
+| `ui` | Owns fully styled, generic components, customisable through props, slots, variants and Theme Manager's tokens. Knows no capability. |
 | `privacy` | Owns reusable privacy governance contracts, purpose classification, consent and privacy preference mechanisms. |
 | `logging-service` | Owns structured diagnostic logging, context, redaction, severity and replaceable transports. |
 | `uuidv7-generator` | Provides UUIDv7 generation and validation without business-domain responsibilities. May be a lightweight library rather than an independent Nuxt layer. |
@@ -134,8 +134,7 @@ Management interfaces consume authoritative capability contracts. They do not in
 
 | Interface | Responsibility |
 |---|---|
-| `user-management-ui` | Administers Identity users, personal-group lifecycle visibility and profiles through authorised public contracts. |
-| `group-management-ui` | Administers Identity groups, one-parent/many-child hierarchies, direct memberships and revocation through authorised public contracts; never owns group state. |
+| `user-management-ui` | Composition kit for managing users across the IAM suite's capability kits; built in `company-console` first and moved here when a second application needs it ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)). |
 | `warehouse-management-ui` | Presents warehouse and inventory administration. |
 | `workflow-management-ui` | Presents workflow definitions, execution and monitoring. |
 | `workshop-management-ui` | Presents workshop administration and operations. |

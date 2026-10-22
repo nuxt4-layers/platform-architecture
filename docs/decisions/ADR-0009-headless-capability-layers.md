@@ -2,7 +2,8 @@
 
 **Status:** Accepted  
 **Date:** 2026-10-21  
-**Amended and accepted:** 2026-10-22: no screen exceptions for sign-in or step-up; client helpers and protocol endpoints named; wording keys, theme authority and person names placed; screens removed only once replaced
+**Amended and accepted:** 2026-10-22: no screen exceptions for sign-in or step-up; client helpers and protocol endpoints named; wording keys, theme authority and person names placed; screens removed only once replaced  
+**Amended:** 2026-10-22: `ui` offers styled, customisable components; kits are named `<capability>-ui`; composition kits and the host's part defined
 
 > **In short:** capability layers do the work; they do not draw the screens. Each offers a clear set of services, and whoever composes it decides how those services look.
 
@@ -35,11 +36,19 @@ Theme Manager is headless too. Its themes, tokens, contrast checks and preferenc
 
 | Who | Does what |
 |---|---|
-| **`nuxt4-layers/ui`** | The component library on Theme Manager's tokens: generic components, the safe-tree renderer, a person-name component fed by the application, and the wording for generic text and common error codes |
-| **Kits** (optional) | One capability's or one suite's screens, built from `ui`, with their own wording |
-| **Applications** | Compose capabilities, `ui` and kits; own routes, branding and final wording, overriding any kit's or `ui`'s |
+| **`nuxt4-layers/ui`** | Fully styled components on Theme Manager's tokens, customisable through props, slots, variants and the theme. Generic only: no component knows a capability. It includes the safe-tree renderer, a person-name component fed by the application, and the wording for generic text and common error codes |
+| **Capability kits**, `<capability>-ui` | One capability's screens, built from `ui`, with their own wording, such as `profile-ui` |
+| **Composition kits** | One journey across several capability kits, such as managing users; no data or services of their own |
+| **Applications** | Compose capabilities, `ui` and kits; own everything specific to the product (below) |
 
-A kit is created when a second application needs the same screens, or to receive a released layer's screens when they leave it, so they are moved rather than rewritten.
+A kit is created when a second application needs the same screens, or to receive a released layer's screens when they leave it, so they are moved rather than rewritten. Until then, screens live in the application. A component moves to `ui` once it knows no capability.
+
+Every kit:
+
+- serves one audience (people themselves, tenant administrators or platform operators) and never mixes self-service with administration;
+- takes the tenant, the signed-in person and other capabilities' data from the application, never from a request or a lookup of its own;
+- uses only typed clients and HTTP APIs, so it can be embedded anywhere and never depends on how data is stored;
+- releases a new major whenever its capability's contract does.
 
 `ui`, kits and applications use capabilities only through their contracts, APIs and typed clients. A capability never depends on them. A screen that shows another capability's data, such as a person's name, gets it through the application. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn.
 
