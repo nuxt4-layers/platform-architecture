@@ -15,7 +15,7 @@ A layer's real value is what it knows and guarantees, such as a document's lifec
 
 ## The decision
 
-Capability layers, foundation and platform alike, are **headless**.
+Every capability layer, whether foundation, platform or domain, is **headless**.
 
 | A headless layer offers | A headless layer never offers |
 |---|---|

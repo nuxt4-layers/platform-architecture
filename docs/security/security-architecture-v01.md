@@ -8,7 +8,7 @@ Security is part of the architecture and an ongoing engineering responsibility.
 
 The platform SHALL use **OWASP ASVS 5.0 Level 2** as its minimum application-security target. Verification records MUST state the exact ASVS release and SHOULD use version-qualified requirement identifiers.
 
-Security-sensitive capabilities and operations SHALL also apply relevant ASVS Level 3 requirements where they are technically and operationally appropriate. This includes authentication, authorization, privileged administration, session management, tenant and resource isolation, secrets and key management, and highly sensitive data handling.
+Security-sensitive capabilities and operations SHALL also apply relevant ASVS Level 3 requirements where they are technically and operationally appropriate. This includes authentication, authorisation, privileged administration, session management, tenant and resource isolation, secrets and key management, and highly sensitive data handling.
 
 A consuming application MAY impose stronger requirements but MUST NOT silently weaken this baseline.
 
@@ -30,7 +30,7 @@ Reference to a framework MUST NOT be represented as certification, formal compli
 - secure by default;
 - least privilege;
 - deny by default for protected resources;
-- server-side authorization;
+- server-side authorisation;
 - defence in depth;
 - explicit trust boundaries;
 - minimal attack surface;
@@ -55,13 +55,13 @@ Applications MUST implement applicable ASVS baseline controls. The architecture 
 
 Client-side access controls are user-experience mechanisms only and MUST NOT constitute the authoritative security boundary.
 
-## 6. Authorization and isolation
+## 6. Authorisation and isolation
 
-Every protected operation MUST receive authoritative server-side authorization.
+Every protected operation MUST receive authoritative server-side authorisation.
 
 Multi-user and multi-tenant resources MUST clearly define ownership, tenancy and access rules. A tenant or resource identifier supplied by the client MUST NOT, by itself, grant access.
 
-Database row-level security SHOULD be used where appropriate as an additional containment boundary, particularly for tenant or owner-isolated relational data, but MUST NOT replace application authorization policy.
+Database row-level security SHOULD be used where appropriate as an additional containment boundary, particularly for tenant or owner-isolated relational data, but MUST NOT replace application authorisation policy.
 
 Isolation controls MUST have negative tests demonstrating that one principal or tenant cannot access another's protected resources.
 
@@ -83,11 +83,11 @@ Key ownership, rotation, revocation and recovery requirements MUST be explicit w
 
 Security-relevant events MUST be auditable at a level proportionate to risk without logging credentials, session secrets, unnecessary personal data or other prohibited sensitive values.
 
-Authentication events, authorization-policy changes, privileged actions and security-control changes SHOULD produce structured audit records.
+Authentication events, authorisation-policy changes, privileged actions and security-control changes SHOULD produce structured audit records.
 
 ## 10. Secure development and supply chain
 
-Repositories and delivery pipelines SHOULD implement proportionate controls including protected default branches and pull-request workflows, dependency/vulnerability scanning, secret scanning, static analysis, SBOM generation where useful, security-header/configuration tests, dynamic web scanning where appropriate, automated authorization/isolation tests and dependency update discipline.
+Repositories and delivery pipelines SHOULD implement proportionate controls including protected default branches and pull-request workflows, dependency/vulnerability scanning, secret scanning, static analysis, SBOM generation where useful, security-header/configuration tests, dynamic web scanning where appropriate, automated authorisation/isolation tests and dependency update discipline.
 
 Security verification MUST be part of normal development rather than a pre-release-only activity.
 

@@ -30,7 +30,7 @@ The manifest MUST identify:
 - manifest schema version;
 - package/layer identity;
 - layer version;
-- classification;
+- classification: `foundation`, `platform`, `domain`, `presentation` or `library` ([Layer Architecture](../architecture/layer-architecture-v01.md) §2);
 - provided capabilities and contract versions;
 - required capabilities and compatible versions;
 - optionality of requirements.

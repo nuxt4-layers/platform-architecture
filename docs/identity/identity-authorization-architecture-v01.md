@@ -1,4 +1,4 @@
-# Identity and Authorization Architecture v0.1
+# Identity and Authorisation Architecture v0.1
 
 **Status:** Normative baseline
 
@@ -13,7 +13,7 @@ Owns users (as opaque identities), groups, memberships and their states. It hold
 ### Profile
 Owns the personal data that describes a person and what each context may see of it, under the person's control (ADR-0005).
 
-### Authorization
+### Authorisation
 Decides whether an actor may perform an action on a resource.
 
 These capabilities MUST remain conceptually and contractually distinct. Together with `iam-integration` they form the Identity and Access Management suite defined by ADR-0005.
@@ -30,9 +30,9 @@ The baseline model supports:
 
 Group membership MUST be represented explicitly rather than by a single `groupId` on a user.
 
-## 3. Authorization model
+## 3. Authorisation model
 
-Authorization MUST consider the resource being accessed. Simple global roles such as ADMIN, EDITOR or USER MAY exist, but they MUST NOT be the only access-control mechanism when resources have owners or scoped access.
+Authorisation MUST consider the resource being accessed. Simple global roles such as ADMIN, EDITOR or USER MAY exist, but they MUST NOT be the only access-control mechanism when resources have owners or scoped access.
 
 A decision conceptually evaluates:
 
@@ -44,7 +44,7 @@ Resources MAY support user ownership, group ownership, explicit grants, role/per
 
 ## 4. Enforcement
 
-Every protected operation MUST be authorized on the server. Route middleware and hidden UI elements MAY improve the user experience, but they MUST NOT be treated as security enforcement.
+Every protected operation MUST be authorised on the server. Route middleware and hidden UI elements MAY improve the user experience, but they MUST NOT be treated as security enforcement.
 
 Database row-level security MAY be used as an additional containment mechanism.
 

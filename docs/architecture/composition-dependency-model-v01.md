@@ -18,7 +18,7 @@ If two capabilities appear to depend on each other, move their shared contract t
 
 A dependency targets a capability's public contract, not the way that capability is implemented or deployed.
 
-A domain capability requiring authorization asks for an AuthorizationService contract; authorization does not gain knowledge of that domain's internals. Domain resources are represented through agreed generic or domain-owned contract types.
+A domain capability requiring authorisation asks for an AuthorisationService contract; authorisation does not gain knowledge of that domain's internals. Domain resources are represented through agreed generic or domain-owned contract types.
 
 ## 4. Composition over inheritance
 

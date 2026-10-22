@@ -16,7 +16,12 @@ A layer MAY expose:
 - **Query contracts** — read operations.
 - **Event contracts** — facts emitted after domain events.
 - **Configuration contracts** — validated consumer configuration.
-- **Error contracts** — documented failure categories.
+- **Error contracts** — documented failure categories, as codes and `messageKey`s, never wording.
+- **HTTP API contracts** — endpoints the host may switch off.
+- **Port contracts** — what the layer asks the host to supply.
+- **Typed clients** — data and actions for screens; never components.
+
+A capability never exposes screens, components, slots, styles or display wording ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)).
 
 ## 3. Rules
 
@@ -29,12 +34,12 @@ Consumers MUST NOT import from paths designated `internal`, private server imple
 ## 4. Service example
 
 ```ts
-export interface AuthorizationService {
-  can(actor: Actor, action: Action, resource: Resource): Promise<AuthorizationDecision>
+export interface AuthorisationService {
+  can(actor: Actor, action: Action, resource: Resource): Promise<AuthorisationDecision>
 }
 ```
 
-This contract says what authorization provides without dictating its policy engine or database.
+This contract says what authorisation provides without dictating its policy engine or database.
 
 ## 5. Evolution
 

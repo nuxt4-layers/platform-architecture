@@ -35,7 +35,12 @@ Each independently versioned layer MUST document:
 - installation/composition;
 - compatibility;
 - testing;
-- security/privacy considerations where applicable.
+- security/privacy considerations where applicable, with a threat model and control register for security-critical capabilities;
+- for a capability, its *Headless surface*: what screens drawing it must do ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md));
+- the ADRs that govern it, in its README ([ADR-0004](../decisions/ADR-0004-documentation-placement.md));
+- its releases, in `CHANGELOG.md` ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md)).
+
+It MUST also ship a `capability.json` [manifest](../contracts/capability-manifest-v01.md).
 
 ## 4. Package naming
 
@@ -53,12 +58,4 @@ Whether a repository is public or private does not define its API. Undocumented 
 
 ## 7. Distribution and consumption
 
-An independently maintained layer repository SHOULD be package-ready even before it is published to a package registry.
-
-Its `package.json` SHOULD provide the metadata and dependency declarations needed for package-manager installation. Dependencies imported by the layer MUST be declared by the layer rather than relying on undeclared dependencies from the consuming application.
-
-During early development, consumers MAY install the repository directly as a Git-backed package dependency. Stable releases SHOULD normally be published and consumed as versioned packages, using the `@nuxt4-layers/` scope when appropriate.
-
-Direct remote Nuxt `extends` remains a supported Nuxt mechanism but is not the preferred ecosystem distribution method.
-
-Repository boundaries and package boundaries SHOULD normally align for independently released capabilities, while remaining architectural implementation choices rather than definitions of the capability boundary.
+An independently maintained layer SHOULD be package-ready before it is published, and MUST declare every dependency it imports. Consumption follows the [Layer Consumption Workflow](layer-consumption-workflow-v01.md). Repository and package boundaries SHOULD align.

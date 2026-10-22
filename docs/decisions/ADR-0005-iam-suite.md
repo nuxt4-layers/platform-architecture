@@ -1,7 +1,8 @@
 # ADR-0005 — Identity and Access Management Suite
 
 **Status:** Accepted  
-**Date:** 2026-10-09
+**Date:** 2026-10-09  
+**Amended:** 2026-10-23: `iam-integration`'s documents pinned (§3)
 
 ## Context
 
@@ -40,7 +41,7 @@ Members meet only through public contracts and host-supplied ports. `iam-integra
 
 ### 3. Where the detail lives
 
-Following [ADR-0004](ADR-0004-documentation-placement.md), the suite architecture, the state models and the cross-capability processes (provisioning, joining and leaving, pausing, suspension, approval, account closure with a grace period, data-subject requests, recovery) are specified in `nuxt4-layers/iam-integration` under `docs/`. Each member's own contract documents its part. This ADR is updated to pin those documents once they exist.
+Following [ADR-0004](ADR-0004-documentation-placement.md), the suite architecture, the state models and the cross-capability processes (provisioning, joining and leaving, pausing, suspension, approval, account closure with a grace period, data-subject requests, recovery) are specified in `nuxt4-layers/iam-integration`: its [architecture](https://github.com/nuxt4-layers/iam-integration/blob/a51bffe7e4730192047c9fa47b0fcb5d28ee7fcd/docs/architecture.md), [states](https://github.com/nuxt4-layers/iam-integration/blob/a51bffe7e4730192047c9fa47b0fcb5d28ee7fcd/docs/states.md) and [processes](https://github.com/nuxt4-layers/iam-integration/blob/a51bffe7e4730192047c9fa47b0fcb5d28ee7fcd/docs/processes/README.md). Each member's own contract documents its part.
 
 ## Consequences
 
