@@ -1,7 +1,8 @@
 # ADR-0010 — Documentation Style
 
-**Status:** Proposed  
-**Date:** 2026-10-21
+**Status:** Accepted  
+**Date:** 2026-10-21  
+**Accepted:** 2026-10-22
 
 > **In short:** every document should be quick to read and hard to misread. Brevity comes first.
 

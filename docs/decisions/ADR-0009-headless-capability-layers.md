@@ -1,7 +1,8 @@
 # ADR-0009 — Headless Capability Layers
 
-**Status:** Proposed  
-**Date:** 2026-10-21
+**Status:** Accepted  
+**Date:** 2026-10-21  
+**Amended and accepted:** 2026-10-22: no screen exceptions for sign-in or step-up; client helpers and protocol endpoints named; wording keys, theme authority and person names placed; screens removed only once replaced
 
 > **In short:** capability layers do the work; they do not draw the screens. Each offers a clear set of services, and whoever composes it decides how those services look.
 
@@ -13,50 +14,57 @@ A layer's real value is what it knows and guarantees, such as a document's lifec
 
 ## The decision
 
-Foundation and platform layers are **headless by default**.
+Capability layers, foundation and platform alike, are **headless**.
 
 | A headless layer offers | A headless layer never offers |
 |---|---|
 | **Contracts:** types, schemas and pure helpers | **Screens:** pages, routes or layouts |
 | **Server functions:** one clear task each | **Components** or slots for other layers' components |
 | **An HTTP API**, which the host may switch off | **Styling:** styles or class maps |
-| **Events** it publishes, and **ports** it asks the host to fill | **Display wording** or its translations |
-| **Data formats** such as feeds and export files | |
-| **A typed client**, if useful, holding data and actions only | |
+| **Protocol endpoints** a standard requires, such as a sign-in provider's callback or an emailed link that redirects; they answer a redirect or data, never a page | **Display wording** or its translations |
+| **Events** it publishes, and **ports** it asks the host to fill | |
+| **Data formats** such as feeds, export files and a theme's CSS | |
+| **A typed client**, holding data, actions, navigation guards and browser ceremonies (such as a passkey prompt); guards take their destinations from configuration | |
+| **Codes and keys:** error codes and `messageKey`s, with their parameters | |
 
-This includes Theme Manager: its themes, tokens, contrast checks and preferences are services, and its generated CSS is a data format. Its token vocabulary is the contract that presentation builds on.
+### Theme Manager
+
+Theme Manager is headless too. Its themes, tokens, contrast checks and preferences are services; its CSS is a data format, and applying the effective theme to the page is delivering that format, not drawing. It stays the **only authority** for the effective theme and its token vocabulary (`SemanticPresentationTheme`). `ui` consumes that vocabulary and never defines, validates or applies a theme of its own.
 
 ## Where presentation lives
 
 | Who | Does what |
 |---|---|
-| **`nuxt4-layers/ui`** | The component library: generic components built on Theme Manager's token vocabulary |
-| **Kits** (optional) | One capability's screens built from `ui`, such as a publishing console. Created only when a second application needs the same screens |
-| **Applications** | Compose capabilities and `ui`, build their own screens, and own routes, branding and wording |
+| **`nuxt4-layers/ui`** | The component library on Theme Manager's tokens: generic components, the safe-tree renderer, a person-name component fed by the application, and the wording for generic text and common error codes |
+| **Kits** (optional) | One capability's or one suite's screens, built from `ui`, with their own wording |
+| **Applications** | Compose capabilities, `ui` and kits; own routes, branding and final wording, overriding any kit's or `ui`'s |
 
-`ui`, kits and applications use capabilities only through their contracts and APIs. A capability never depends on them. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn, and accessibility testing lives there too.
+A kit is created when a second application needs the same screens, or to receive a released layer's screens when they leave it, so they are moved rather than rewritten.
+
+`ui`, kits and applications use capabilities only through their contracts, APIs and typed clients. A capability never depends on them. A screen that shows another capability's data, such as a person's name, gets it through the application. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn.
 
 ## Safety stays with the data
 
 Going headless never hands a guarantee to the screen.
 
 - **Risky content is returned in a safe form.** Rich text comes back as structure that cannot be shown unsafely, never as markup.
-- **Rules are enforced by the layer's functions.** Permissions, step-up, consent and visibility hold whichever screen calls them.
+- **Rules are enforced by the layer's functions.** Permissions, step-up, consent, rate limits and visibility hold whichever screen calls them.
+- **What a screen must still do is written down.** Each layer's contract has a *Headless surface* section listing it, such as no framing or caching of administration screens, or the right `autocomplete` on credential fields.
 
 ## Exceptions
 
-A layer may keep an interface only if that interface carries a guarantee no other layer can give. Sign-in and step-up are the likely examples. An exception is:
+A layer may keep an interface only if it carries a guarantee that its server functions cannot enforce and no composing screen can be trusted to give. **None is granted.** Sign-in and step-up do not qualify: their guarantees are enforced on the server, and what their screens must do is listed in Authentication's *Headless surface*.
 
-- argued in the layer's contract;
-- kept as small as possible;
-- still offered as services, for hosts that draw their own.
+A future exception needs an amendment to this ADR, is argued in the layer's contract and threat model, kept as small as possible, and still offered as services.
 
 ## Adopting it
 
 | Layer | Adopts it |
 |---|---|
-| New, or not yet at 1.0 | Headless from the start. `publisher` is the first |
-| Released, with screens, including Theme Manager | Moves its screens to `ui`, a kit or its applications, deprecating them in a minor release and removing them in the next major ([ADR-0008](ADR-0008-independent-layer-delivery.md)) |
+| New, or before 1.0 | Headless from the start. `publisher` is the first; Theme Manager reaches 1.0 headless |
+| Released, with screens | Deprecates its screens in a minor release and removes them in the next major ([ADR-0008](ADR-0008-independent-layer-delivery.md)) |
+
+A layer removes its screens only once their replacements are released in `ui`, a kit or the application, so no application is left without them. The [headless migration plan](../architecture/headless-migration-v01.md) sets the order.
 
 ## What follows
 
@@ -65,10 +73,11 @@ A layer may keep an interface only if that interface carries a guarantee no othe
 | A composed application looks and reads as one product | Every capability needs screens in `ui`, a kit or the application before people can use it |
 | Hosts compose services without competing routes or styles | Released layers face a major release to drop their screens |
 | Layers are smaller and quicker to test, with no design-system dependency | A capability's own tests no longer show how it looks |
-| Any front end can use a capability: console, website, app or another service | |
+| Any front end can use a capability: console, website, app or another service | Kits add repositories to release and keep in step |
 
 ## Guardrails
 
-- A capability's contract lists its public surface, and names any exception with its reason.
-- A capability's tests prove its services and API; `ui`'s and the application's tests prove the screens, including accessibility in light and dark mode.
+- A capability's contract lists its public surface and its *Headless surface* duties; a test fails if it ships screens, components, routes, styles, display wording or slots.
+- A capability's tests prove its services and API; `ui`'s, kits' and applications' tests prove the screens, including accessibility in light and dark mode.
 - `ui`, kits and applications never reach a capability's storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
+- A capability's codes and `messageKey`s are part of its contract: renaming or removing one is a breaking change.

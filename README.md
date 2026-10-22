@@ -61,6 +61,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Group Model Definition v0.1](docs/identity/group-model-definition-v01.md)
 - [Security Architecture v0.1](docs/security/security-architecture-v01.md)
 - [Privacy Architecture v0.1](docs/privacy/privacy-architecture-v01.md)
+- [Headless Migration v0.1](docs/architecture/headless-migration-v01.md)
 - [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
 - [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
 - [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
