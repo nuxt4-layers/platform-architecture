@@ -18,7 +18,7 @@ User customisation MUST NOT break mandatory accessibility requirements. Theme an
 
 Internationalisation is a standard platform capability.
 
-Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Each capability MUST be able to own its translation resources; the application shell MUST NOT be forced to maintain one large translation catalogue.
+Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Capabilities publish codes and `messageKey`s, never wording ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)). `ui` and each kit MUST own the translation resources for what they draw; the application MAY override any message and MUST NOT be forced to maintain one large translation catalogue.
 
 Locale-aware routing and translated metadata SHOULD be supported where public content requires them. An application MAY initially enable only one locale, but its architecture MUST NOT unnecessarily prevent additional locales.
 
@@ -42,7 +42,7 @@ Metadata, canonical URLs, locale alternates and structured data SHOULD be genera
 
 ## 6. Layer responsibilities
 
-The UI capability owns reusable presentation primitives, design-token consumption and component-level accessibility behaviour.
+The UI capability owns reusable presentation primitives, design-token consumption and component-level accessibility behaviour. Theme Manager alone owns the effective theme and its token vocabulary.
 
 Internationalisation, semantic metadata and user-preference persistence MAY be separately bounded capabilities or integrations where their responsibilities justify separation. Their public contracts MUST remain independent of any single replaceable implementation library.
 
@@ -53,3 +53,17 @@ Domain capabilities SHOULD supply semantic content and metadata inputs without o
 Reusable UI components SHOULD have automated checks for accessibility-relevant behaviour where feasible. Consuming applications MUST verify accessibility at the composed-page and workflow level because component-level compliance alone cannot establish application-level WCAG conformance.
 
 Internationalisation tests SHOULD include missing-message behaviour and locale-sensitive formatting. Structured data SHOULD be schema-validated where practical.
+
+## 8. Screen checklist
+
+Every screen that `ui`, a kit or an application draws over a capability MUST meet this list, and the drawing repository's tests MUST prove it.
+
+| Check | Proved by |
+|---|---|
+| Each item in the capability's *Headless surface* section | The kit's or application's tests, against that contract version |
+| No serious or critical axe finding, in light and dark mode | Browser tests per page |
+| Keyboard operation, visible focus and one `<main>` per screen | Browser tests per workflow |
+| Administration and credential screens are never framed, cached or sent as a Referer | A test of the response headers |
+| Rich text drawn only from safe trees, never as HTML | `ui`'s renderer tests; a search for raw HTML insertion |
+| Every message has a key; a missing one fails visibly in development | Internationalisation tests |
+| No name or contact detail in a document title or URL | Browser tests |
