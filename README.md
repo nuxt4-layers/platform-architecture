@@ -57,7 +57,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Presentation, Internationalisation and Accessibility Architecture v0.1](docs/architecture/presentation-internationalisation-accessibility-v01.md)
 - [Layer Interface Standard v0.1](docs/contracts/layer-interface-standard-v01.md)
 - [Capability Manifest v0.1](docs/contracts/capability-manifest-v01.md)
-- [Identity and Authorization Architecture v0.1](docs/identity/identity-authorization-architecture-v01.md)
+- [Identity and Authorisation Architecture v0.1](docs/identity/identity-authorization-architecture-v01.md)
 - [Group Model Definition v0.1](docs/identity/group-model-definition-v01.md)
 - [Security Architecture v0.1](docs/security/security-architecture-v01.md)
 - [Privacy Architecture v0.1](docs/privacy/privacy-architecture-v01.md)

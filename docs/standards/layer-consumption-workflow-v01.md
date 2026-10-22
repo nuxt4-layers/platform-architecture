@@ -24,10 +24,10 @@ Do not copy independently maintained layer source into the application as a norm
 
 For a Git-backed layer:
 
-1. select an intentional Git revision, preferably an immutable commit SHA when exact reproducibility is required;
+1. select a released tag, or an immutable commit SHA before the layer's first release;
 2. declare the Git repository in the application's package dependencies;
 3. install it with the project's package manager;
-4. commit the resulting lockfile;
+4. commit the resulting lockfile; it MUST record Git dependencies as `codeload.github.com` tarballs, never `git@github.com` ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md));
 5. reference the installed package name from Nuxt `extends`;
 6. record any required capability contracts and configuration;
 7. run the application's required type, test, security and build checks.

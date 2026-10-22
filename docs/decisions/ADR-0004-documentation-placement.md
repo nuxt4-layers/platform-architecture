@@ -1,7 +1,8 @@
 # ADR-0004 — Documentation Placement
 
 **Status:** Accepted  
-**Date:** 2026-10-09
+**Date:** 2026-10-09  
+**Amended:** 2026-10-23: ADRs follow ADR-0010; no glossary; the group model stays here
 
 ## Context
 
@@ -15,13 +16,13 @@ A document lives with whoever is responsible for keeping it true.
 
 | Location | Holds |
 |---|---|
-| `nuxt4-layers/platform-architecture` | Ecosystem-wide principles and invariants; cross-cutting standards; Architecture Decision Records; a glossary; the capability catalogue as an index of one line and one link per capability |
+| `nuxt4-layers/platform-architecture` | Ecosystem-wide principles and invariants; cross-cutting standards; Architecture Decision Records; the capability catalogue as an index of one line and one link per capability |
 | Each capability repository, under `docs/` | Its public contract, composition contract, data model, threat model and control register, roadmap, and the processes it owns |
 | A suite's integration repository, e.g. `nuxt4-layers/iam-integration`, under `docs/` | The suite's architecture and the processes that span several of its capabilities |
 
 Rules:
 
-1. **ADRs stay short.** An ADR records context, the decision, its consequences and links. It names the detailed document that carries the decision out; that document is authoritative because the ADR names it.
+1. **ADRs stay short.** An ADR follows [ADR-0010](ADR-0010-documentation-style.md)'s order and links to detail. It names the detailed document that carries the decision out; that document is authoritative because the ADR names it.
 2. **Links to another repository's documents are pinned** to a tag or commit, so a decision refers to exactly the version that was reviewed. A material change to the detail requires a new or amended ADR that moves the pin.
 3. **Each capability's README lists the ADRs that govern it**, so links run in both directions.
 4. **Ecosystem-wide rules are not restated** in capability repositories; they link here.
@@ -45,5 +46,5 @@ The documentation authority order in the README is unchanged: an ADR outranks th
 ## Guardrails
 
 - The Markdown check rejects links to another `nuxt4-layers` repository's documents that point at a moving branch.
-- The [Group Model Definition v0.1](../identity/group-model-definition-v01.md) moves to the Identity repository once it exists, leaving a pointer here.
+- The [Group Model Definition v0.1](../identity/group-model-definition-v01.md) stays here: it binds Identity, Authorisation and every capability that uses groups ([ADR-0003](ADR-0003-group-model-and-identity-first.md)).
 - The capability catalogue is an index; definitions longer than one line belong in the capability's own README.

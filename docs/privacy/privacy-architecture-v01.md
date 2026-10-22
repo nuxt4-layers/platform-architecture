@@ -44,4 +44,4 @@ The architecture SHOULD support data access/export, correction where applicable,
 
 ## 7. Security relationship
 
-Privacy and security overlap, but they are not the same. Authorization controls who can access data. Privacy also asks whether the data should be collected, processed, retained, disclosed or transferred at all.
+Privacy and security overlap, but they are not the same. Authorisation controls who can access data. Privacy also asks whether the data should be collected, processed, retained, disclosed or transferred at all.

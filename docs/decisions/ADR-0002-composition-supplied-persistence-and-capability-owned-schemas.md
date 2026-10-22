@@ -5,7 +5,7 @@
 
 ## Context
 
-Several capabilities need durable relational storage: authentication (credentials, sessions, MFA factors), identity, authorization, theme management and future domain capabilities.
+Several capabilities need durable relational storage: authentication (credentials, sessions, MFA factors), identity, authorisation, theme management and future domain capabilities.
 
 The Platform Architecture already establishes that:
 
@@ -38,7 +38,7 @@ A capability MUST fail closed when a required persistence provider has not been 
 
 ### 3. Each capability owns its schema
 
-On PostgreSQL, each capability that persists data owns a dedicated, named database schema (for example `authentication`, `identity`, `authorization`).
+On PostgreSQL, each capability that persists data owns a dedicated, named database schema (for example `authentication`, `identity`, `authorisation`).
 
 - The capability owns the table definitions, migrations and indexes in its schema.
 - The capability ships its migrations with its package and documents how the host applies them.

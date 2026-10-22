@@ -5,7 +5,7 @@
 
 ## Context
 
-The ecosystem is expected to host multiple Nuxt capabilities, including shared UI, authentication, identity, authorization, privacy, dashboard/workspace functionality and independently meaningful applications such as Architecture Registry.
+The ecosystem is expected to host multiple Nuxt capabilities, including shared UI, authentication, identity, authorisation, privacy, dashboard/workspace functionality and independently meaningful applications such as Architecture Registry.
 
 Keeping every capability in one host repository would make independent reuse and versioning harder. At the other extreme, giving every component its own repository would create unnecessary maintenance and dependency overhead.
 
