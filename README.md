@@ -78,6 +78,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [ADR-0009 — Headless Capability Layers](docs/decisions/ADR-0009-headless-capability-layers.md)
 - [ADR-0010 — Documentation Style](docs/decisions/ADR-0010-documentation-style.md)
 - [ADR-0011 — Shared Rich Text and Configurable Copy](docs/decisions/ADR-0011-shared-rich-text-and-configurable-copy.md)
+- [ADR-0012 — Trivial Composition](docs/decisions/ADR-0012-trivial-composition.md) (proposed)
 
 ## Status
 
