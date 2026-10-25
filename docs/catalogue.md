@@ -1,13 +1,13 @@
 # Capability Catalogue
 
-> **In short:** the capabilities that have a repository, what each owns, and the rules every capability follows. Each entry is one line; a capability's own repository holds its detail ([ADR-0004](../decisions/ADR-0004-documentation-placement.md)). Candidates and the order of work are in the [plan](../PLAN.md).
+> **In short:** the capabilities that have a repository, what each owns, and the rules every capability follows. Each entry is one line; a capability's own repository holds its detail ([ADR-0004](decisions/ADR-0004-documentation-placement.md)). Candidates and the order of work are in the [plan](PLAN.md).
 
 ## Governing rules
 
-1. Each layer implements one cohesive bounded capability, classified as Foundation, Platform or Domain, with a headless core and an optional presentation part ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)).
-2. Applications are thin composition roots, supplying infrastructure, configuration, routing and deployment choices ([ADR-0001](../decisions/ADR-0001-capability-repositories-and-composition-shells.md), [ADR-0012](../decisions/ADR-0012-trivial-composition.md)).
+1. Each layer implements one cohesive bounded capability, classified as Foundation, Platform or Domain, with a headless core and an optional presentation part ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)).
+2. Applications are thin composition roots, supplying infrastructure, configuration, routing and deployment choices ([ADR-0001](decisions/ADR-0001-capability-repositories-and-composition-shells.md), [ADR-0012](decisions/ADR-0012-trivial-composition.md)).
 3. Dependencies are directed, acyclic, explicit and contract-based. Public contracts are exposed through deliberate entry points such as `/contracts`, and independently versioned layers declare capability metadata in the manifest standard.
-4. Stateful capabilities own their persistence ports, schemas, migrations and any other stores ([ADR-0002](../decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md), [ADR-0006](../decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)). No shared persistence service is permitted, and required persistence fails closed when its provider is absent.
+4. Stateful capabilities own their persistence ports, schemas, migrations and any other stores ([ADR-0002](decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md), [ADR-0006](decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)). No shared persistence service is permitted, and required persistence fails closed when its provider is absent.
 5. Identity owns users, groups, the single-parent group hierarchy and memberships; Profile owns personal data; Authentication owns sessions; Authorisation owns access decisions. Every human identity has one system-managed personal group.
 6. Every protected operation is authorised on the server. Security follows OWASP ASVS 5.0 Level 2, with applicable Level 3 controls for security-sensitive operations.
 7. Presentation meets WCAG 2.2 AA, supports internationalisation and uses Theme Manager's semantic vocabulary. Privacy, data minimisation, retention and consent apply across capabilities.
@@ -23,8 +23,8 @@
 | `authentication` | Foundation (IAM) | Credential verification, sign-in identifiers, sessions, rotation, revocation and reauthentication |
 | `authorisation` | Foundation (IAM) | Server-side, resource-aware access decisions, with no implicit inheritance through the group hierarchy |
 | `profile` | Foundation (IAM) | The personal data describing a person, keyed by an Identity identifier: what each context may see, under the person's control, and their access, correction, export and erasure requests |
-| `iam-integration` | Foundation (IAM) | The IAM suite's architecture, cross-capability processes and the adapters connecting its members ([ADR-0005](../decisions/ADR-0005-iam-suite.md)); no data of its own |
-| `rich-text` | Library | The one safe formatted-text format, its profiles, checks and safe tree; never renders ([ADR-0011](../decisions/ADR-0011-shared-rich-text-and-configurable-copy.md)) |
+| `iam-integration` | Foundation (IAM) | The IAM suite's architecture, cross-capability processes and the adapters connecting its members ([ADR-0005](decisions/ADR-0005-iam-suite.md)); no data of its own |
+| `rich-text` | Library | The one safe formatted-text format, its profiles, checks and safe tree; never renders ([ADR-0011](decisions/ADR-0011-shared-rich-text-and-configurable-copy.md)) |
 | `publisher` | Platform | Documents of host-registered types: drafts, versions, approval, scheduling, addresses, listings and feeds |
 | `media` | Platform | Images: web-ready variants, metadata removal, alt text, group ownership and allowances; the files themselves in a host-supplied bucket |
 | `ui` | Presentation | Generic, fully styled components on Theme Manager's vocabulary; knows no capability |
@@ -51,4 +51,4 @@ A repository is created only once these are established:
 7. security, privacy, accessibility and internationalisation obligations;
 8. independent contract, integration and consumer acceptance tests.
 
-The group model is defined in [Identity and Access](../identity/identity.md) ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)).
+The group model is defined in [Identity and Access](identity.md) ([ADR-0003](decisions/ADR-0003-group-model-and-identity-first.md)).

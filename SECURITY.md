@@ -14,4 +14,4 @@ This repository holds architecture and contracts, not a deployed application. In
 
 Maintainers investigate privately and coordinate any remediation and disclosure across capabilities. No fixed response time is promised.
 
-The normative baseline is [Security](docs/security/security.md).
+The normative baseline is [Security](docs/security.md).

@@ -46,5 +46,5 @@ The documentation authority order in the README is unchanged: an ADR outranks th
 ## Guardrails
 
 - The Markdown check rejects links to another `nuxt4-layers` repository's documents that point at a moving branch.
-- The [group model](../identity/identity.md) stays here: it binds Identity, Authorisation and every capability that uses groups ([ADR-0003](ADR-0003-group-model-and-identity-first.md)).
+- The [group model](../identity.md) stays here: it binds Identity, Authorisation and every capability that uses groups ([ADR-0003](ADR-0003-group-model-and-identity-first.md)).
 - The capability catalogue is an index; definitions longer than one line belong in the capability's own README.

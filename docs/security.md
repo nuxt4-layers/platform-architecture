@@ -1,6 +1,6 @@
 # Security
 
-> **In short:** the platform's security baseline (OWASP ASVS 5.0 Level 2, with Level 3 where it matters), how the programme is organised, and the controls every capability and data store must meet. It replaces the security architecture and the data store security standard ([ADR-0006](../decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)).
+> **In short:** the platform's security baseline (OWASP ASVS 5.0 Level 2, with Level 3 where it matters), how the programme is organised, and the controls every capability and data store must meet. It replaces the security architecture and the data store security standard ([ADR-0006](decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)).
 
 **Status:** Normative
 
@@ -127,7 +127,7 @@ Certification, penetration testing and external assurance MAY provide additional
 
 ## 16. Data stores
 
-This section applies to every capability that stores data, in any kind of store, with [Privacy](../privacy/privacy-architecture-v01.md) §3 and §6.
+This section applies to every capability that stores data, in any kind of store, with [Privacy](privacy.md) §3 and §6.
 
 ### 16.1 Inventory
 
@@ -181,7 +181,7 @@ Each capability MUST document, in its contract, every store it uses:
 ### 16.6 Privacy lifecycle
 
 1. Erasure and anonymisation MUST reach every store, including derived copies, caches and search indexes, within the capability's documented period. Backups age out on a documented schedule.
-2. Anonymisation of a person is by unlinking ([ADR-0005](../decisions/ADR-0005-iam-suite.md)): stores outside Profile hold only opaque identifiers, so removing Profile's link is sufficient unless a capability documents personal data of its own.
+2. Anonymisation of a person is by unlinking ([ADR-0005](decisions/ADR-0005-iam-suite.md)): stores outside Profile hold only opaque identifiers, so removing Profile's link is sufficient unless a capability documents personal data of its own.
 3. Retention periods MUST be documented per store and enforced by the capability.
 4. A tenant's data region MUST be honoured by every store holding that tenant's data, including derived copies and backups. A capability that cannot honour a region refuses to store that tenant's data rather than storing it elsewhere.
 
