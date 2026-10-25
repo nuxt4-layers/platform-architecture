@@ -1,4 +1,4 @@
-# Documentation Style v0.1
+# Documentation Style
 
 > **In short:** lead with the point, keep it short, and let structure do the work.
 

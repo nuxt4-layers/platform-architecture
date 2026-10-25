@@ -4,6 +4,8 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-25
 
+- Documents moved to `docs/` without version suffixes or single-file folders; the decision index moved to `docs/decisions/README.md`.
+
 - `docs/identity/identity.md` replaces the identity and authorisation architecture and the group model definition; `docs/security/security.md` replaces the security architecture and absorbs the data store security standard.
 
 - One architecture overview (`docs/architecture/architecture.md`) replaces the platform architecture and the composition and dependency model.

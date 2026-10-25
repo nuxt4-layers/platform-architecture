@@ -1,4 +1,4 @@
-# Presentation, Internationalisation and Accessibility Architecture v0.1
+# Presentation, Internationalisation and Accessibility
 
 **Status:** Normative baseline
 
@@ -18,7 +18,7 @@ User customisation MUST NOT break mandatory accessibility requirements. Theme an
 
 Internationalisation is a standard platform capability.
 
-Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Capabilities publish codes and `messageKey`s, never wording ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)). `ui` and each kit MUST own the translation resources for what they draw; the application MAY override any message and MUST NOT be forced to maintain one large translation catalogue.
+Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Capabilities publish codes and `messageKey`s, never wording ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)). `ui` and each kit MUST own the translation resources for what they draw; the application MAY override any message and MUST NOT be forced to maintain one large translation catalogue.
 
 Locale-aware routing and translated metadata SHOULD be supported where public content requires them. An application MAY initially enable only one locale, but its architecture MUST NOT unnecessarily prevent additional locales.
 

@@ -1,6 +1,6 @@
 # Identity and Access
 
-> **In short:** who someone is, what groups they belong to, and what they may do, as separate capabilities. Identity owns identities, groups, the hierarchy and memberships; Authentication owns sign-in and sessions; Profile owns personal data; Authorisation decides. Groups form a forest with one parent each, every person has a personal group, and nothing is inherited through the hierarchy unless a rule says so. This replaces the identity and authorisation architecture and the group model definition ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md), [ADR-0005](../decisions/ADR-0005-iam-suite.md)).
+> **In short:** who someone is, what groups they belong to, and what they may do, as separate capabilities. Identity owns identities, groups, the hierarchy and memberships; Authentication owns sign-in and sessions; Profile owns personal data; Authorisation decides. Groups form a forest with one parent each, every person has a personal group, and nothing is inherited through the hierarchy unless a rule says so. This replaces the identity and authorisation architecture and the group model definition ([ADR-0003](decisions/ADR-0003-group-model-and-identity-first.md), [ADR-0005](decisions/ADR-0005-iam-suite.md)).
 
 **Status:** Normative
 
@@ -33,7 +33,7 @@ A person may belong directly to any number of groups, in any trees, besides thei
 
 ## 6. Ownership
 
-Every domain resource has an explicit ownership and access model for its domain and isolation context. A resource may record an owning group and, separately, its creator; the creator's identifier never implies continuing access, so a company's report stays the company's when its author leaves. Capabilities own their data and refer to others by public identifiers, never by cross-schema keys ([ADR-0002](../decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)).
+Every domain resource has an explicit ownership and access model for its domain and isolation context. A resource may record an owning group and, separately, its creator; the creator's identifier never implies continuing access, so a company's report stays the company's when its author leaves. Capabilities own their data and refer to others by public identifiers, never by cross-schema keys ([ADR-0002](decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)).
 
 ## 7. Authorisation
 
@@ -55,6 +55,6 @@ Domain capabilities associate their entities with groups by public identifier. T
 
 ## 11. Acceptance
 
-Tests cover: atomic personal-group provisioning and exactly one personal group; many direct memberships; zero or one parent and many children; rejecting cycles and second parents; no implicit inheritance; isolation between tenants and companies; a creator leaving without ownership moving; membership-derived revocation, including caches and sessions; independent grants surviving; and refusal of unauthorised membership and hierarchy changes. The baseline is the platform's security requirements ([Security](../security/security.md)).
+Tests cover: atomic personal-group provisioning and exactly one personal group; many direct memberships; zero or one parent and many children; rejecting cycles and second parents; no implicit inheritance; isolation between tenants and companies; a creator leaving without ownership moving; membership-derived revocation, including caches and sessions; independent grants surviving; and refusal of unauthorised membership and hierarchy changes. The baseline is the platform's security requirements ([Security](security.md)).
 
 Changing an invariant here needs an accepted ADR, with its migration and compatibility assessed first.

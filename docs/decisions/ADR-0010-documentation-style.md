@@ -13,7 +13,7 @@ Our documents are accurate but often long and dense. Readers, human and AI alike
 
 ## The decision
 
-Every document in the ecosystem follows the [Documentation Style standard](../standards/documentation-style-v01.md). Documents are:
+Every document in the ecosystem follows the [Documentation Style standard](../documentation-style.md). Documents are:
 
 | Quality | Means |
 |---|---|

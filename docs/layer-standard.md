@@ -16,7 +16,7 @@ A layer is a Nuxt Layer implementing one bounded capability. It gets its own rep
 | Presentation | Screens and components over capabilities' contracts, owning no data | `ui`, `content-editor`, `gallery` |
 | Library | Stateless packages with no storage, ports or screens | `rich-text` |
 
-Foundation, Platform and Domain layers are capabilities: a headless core with an optional presentation part ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)).
+Foundation, Platform and Domain layers are capabilities: a headless core with an optional presentation part ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)).
 
 ## 2. Public surface and contracts
 
@@ -67,8 +67,8 @@ Each independently versioned layer documents:
 - its purpose and bounded responsibility, public contract, provided and required capabilities, configuration, compatibility and testing;
 - security and privacy where they apply, with a threat model and control register for security-critical capabilities;
 - for a capability, its *Headless surface*: what any screen drawing it must still do (ADR-0009);
-- `CONTRACT.md`, its one-page offer to hosts ([ADR-0012](../decisions/ADR-0012-trivial-composition.md) §6);
-- `CHANGELOG.md`, `docs/PLAN.md` and `docs/RESOURCES.md`, the last naming the ADRs and other documents it relies on ([ADR-0010](../decisions/ADR-0010-documentation-style.md)).
+- `CONTRACT.md`, its one-page offer to hosts ([ADR-0012](decisions/ADR-0012-trivial-composition.md) §6);
+- `CHANGELOG.md`, `docs/PLAN.md` and `docs/RESOURCES.md`, the last naming the ADRs and other documents it relies on ([ADR-0010](decisions/ADR-0010-documentation-style.md)).
 
 Default branches are protected; material changes come through pull requests, and architecture-changing work names the governing ADR.
 
@@ -108,7 +108,7 @@ Adding or updating a layer is an explicit change:
 
 1. Read its release notes and contract changes.
 2. Set the version or pinned commit.
-3. Install and commit the lockfile, which records Git dependencies as `codeload.github.com` tarballs, never `git@github.com` ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md)).
+3. Install and commit the lockfile, which records Git dependencies as `codeload.github.com` tarballs, never `git@github.com` ([ADR-0008](decisions/ADR-0008-independent-layer-delivery.md)).
 4. Name the package in Nuxt `extends` and supply what its `CONTRACT.md` asks.
 5. Run the application's type, test, security and build checks.
 
@@ -118,7 +118,7 @@ When a Git-backed layer gains a stable lifecycle, it is published to the approve
 
 ## 7. Versioning
 
-- Released layers use semantic versioning from 1.0.0 ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md)). From then, a breaking change to the public contract or its documented meaning is a major release; before 1.0.0, breaking changes are still recorded.
+- Released layers use semantic versioning from 1.0.0 ([ADR-0008](decisions/ADR-0008-independent-layer-delivery.md)). From then, a breaking change to the public contract or its documented meaning is a major release; before 1.0.0, breaking changes are still recorded.
 - From 1.0.0, a removal is deprecated in a minor release, with migration guidance, before the major release that removes it.
 - Contract versions may move independently of package versions; the manifest names those provided and required.
 - Changing a private provider without changing the contract needs no major release, unless provider behaviour is part of the documented contract.

@@ -36,7 +36,7 @@ The main principles are:
 Where documents conflict, authority descends in this order:
 
 1. accepted Architecture Decision Records for the decision they explicitly settle;
-2. the [Architecture](docs/architecture/architecture.md) overview;
+2. the [Architecture](docs/architecture.md) overview;
 3. architecture and contract standards;
 4. security, privacy, accessibility and other cross-cutting normative baselines;
 5. layer-specific normative documentation;
@@ -51,24 +51,13 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 
 ## Documentation map
 
-- [Architecture](docs/architecture/architecture.md)
-- [Presentation, Internationalisation and Accessibility Architecture](docs/architecture/presentation-internationalisation-accessibility-v01.md)
-- [Identity and Access](docs/identity/identity.md)
-- [Security](docs/security/security.md)
-- [Privacy Architecture](docs/privacy/privacy-architecture-v01.md)
-- [Layer Standard](docs/standards/layer-standard.md)
-- [Capability Catalogue](docs/catalogue/capability-catalogue.md)
+- [Architecture](docs/architecture.md)
+- [Presentation, Internationalisation and Accessibility](docs/presentation.md)
+- [Identity and Access](docs/identity.md)
+- [Security](docs/security.md)
+- [Privacy](docs/privacy.md)
+- [Layer Standard](docs/layer-standard.md)
+- [Capability Catalogue](docs/catalogue.md)
 - [Plan](docs/PLAN.md)
 - [Resources](docs/RESOURCES.md)
-- [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
-- [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
-- [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
-- [ADR-0004 — Documentation Placement](docs/decisions/ADR-0004-documentation-placement.md)
-- [ADR-0005 — Identity and Access Management Suite](docs/decisions/ADR-0005-iam-suite.md)
-- [ADR-0006 — Polyglot Persistence and Data-Store Security](docs/decisions/ADR-0006-polyglot-persistence-and-data-store-security.md)
-- [ADR-0007 — Break-Glass Emergency Access](docs/decisions/ADR-0007-break-glass-emergency-access.md)
-- [ADR-0008 — Independent Layer Delivery](docs/decisions/ADR-0008-independent-layer-delivery.md)
-- [ADR-0009 — Headless Capability Layers](docs/decisions/ADR-0009-headless-capability-layers.md)
-- [ADR-0010 — Documentation Style](docs/decisions/ADR-0010-documentation-style.md)
-- [ADR-0011 — Shared Rich Text and Configurable Copy](docs/decisions/ADR-0011-shared-rich-text-and-configurable-copy.md)
-- [ADR-0012 — Trivial Composition](docs/decisions/ADR-0012-trivial-composition.md)
+- [Decisions](docs/decisions/README.md)

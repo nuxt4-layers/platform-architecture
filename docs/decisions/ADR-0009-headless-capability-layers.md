@@ -60,7 +60,7 @@ Every screen, wherever it lives:
 
 - takes the tenant, the signed-in person and other capabilities' data from the application, never from a request or a lookup of its own;
 - uses only the capability's contract, typed client and HTTP API, never its storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md));
-- follows the [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md).
+- follows the [presentation, internationalisation and accessibility baseline](../presentation.md).
 
 ## Safety stays with the data
 

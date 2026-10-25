@@ -1,4 +1,4 @@
-# Privacy Architecture v0.1
+# Privacy
 
 **Status:** Normative baseline
 

@@ -1,6 +1,6 @@
 # Architecture
 
-> **In short:** the ecosystem is bounded capabilities, built as Nuxt Layers, composed into light applications. Each capability owns its data and rules and offers a public contract; applications choose capabilities, pass what they already own and draw what is theirs. Dependencies run one way, security is enforced on the server, and the default is one deployable application. What a layer is and how it is built is in the [Layer Standard](../standards/layer-standard.md).
+> **In short:** the ecosystem is bounded capabilities, built as Nuxt Layers, composed into light applications. Each capability owns its data and rules and offers a public contract; applications choose capabilities, pass what they already own and draw what is theirs. Dependencies run one way, security is enforced on the server, and the default is one deployable application. What a layer is and how it is built is in the [Layer Standard](layer-standard.md).
 
 **Status:** Normative
 
@@ -8,9 +8,9 @@
 
 | Part | Does |
 |---|---|
-| **Capabilities** | Own one bounded responsibility each, with a headless core and an optional presentation part ([ADR-0009](../decisions/ADR-0009-headless-capability-layers.md)). Classified Foundation, Platform or Domain |
+| **Capabilities** | Own one bounded responsibility each, with a headless core and an optional presentation part ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)). Classified Foundation, Platform or Domain |
 | **Presentation layers and libraries** | Draw screens over capabilities' contracts, or provide stateless shared formats such as `rich-text` |
-| **Suites** | Capabilities designed together, such as the IAM suite, wired once by their integration package ([ADR-0005](../decisions/ADR-0005-iam-suite.md), [ADR-0012](../decisions/ADR-0012-trivial-composition.md)) |
+| **Suites** | Capabilities designed together, such as the IAM suite, wired once by their integration package ([ADR-0005](decisions/ADR-0005-iam-suite.md), [ADR-0012](decisions/ADR-0012-trivial-composition.md)) |
 | **Applications** | Composition roots: choose capability versions, pass connections, secrets, configuration and application decisions, set routes and branding, and deploy. Domain behaviour never defaults to the application |
 
 ## 2. Invariants
@@ -35,13 +35,13 @@ The default is a modular monolith: capability separation is logical and contract
 
 A capability's HTTP API and protocol endpoints sit under its own namespace, and the host may switch the API off. Its presentation part's pages can be moved or switched off; every other page belongs to the application, which may separate public pages from administration, for example on different hosts.
 
-Presentation meets WCAG 2.2 AA as a minimum, supports internationalisation even where one locale is enabled, uses semantic HTML and Theme Manager's vocabulary, and provides Schema.org structured data from authoritative data where public. People's preferences may change colour, type, density and layout, never below the accessibility baseline (see the [presentation, internationalisation and accessibility baseline](presentation-internationalisation-accessibility-v01.md)).
+Presentation meets WCAG 2.2 AA as a minimum, supports internationalisation even where one locale is enabled, uses semantic HTML and Theme Manager's vocabulary, and provides Schema.org structured data from authoritative data where public. People's preferences may change colour, type, density and layout, never below the accessibility baseline (see the [presentation, internationalisation and accessibility baseline](presentation.md)).
 
 ## 5. Security and privacy
 
-The minimum is OWASP ASVS 5.0 Level 2 across the platform, with relevant Level 3 requirements for security-sensitive capabilities and operations. NIST CSF 2.0 structures the security programme, NIST SP 800-218 guides secure development and NIST SP 800-63-4 guides identity assurance. Controls are layered across browser, server, storage, supply chain and deployment. Cost never silently weakens a required control: a deferred control is recorded with its risk treatment ([Security](../security/security.md)).
+The minimum is OWASP ASVS 5.0 Level 2 across the platform, with relevant Level 3 requirements for security-sensitive capabilities and operations. NIST CSF 2.0 structures the security programme, NIST SP 800-218 guides secure development and NIST SP 800-63-4 guides identity assurance. Controls are layered across browser, server, storage, supply chain and deployment. Cost never silently weakens a required control: a deferred control is recorded with its risk treatment ([Security](security.md)).
 
-Privacy follows data protection by design: storage and access technologies, telemetry and third-party integrations are classified by purpose, never introduced implicitly ([Privacy Architecture](../privacy/privacy-architecture-v01.md)).
+Privacy follows data protection by design: storage and access technologies, telemetry and third-party integrations are classified by purpose, never introduced implicitly ([Privacy Architecture](privacy.md)).
 
 ## 6. Change
 
