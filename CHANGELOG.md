@@ -4,7 +4,7 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-25
 
-- One layer standard (`docs/standards/layer-standard.md`) replaces the layer architecture, layer interface standard, capability manifest, layer repository standard and layer consumption workflow.
+- One layer standard (`docs/standards/layer-standard.md`) replaces the layer architecture, layer interface standard, capability manifest, layer repository standard, layer consumption workflow and compatibility and versioning standard.
 
 - Documents consolidated: `docs/RESOURCES.md`, `docs/PLAN.md`, `CONTRIBUTING.md` (replacing `AI_DEVELOPMENT.md`) and this changelog added; the headless migration plan removed; the capability catalogue reduced to existing capabilities.
 - ADR-0010 amended: documents that stay true without upkeep.

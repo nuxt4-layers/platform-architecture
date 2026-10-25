@@ -1,6 +1,6 @@
 # Layer Standard
 
-> **In short:** what a layer is, how its repository is laid out and documented, what it offers and keeps private, what its manifest says, and how an application consumes it. It replaces the layer architecture, layer interface standard, capability manifest, layer repository standard and layer consumption workflow. The decisions it rests on are ADR-0001, ADR-0002, ADR-0008, ADR-0009 and ADR-0012.
+> **In short:** what a layer is, how its repository is laid out and documented, what it offers and keeps private, what its manifest says, and how an application consumes it. It replaces the layer architecture, layer interface standard, capability manifest, layer repository standard, layer consumption workflow and compatibility and versioning standard. The decisions it rests on are ADR-0001, ADR-0002, ADR-0008, ADR-0009 and ADR-0012.
 
 **Status:** Normative
 
@@ -115,3 +115,11 @@ Adding or updating a layer is an explicit change:
 The pull request shows the version or commit, the lockfile change, and any compatibility, configuration, contract, security, privacy or migration impact.
 
 When a Git-backed layer gains a stable lifecycle, it is published to the approved registry. Its consumers switch to the package version, update the lockfile, run composition tests, and remove Git-specific configuration. The repository stays the source.
+
+## 7. Versioning
+
+- Released layers use semantic versioning from 1.0.0 ([ADR-0008](../decisions/ADR-0008-independent-layer-delivery.md)). From then, a breaking change to the public contract or its documented meaning is a major release; before 1.0.0, breaking changes are still recorded.
+- From 1.0.0, a removal is deprecated in a minor release, with migration guidance, before the major release that removes it.
+- Contract versions may move independently of package versions; the manifest names those provided and required.
+- Changing a private provider without changing the contract needs no major release, unless provider behaviour is part of the documented contract.
+- A layer tests against the dependency ranges it supports; a host tests the exact set it deploys.

@@ -59,7 +59,6 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Security Architecture](docs/security/security-architecture-v01.md)
 - [Privacy Architecture](docs/privacy/privacy-architecture-v01.md)
 - [Layer Standard](docs/standards/layer-standard.md)
-- [Compatibility and Versioning Standard](docs/standards/compatibility-versioning-v01.md)
 - [Data Store Security Standard](docs/standards/data-store-security-v01.md)
 - [Capability Catalogue](docs/catalogue/capability-catalogue.md)
 - [Plan](docs/PLAN.md)
