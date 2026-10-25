@@ -24,8 +24,8 @@ Consolidating its documents, one chat each:
 
 | Step | Status |
 |---|---|
-| 1–2. Adopt ADR-0010's files; remove what was replaced (the headless migration plan; the catalogue reduced to existing capabilities) | In review |
-| 3. One layer standard from the layer architecture, layer interface standard, capability manifest, layer repository standard and consumption workflow | Next |
-| 4. One architecture overview from the platform architecture and the composition and dependency model | Planned |
+| 1–2. Adopt ADR-0010's files; remove what was replaced (the headless migration plan; the catalogue reduced to existing capabilities) | Done |
+| 3. One layer standard from the layer architecture, layer interface standard, capability manifest, layer repository standard and consumption workflow | In review |
+| 4. One architecture overview from the platform architecture and the composition and dependency model | Next |
 | 5. Identity documents merged; data-store security merged into the security architecture | Planned |
 | 6. Version suffixes dropped from file names; the decision index moved to `docs/decisions/README.md` | Planned |

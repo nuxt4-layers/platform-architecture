@@ -34,4 +34,4 @@ Changing a private infrastructure provider without altering the public contract 
 
 ## 8. Layer dependency lifecycle
 
-See the [Layer Consumption Workflow](layer-consumption-workflow-v01.md).
+See the [Layer Standard](layer-standard.md) §6.
