@@ -2,9 +2,10 @@
 
 **Status:** Accepted  
 **Date:** 2026-10-21  
-**Accepted:** 2026-10-22
+**Accepted:** 2026-10-22  
+**Amended:** 2026-10-25: documents that stay true without upkeep; one file for external links, one for plans
 
-> **In short:** every document should be quick to read and hard to misread. Brevity comes first.
+> **In short:** every document should be quick to read and hard to misread, and should stay true without being edited. Brevity comes first. Versions, commits and status are written in one place per repository, never spread through its documents.
 
 ## Why
 
@@ -22,9 +23,22 @@ Every document in the ecosystem follows the [Documentation Style standard](../st
 | **General** | Principles first; examples only where they help |
 | **Pleasant** | Easy prose and a visual structure the eye can scan |
 
+### Documents that stay true
+
+Keeping versions, pins and status up to date across many files costs time and tokens and does nothing for the product. So each repository keeps changing facts in one place:
+
+| File | Holds | Never holds |
+|---|---|---|
+| `README.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `SECURITY.md` | What the repository is and how to work with it, in general terms. Links only to the repository's own documents | Version numbers, release names, pinned commits, status, plans or links outside the repository |
+| `docs/RESOURCES.md` | Every external document the repository relies on, one table row each: what it is, why it is needed, and its pin (tag or commit). This is the only place external links and pins appear | Anything else |
+| `docs/PLAN.md` | Every plan and its status: what is done, in progress and next. It replaces roadmaps, plans and registers | Decisions' reasoning, which stays in the documents it belongs to |
+| `CHANGELOG.md` | Each release and major change, newest first: its version, date and a short description of what changed | Plans, status, reasoning or links |
+
+Other documents refer to an external document by its entry in `docs/RESOURCES.md`, with a short note on why, never by its own link. A capability's `CONTRACT.md` ([ADR-0012](ADR-0012-trivial-composition.md) §6) is the one exception, because it is the repository's offer to any host or other layer: it states its own repository's release status and pinned version, and nothing about any other repository's, except that a suite's contract (such as the IAM suite's in `iam-integration`) also pins the members it composes, because they are part of what it offers. Anything it needs from elsewhere is named through `docs/RESOURCES.md`.
+
 ## Adopting it
 
-New documents follow it from the start. Existing documents are brought into line when they are next edited.
+New documents follow it from the start. Existing documents, and each repository's files and Markdown check, are brought into line by the first piece of work that next changes that repository, never by a chat of its own.
 
 ## What follows
 
@@ -32,3 +46,4 @@ New documents follow it from the start. Existing documents are brought into line
 |---|---|
 | Faster reading and review | Rewriting older documents over time |
 | Fewer misreadings by people and AI | Editing for brevity takes effort |
+| A release or a new pin touches one file, not many | Readers follow one more step to reach an external document |
