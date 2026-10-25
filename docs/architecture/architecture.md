@@ -39,7 +39,7 @@ Presentation meets WCAG 2.2 AA as a minimum, supports internationalisation even 
 
 ## 5. Security and privacy
 
-The minimum is OWASP ASVS 5.0 Level 2 across the platform, with relevant Level 3 requirements for security-sensitive capabilities and operations. NIST CSF 2.0 structures the security programme, NIST SP 800-218 guides secure development and NIST SP 800-63-4 guides identity assurance. Controls are layered across browser, server, storage, supply chain and deployment. Cost never silently weakens a required control: a deferred control is recorded with its risk treatment ([Security Architecture](../security/security-architecture-v01.md)).
+The minimum is OWASP ASVS 5.0 Level 2 across the platform, with relevant Level 3 requirements for security-sensitive capabilities and operations. NIST CSF 2.0 structures the security programme, NIST SP 800-218 guides secure development and NIST SP 800-63-4 guides identity assurance. Controls are layered across browser, server, storage, supply chain and deployment. Cost never silently weakens a required control: a deferred control is recorded with its risk treatment ([Security](../security/security.md)).
 
 Privacy follows data protection by design: storage and access technologies, telemetry and third-party integrations are classified by purpose, never introduced implicitly ([Privacy Architecture](../privacy/privacy-architecture-v01.md)).
 

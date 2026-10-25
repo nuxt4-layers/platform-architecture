@@ -51,4 +51,4 @@ A repository is created only once these are established:
 7. security, privacy, accessibility and internationalisation obligations;
 8. independent contract, integration and consumer acceptance tests.
 
-The group model is defined in the [Group Model Definition](../identity/group-model-definition-v01.md) ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)).
+The group model is defined in [Identity and Access](../identity/identity.md) ([ADR-0003](../decisions/ADR-0003-group-model-and-identity-first.md)).
