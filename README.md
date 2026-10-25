@@ -36,7 +36,7 @@ The main principles are:
 Where documents conflict, authority descends in this order:
 
 1. accepted Architecture Decision Records for the decision they explicitly settle;
-2. Platform Architecture;
+2. the [Architecture](docs/architecture/architecture.md) overview;
 3. architecture and contract standards;
 4. security, privacy, accessibility and other cross-cutting normative baselines;
 5. layer-specific normative documentation;
@@ -51,8 +51,7 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 
 ## Documentation map
 
-- [Platform Architecture](docs/architecture/platform-architecture-v01.md)
-- [Composition and Dependency Model](docs/architecture/composition-dependency-model-v01.md)
+- [Architecture](docs/architecture/architecture.md)
 - [Presentation, Internationalisation and Accessibility Architecture](docs/architecture/presentation-internationalisation-accessibility-v01.md)
 - [Identity and Authorisation Architecture](docs/identity/identity-authorization-architecture-v01.md)
 - [Group Model Definition](docs/identity/group-model-definition-v01.md)
