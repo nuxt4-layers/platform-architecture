@@ -1,5 +1,7 @@
 # Headless Migration v0.1
 
+> **Superseded** on 2026-10-25 by the amendment to [ADR-0009](../decisions/ADR-0009-headless-capability-layers.md): released layers keep their screens as an optional presentation part, and no screen moves into a kit. Only *What `ui` offers first* still applies, for `ui`'s own first release. Kept for the record.
+
 > **In short:** build what `ui` must offer first, move each released layer's screens into a kit, then remove them in that layer's next major release, one layer at a time. No application is ever left without a screen.
 
 Governed by [ADR-0009](../decisions/ADR-0009-headless-capability-layers.md) and [ADR-0011](../decisions/ADR-0011-shared-rich-text-and-configurable-copy.md). The publisher is the worked example: its [headless migration](https://github.com/nuxt4-layers/publisher/blob/4410cab7b84c1b0395de2bdf657e3bcc3d476b87/docs/headless-migration.md) and its contract's [*Headless surface*](https://github.com/nuxt4-layers/publisher/blob/4410cab7b84c1b0395de2bdf657e3bcc3d476b87/docs/contracts.md#15-headless-surface).

@@ -1,7 +1,8 @@
 # ADR-0012 — Trivial Composition
 
 **Status:** Proposed  
-**Date:** 2026-10-24
+**Date:** 2026-10-24  
+**Revised:** 2026-10-25: screens follow the amended ADR-0009; every capability has a one-page host contract
 
 > **In short:** composing a capability into an application must be trivial and measured. A host installs it, makes one call with what it already has (a database connection, the mail sender, the access decision) and writes no adapters of its own. Every capability fills its own ports by default, every capability asks for the same few things in the same shapes, and its tests prove a minimal host composes it within a fixed budget.
 
@@ -60,7 +61,24 @@ Every capability carries `examples/minimal-host`: a Nuxt application that compos
 
 ### 5. Screens
 
-[ADR-0009](ADR-0009-headless-capability-layers.md) already decides that capabilities are headless. Screens still shipped by released capabilities are outside the budget until their kits replace them, and are not counted against it.
+[ADR-0009](ADR-0009-headless-capability-layers.md), as amended on 2026-10-25, lets a capability ship its own screens as an optional presentation part. Using them costs the host only configuration: their paths, wording overrides, or `presentation: false`. That configuration counts against the budget; the screens themselves do not.
+
+### 6. A one-page host contract
+
+Every capability has `CONTRACT.md` at its root: what a host needs and nothing else, in at most **150 lines**, so that a person or an agent composes it from that page alone, without reading the capability's other documents or code. Its sections, in this order:
+
+| Section | Holds |
+|---|---|
+| Install | The pinned dependency and one configuration example, within the budget |
+| Settings | Each environment variable or configuration value, its default, and what it does |
+| Host passes | What the host must supply, in the shared shapes of decision 2, and nothing with a default |
+| Client and server functions | Those screens and other capabilities call, with inputs, outputs and error codes |
+| Permissions | Each permission it asks about, with its risk and effect |
+| Screens | Its presentation part, if any: pages, paths, message keys, and how to switch it off |
+| Headless surface | What any screen must still do (ADR-0009) |
+| You will hit this | Rules a host would otherwise discover by failing: identifier formats, name patterns, what needs a second person or step-up |
+
+The capability's longer contract stays for its own developers. When the two disagree, the code and the longer contract are right and `CONTRACT.md` is a bug. A handover to compose a capability names its `CONTRACT.md` and nothing else of the capability's.
 
 ## Adopting it
 
@@ -88,3 +106,4 @@ Adding defaults and the minimal host is a minor release. Removing a provider fun
 - `examples/minimal-host` composes within the budget, or CI fails.
 - No host writes a store, fake or relay for a capability that complies with this ADR; a review that finds one raises it against the capability.
 - The shared shapes change only by amending this ADR.
+- `CONTRACT.md` exists, keeps its sections and stays within 150 lines; the repository's documentation check fails otherwise.

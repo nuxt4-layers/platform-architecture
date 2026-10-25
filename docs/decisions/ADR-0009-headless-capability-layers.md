@@ -3,90 +3,95 @@
 **Status:** Accepted  
 **Date:** 2026-10-21  
 **Amended and accepted:** 2026-10-22: no screen exceptions for sign-in or step-up; client helpers and protocol endpoints named; wording keys, theme authority and person names placed; screens removed only once replaced  
-**Amended:** 2026-10-22: `ui` offers styled, customisable components; kits are named `<capability>-ui`; composition kits and the host's part defined
+**Amended:** 2026-10-22: `ui` offers styled, customisable components; kits are named `<capability>-ui`; composition kits and the host's part defined  
+**Amended:** 2026-10-25: a layer's core stays headless, but the layer may ship an optional presentation part for its own screens; kits become optional; released layers keep their screens
 
-> **In short:** capability layers do the work; they do not draw the screens. Each offers a clear set of services, and whoever composes it decides how those services look.
+> **In short:** a capability layer's core does the work and never depends on screens. A layer may also ship its own screens as an optional, separable part, drawn only with Theme Manager's vocabulary, which a host uses, overrides or switches off. Whoever composes it decides.
 
 ## Why
 
 Several of our layers have grown their own screens, styles and wording. A host that composes them inherits several opinions about how things should look, and every layer repeats the same presentation work.
 
-A layer's real value is what it knows and guarantees, such as a document's lifecycle or a person's consent. How that is shown is a separate concern, and it belongs to whoever composes the layer.
+A layer's real value is what it knows and guarantees, such as a document's lifecycle or a person's consent. How that is shown is a separate concern, and whoever composes the layer must be able to decide it.
+
+The 2026-10-22 decision went further and removed every screen from every layer, moving them into separate kit repositories. Composing the IAM suite into Westray-Papa-Westray showed what that costs: each application redraws and retests the same sign-in, account, security and profile screens, or waits for four kits and `ui` to be built and released, while the layers' own screens already work, follow the theme and can be switched off. The amendment keeps what made the decision sound (a core that never depends on screens, safety on the server, a host that can always draw its own) and drops the cost of moving every screen out.
 
 ## The decision
 
-Every capability layer, whether foundation, platform or domain, is **headless**.
+Every capability layer, whether foundation, platform or domain, has a **headless core**, and may have an **optional presentation part**.
 
-| A headless layer offers | A headless layer never offers |
+| The headless core offers | The core never offers or depends on |
 |---|---|
-| **Contracts:** types, schemas and pure helpers | **Screens:** pages, routes or layouts |
-| **Server functions:** one clear task each | **Components** or slots for other layers' components |
-| **An HTTP API**, which the host may switch off | **Styling:** styles or class maps |
-| **Protocol endpoints** a standard requires, such as a sign-in provider's callback or an emailed link that redirects; they answer a redirect or data, never a page | **Display wording** or its translations |
+| **Contracts:** types, schemas and pure helpers | Pages, routes, layouts or components |
+| **Server functions:** one clear task each | Styling or class maps |
+| **An HTTP API**, which the host may switch off | Display wording or its translations |
+| **Protocol endpoints** a standard requires, such as a sign-in provider's callback or an emailed link that redirects; they answer a redirect or data, never a page | |
 | **Events** it publishes, and **ports** it asks the host to fill | |
 | **Data formats** such as feeds, export files and a theme's CSS | |
 | **A typed client**, holding data, actions, navigation guards and browser ceremonies (such as a passkey prompt); guards take their destinations from configuration | |
 | **Codes and keys:** error codes and `messageKey`s, with their parameters | |
 
+### The optional presentation part
+
+A layer may ship pages and components for its own capability, for one audience at a time (people themselves, tenant administrators or platform operators, never mixing self-service with administration). When it does:
+
+- **It is separable.** It depends only on the core's contract and typed client, never the reverse. The host can switch it off entirely (`<layer>: { presentation: false }`), keep the components without the pages, or move the pages.
+- **It is styled only with Theme Manager's vocabulary** (`SemanticPresentationTheme`): its class names, no styles, tokens or theme handling of its own, and no package dependency on Theme Manager. Without Theme Manager the screens work, unstyled.
+- **Its wording is a message catalogue** keyed by `messageKey`, in the layer's default locale, which the host overrides or translates in its own configuration. The keys are part of the contract.
+- **It is proved by the layer's tests,** including accessibility in light and dark mode, against Theme Manager's default theme.
+- **It takes other capabilities' data from the host,** such as a person's name, through a component the host can override; it never reaches another capability itself.
+
 ### Theme Manager
 
-Theme Manager is headless too. Its themes, tokens, contrast checks and preferences are services; its CSS is a data format, and applying the effective theme to the page is delivering that format, not drawing. It stays the **only authority** for the effective theme and its token vocabulary (`SemanticPresentationTheme`). `ui` consumes that vocabulary and never defines, validates or applies a theme of its own.
+Theme Manager is headless too. Its themes, tokens, contrast checks and preferences are services; its CSS is a data format, and applying the effective theme to the page is delivering that format, not drawing. It stays the **only authority** for the effective theme and its token vocabulary. Layers' presentation parts and `ui` consume that vocabulary and never define, validate or apply a theme of their own.
 
 ## Where presentation lives
 
 | Who | Does what |
 |---|---|
-| **`nuxt4-layers/ui`** | Fully styled components on Theme Manager's tokens, customisable through props, slots, variants and the theme. Generic only: no component knows a capability. It includes the safe-tree renderer, a person-name component fed by the application, and the wording for generic text and common error codes |
-| **Capability kits**, `<capability>-ui` | One capability's screens, built from `ui`, with their own wording, such as `profile-ui` |
-| **Composition kits** | One journey across several capability kits, such as managing users; no data or services of their own |
-| **Applications** | Compose capabilities, `ui` and kits; own everything specific to the product (below) |
+| **A layer's presentation part** | Its own capability's standard screens, as above. The default for screens every application needs, such as sign-in, account, security and profile |
+| **`nuxt4-layers/ui`** | Generic, fully styled components on Theme Manager's tokens, which layers' presentation parts, kits and applications may share. No component knows a capability. Nothing is required to move into it |
+| **Composition kits** | One journey across several capabilities, such as managing users; created when a second application needs it. No data or services of their own |
+| **Applications** | Compose capabilities and use, override or replace their screens; own everything specific to the product, and every screen no layer offers |
 
-A kit is created when a second application needs the same screens, or to receive a released layer's screens when they leave it, so they are moved rather than rewritten. Until then, screens live in the application. A component moves to `ui` once it knows no capability.
+Capability kits (`<capability>-ui`) are no longer required. One is created only if a capability's screens must be released apart from the capability, and the case is argued in the layer's contract.
 
-Every kit:
+Every screen, wherever it lives:
 
-- serves one audience (people themselves, tenant administrators or platform operators) and never mixes self-service with administration;
 - takes the tenant, the signed-in person and other capabilities' data from the application, never from a request or a lookup of its own;
-- uses only typed clients and HTTP APIs, so it can be embedded anywhere and never depends on how data is stored;
-- releases a new major whenever its capability's contract does.
-
-`ui`, kits and applications use capabilities only through their contracts, APIs and typed clients. A capability never depends on them. A screen that shows another capability's data, such as a person's name, gets it through the application. The [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md) applies wherever screens are drawn.
+- uses only the capability's contract, typed client and HTTP API, never its storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md));
+- follows the [presentation, internationalisation and accessibility baseline](../architecture/presentation-internationalisation-accessibility-v01.md).
 
 ## Safety stays with the data
 
-Going headless never hands a guarantee to the screen.
+Presentation never holds a guarantee.
 
 - **Risky content is returned in a safe form.** Rich text comes back as structure that cannot be shown unsafely, never as markup.
-- **Rules are enforced by the layer's functions.** Permissions, step-up, consent, rate limits and visibility hold whichever screen calls them.
-- **What a screen must still do is written down.** Each layer's contract has a *Headless surface* section listing it, such as no framing or caching of administration screens, or the right `autocomplete` on credential fields.
-
-## Exceptions
-
-A layer may keep an interface only if it carries a guarantee that its server functions cannot enforce and no composing screen can be trusted to give. **None is granted.** Sign-in and step-up do not qualify: their guarantees are enforced on the server, and what their screens must do is listed in Authentication's *Headless surface*.
-
-A future exception needs an amendment to this ADR, is argued in the layer's contract and threat model, kept as small as possible, and still offered as services.
+- **Rules are enforced by the core's functions.** Permissions, step-up, consent, rate limits and visibility hold whichever screen calls them, the layer's own or an application's.
+- **What a screen must still do is written down.** Each layer's contract has a *Headless surface* section listing it, such as no framing or caching of administration screens, or the right `autocomplete` on credential fields, so an application that draws its own screens can meet it.
 
 ## Adopting it
 
 | Layer | Adopts it |
 |---|---|
-| New, or before 1.0 | Headless from the start. `publisher` is the first; Theme Manager reaches 1.0 headless |
-| Released, with screens | Deprecates its screens in a minor release and removes them in the next major ([ADR-0008](ADR-0008-independent-layer-delivery.md)) |
+| New, or before 1.0 | A headless core from the start; a presentation part only where the layer's screens are standard. `publisher` stays fully headless: its editing comes from `content-editor` through its editor slot |
+| Released, with screens | Keeps them as its presentation part. If any screen breaks a rule above, it is fixed in a minor release; nothing is deprecated for being a screen |
 
-A layer removes its screens only once their replacements are released in `ui`, a kit or the application, so no application is left without them. The [headless migration plan](../architecture/headless-migration-v01.md) sets the order.
+The [headless migration plan](../architecture/headless-migration-v01.md) is superseded by this amendment, except for `ui`'s first release, which still removes `ui`'s competing tokens and theme handling.
 
 ## What follows
 
 | Gains | Costs |
 |---|---|
-| A composed application looks and reads as one product | Every capability needs screens in `ui`, a kit or the application before people can use it |
-| Hosts compose services without competing routes or styles | Released layers face a major release to drop their screens |
-| Layers are smaller and quicker to test, with no design-system dependency | A capability's own tests no longer show how it looks |
-| Any front end can use a capability: console, website, app or another service | Kits add repositories to release and keep in step |
+| A composed application looks and reads as one product, through the shared theme vocabulary | A layer with a presentation part releases for screen fixes as well as for its services |
+| Standard screens are built and tested once, in the layer, for every application | A layer's screens follow its own layout; an application wanting another draws its own |
+| Applications compose services without competing routes or styles: every presentation part can be moved or switched off | Wording lives in each layer's catalogue, not in one place per application, unless the application overrides it |
+| Any front end can still use a capability: console, website, app or another service | Two places can draw a capability's screens; the contract's *Headless surface* keeps them equally safe |
 
 ## Guardrails
 
-- A capability's contract lists its public surface and its *Headless surface* duties; a test fails if it ships screens, components, routes, styles, display wording or slots.
-- A capability's tests prove its services and API; `ui`'s, kits' and applications' tests prove the screens, including accessibility in light and dark mode.
-- `ui`, kits and applications never reach a capability's storage or private code ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
+- A capability's contract lists its public surface, its presentation part (pages, components, message keys) and its *Headless surface* duties.
+- A test fails if the core imports the presentation part, or if the presentation part uses styles, tokens or classes outside Theme Manager's vocabulary.
+- With `presentation: false` the layer registers no page, component, route or style, and its core works unchanged; a test proves it.
 - A capability's codes and `messageKey`s are part of its contract: renaming or removing one is a breaking change.
+- Screens, wherever they live, never reach a capability's storage or private code (ADR-0001).
