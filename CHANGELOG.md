@@ -4,6 +4,8 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-25
 
+- Internationalisation standards named (BCP 47, Unicode CLDR through ECMA-402, W3C Internationalization); the README's principles name OWASP ASVS and the internationalisation standards alongside WCAG.
+
 - `docs/PLAN.md` removed: this repository holds no plans or status (ADR-0010 amended); candidate capabilities moved to the catalogue.
 
 - Documents moved to `docs/` without version suffixes or single-file folders; the decision index moved to `docs/decisions/README.md`.
