@@ -24,10 +24,10 @@ The main principles are:
 - keep dependencies one-way and free of cycles;
 - combine capabilities rather than building deep inheritance chains;
 - keep infrastructure replaceable where practical;
-- enforce security on the server;
+- enforce security on the server, to OWASP ASVS 5.0 Level 2 at least, with Level 3 for security-sensitive operations;
 - design for privacy from the start;
 - meet WCAG 2.2 Level AA as the accessibility baseline;
-- design for internationalisation from the start;
+- design for internationalisation from the start, with BCP 47 language tags and Unicode CLDR locale data through ECMA-402 (the `Intl` API);
 - use meaningful semantic markup; and
 - allow users to customise presentation without breaking accessibility.
 

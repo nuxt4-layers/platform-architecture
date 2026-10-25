@@ -16,9 +16,13 @@ User customisation MUST NOT break mandatory accessibility requirements. Theme an
 
 ## 3. Internationalisation
 
-Internationalisation is a standard platform capability.
+Internationalisation is a standard platform capability, built on these standards:
 
-Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Capabilities publish codes and `messageKey`s, never wording ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)). `ui` and each kit MUST own the translation resources for what they draw; the application MAY override any message and MUST NOT be forced to maintain one large translation catalogue.
+- **BCP 47** language tags identify every locale, in configuration, routes, `lang` attributes and message catalogues (for example `en-GB`);
+- **Unicode CLDR** locale data, through **ECMA-402** (the JavaScript `Intl` API), formats dates, times, numbers, currencies, plurals, lists and sorting; nothing is formatted by hand;
+- the **W3C Internationalization** guidance applies to markup: language and direction declared, and right-to-left scripts not prevented.
+
+Applications and reusable capabilities MUST keep user-facing text out of domain logic and make that text localisable. They MUST declare the document language correctly and support locale-aware formatting. Capabilities publish codes and `messageKey`s, never wording ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)). Each presentation part, `ui` and any kit MUST own the message catalogue for what it draws; the application MAY override any message and MUST NOT be forced to maintain one large translation catalogue.
 
 Locale-aware routing and translated metadata SHOULD be supported where public content requires them. An application MAY initially enable only one locale, but its architecture MUST NOT unnecessarily prevent additional locales.
 
