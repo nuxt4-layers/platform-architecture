@@ -34,7 +34,7 @@ Keeping versions, pins and status up to date across many files costs time and to
 | `docs/PLAN.md` | Every plan and its status: what is done, in progress and next. It replaces roadmaps, plans and registers | Decisions' reasoning, which stays in the documents it belongs to |
 | `CHANGELOG.md` | Each release and major change, newest first: its version, date and a short description of what changed | Plans, status, reasoning or links |
 
-Other documents refer to an external document by its entry in `docs/RESOURCES.md`, with a short note on why, never by its own link. A capability's `CONTRACT.md` ([ADR-0012](ADR-0012-trivial-composition.md) §6) is the one exception: its Install section names the release tag a host copies, because that is its purpose.
+Other documents refer to an external document by its entry in `docs/RESOURCES.md`, with a short note on why, never by its own link. A capability's `CONTRACT.md` ([ADR-0012](ADR-0012-trivial-composition.md) §6) is the one exception, because it is the repository's offer to any host or other layer: it states its own repository's release status and pinned version, and nothing about any other repository's. Anything it needs from elsewhere is named through `docs/RESOURCES.md`.
 
 ## Adopting it
 
