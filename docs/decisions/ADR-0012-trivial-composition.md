@@ -1,8 +1,9 @@
 # ADR-0012 — Trivial Composition
 
-**Status:** Proposed  
+**Status:** Accepted  
 **Date:** 2026-10-24  
-**Revised:** 2026-10-25: screens follow the amended ADR-0009; every capability has a one-page host contract
+**Revised:** 2026-10-25: screens follow the amended ADR-0009; every capability has a one-page host contract  
+**Accepted:** 2026-10-25, with the host contract's limit raised from 150 to 200 lines
 
 > **In short:** composing a capability into an application must be trivial and measured. A host installs it, makes one call with what it already has (a database connection, the mail sender, the access decision) and writes no adapters of its own. Every capability fills its own ports by default, every capability asks for the same few things in the same shapes, and its tests prove a minimal host composes it within a fixed budget.
 
@@ -65,7 +66,7 @@ Every capability carries `examples/minimal-host`: a Nuxt application that compos
 
 ### 6. A one-page host contract
 
-Every capability has `CONTRACT.md` at its root: what a host needs and nothing else, in at most **150 lines**, so that a person or an agent composes it from that page alone, without reading the capability's other documents or code. Its sections, in this order:
+Every capability has `CONTRACT.md` at its root: what a host needs and nothing else, in at most **200 lines**, so that a person or an agent composes it from that page alone, without reading the capability's other documents or code. Its sections, in this order:
 
 | Section | Holds |
 |---|---|
@@ -106,4 +107,4 @@ Adding defaults and the minimal host is a minor release. Removing a provider fun
 - `examples/minimal-host` composes within the budget, or CI fails.
 - No host writes a store, fake or relay for a capability that complies with this ADR; a review that finds one raises it against the capability.
 - The shared shapes change only by amending this ADR.
-- `CONTRACT.md` exists, keeps its sections and stays within 150 lines; the repository's documentation check fails otherwise.
+- `CONTRACT.md` exists, keeps its sections and stays within 200 lines; the repository's documentation check fails otherwise.
