@@ -5,7 +5,7 @@
 
 ## Context
 
-The [Group Model Definition v0.1](../identity/group-model-definition-v01.md) was added as a proposed extension to the Identity and Authorisation architecture. It defines personal (unary) groups, single-parent group hierarchies, membership lifecycle, the separation of ownership from creator provenance and of tenants from groups, the absence of implicit hierarchy inheritance, and revocation on departure. Its §10 requires an accepted ADR before its invariants become normative.
+The [group model](../identity/identity.md) was added as a proposed extension to the Identity and Authorisation architecture. It defines personal (unary) groups, single-parent group hierarchies, membership lifecycle, the separation of ownership from creator provenance and of tenants from groups, the absence of implicit hierarchy inheritance, and revocation on departure. Its §10 requires an accepted ADR before its invariants become normative.
 
 The Authorisation capability (`nuxt4-layers/authorisation`, contract version 2) has already been reconciled with that definition: hierarchy inheritance is opt-in per role assignment, tenant isolation is a separate check, creator provenance grants nothing, only active memberships count, and its directory port carries a revocation consistency guarantee.
 
