@@ -1,6 +1,6 @@
 # Capability Catalogue
 
-> **In short:** the capabilities that have a repository, what each owns, and the rules every capability follows. Each entry is one line; a capability's own repository holds its detail ([ADR-0004](decisions/ADR-0004-documentation-placement.md)). Candidates and the order of work are in the [plan](PLAN.md).
+> **In short:** the capabilities that have a repository, what each owns, and the rules every capability follows. Each entry is one line; a capability's own repository holds its detail ([ADR-0004](decisions/ADR-0004-documentation-placement.md)). Candidates are listed by name at the end; the order of work belongs to each capability's and application's own plan.
 
 ## Governing rules
 
@@ -30,6 +30,15 @@
 | `ui` | Presentation | Generic, fully styled components on Theme Manager's vocabulary; knows no capability |
 | `content-editor` | Presentation | Editing screens for Publisher's documents, saving through Publisher's functions; no data of its own |
 | `gallery` | Presentation | Albums and photo of the week as Publisher types over media's images; no data of its own |
+
+## Candidates
+
+Possible capabilities, not planned: each is built only when an application needs it and its bounded responsibility is established (below). Their definitions are in [Resources](RESOURCES.md): *Catalogue v0.4*.
+
+- **Foundation:** `privacy`, `logging-service`, `uuidv7-generator`, `caching-service`, `clock-service`.
+- **Platform:** `observability-service`, `notification-service`, `event-bus-service`, `job-service`, `scheduling-service`, `workflow-service`, `process-service`, `task-service`, `project-service`, `reporting-service`, `search-service`, `document-service`, `location-service`, `tenancy-service`.
+- **Domain:** `organisation-service`, `company-service`, `department-service`, `club-service`, `committee-service`, `membership-service`, `office-service`; `product-service`, `pricing-service`, `inventory-service`, `order-service`, `invoice-service`, `billing-service`, `accounting-service`, `payment-service`, `subscription-service`, `shop-service`, `marketplace-service`; `warehouse-service`, `logistics-service`, `asset-service`, `workshop-service`, `booking-service`; `course-service`, `enrolment-service`, `training-service`, `event-service`, `game-service`.
+- **Presentation and composition:** `user-management-ui`, `warehouse-management-ui`, `workflow-management-ui`, `workshop-management-ui`, `company-console`, `integration-adapters`, `integrations`, `api-gateway`.
 
 ## Consolidations
 
