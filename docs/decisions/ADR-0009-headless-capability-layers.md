@@ -77,7 +77,7 @@ Presentation never holds a guarantee.
 | New, or before 1.0 | A headless core from the start; a presentation part only where the layer's screens are standard. `publisher` stays fully headless: its editing comes from `content-editor` through its editor slot |
 | Released, with screens | Keeps them as its presentation part. If any screen breaks a rule above, it is fixed in a minor release; nothing is deprecated for being a screen |
 
-The [headless migration plan](../architecture/headless-migration-v01.md) is superseded by this amendment, except for `ui`'s first release, which still removes `ui`'s competing tokens and theme handling.
+The headless migration plan ([Resources](../RESOURCES.md): *Headless migration v0.1*) is superseded by this amendment, except for `ui`'s first release, which still removes `ui`'s competing tokens and theme handling; it is kept in the [plan](../PLAN.md).
 
 ## What follows
 

@@ -2,13 +2,13 @@
 
 > **AI-Driven Development**
 >
-> This repository is part of [Nuxt 4 Layers](https://github.com/nuxt4-layers), an experimental, AI-driven software engineering initiative.
+> This repository is part of Nuxt 4 Layers, an experimental, AI-driven software engineering initiative.
 >
 > AI performs the principal architecture, development, testing, security assessment and documentation activities under human direction. The project owner retains authority over requirements, governance, acceptance and releases.
 >
 > **Our objective is to demonstrate that disciplined, specification-led AI development can deliver secure, maintainable, standards-compliant, production-quality open-source software.**
 >
-> All contributions are subject to the same engineering standards, quality controls and repository policies, regardless of origin. See [AI Development](AI_DEVELOPMENT.md) for the methodology and governance model.
+> All contributions are subject to the same engineering standards, quality controls and repository policies, regardless of origin. See [Contributing](CONTRIBUTING.md) for the methodology and governance model.
 
 This repository contains the normative architecture, engineering principles, contracts, standards, and architectural decisions governing the `nuxt4-layers` ecosystem.
 
@@ -47,26 +47,27 @@ Implementation is evidence of current behaviour; it is not automatically archite
 
 ## Where to find things
 
-This repository holds what applies to the whole ecosystem: principles, cross-cutting standards, Architecture Decision Records and the capability catalogue as an index. A capability's own contracts, data model, threat model, roadmap and processes live in its repository's `docs/`; a suite's architecture and cross-capability processes live in the suite's integration repository, such as `nuxt4-layers/iam-integration`. Links from here to another repository's documents are pinned to a tag or commit. See [ADR-0004](docs/decisions/ADR-0004-documentation-placement.md).
+This repository holds what applies to the whole ecosystem: principles, cross-cutting standards, Architecture Decision Records and the capability catalogue as an index. A capability's own contracts, data model, threat model, roadmap and processes live in its repository's `docs/`; a suite's architecture and cross-capability processes live in the suite's integration repository, such as `nuxt4-layers/iam-integration`. Documents in other repositories are listed, with why and where, in [Resources](docs/RESOURCES.md); plans and status are only in the [Plan](docs/PLAN.md). See [ADR-0004](docs/decisions/ADR-0004-documentation-placement.md) and [ADR-0010](docs/decisions/ADR-0010-documentation-style.md).
 
 ## Documentation map
 
-- [Platform Architecture v0.1](docs/architecture/platform-architecture-v01.md)
-- [Layer Architecture v0.1](docs/architecture/layer-architecture-v01.md)
-- [Composition and Dependency Model v0.1](docs/architecture/composition-dependency-model-v01.md)
-- [Presentation, Internationalisation and Accessibility Architecture v0.1](docs/architecture/presentation-internationalisation-accessibility-v01.md)
-- [Layer Interface Standard v0.1](docs/contracts/layer-interface-standard-v01.md)
-- [Capability Manifest v0.1](docs/contracts/capability-manifest-v01.md)
-- [Identity and Authorisation Architecture v0.1](docs/identity/identity-authorization-architecture-v01.md)
-- [Group Model Definition v0.1](docs/identity/group-model-definition-v01.md)
-- [Security Architecture v0.1](docs/security/security-architecture-v01.md)
-- [Privacy Architecture v0.1](docs/privacy/privacy-architecture-v01.md)
-- [Headless Migration v0.1](docs/architecture/headless-migration-v01.md)
-- [Layer Repository Standard v0.1](docs/standards/layer-repository-standard-v01.md)
-- [Compatibility and Versioning Standard v0.1](docs/standards/compatibility-versioning-v01.md)
-- [Layer Consumption Workflow v0.1](docs/standards/layer-consumption-workflow-v01.md)
-- [Data Store Security Standard v0.1](docs/standards/data-store-security-v01.md)
-- [Capability Development Catalogue v0.4](docs/catalogue/nuxt-layers-capability-development-catalogue-v0.4.md)
+- [Platform Architecture](docs/architecture/platform-architecture-v01.md)
+- [Layer Architecture](docs/architecture/layer-architecture-v01.md)
+- [Composition and Dependency Model](docs/architecture/composition-dependency-model-v01.md)
+- [Presentation, Internationalisation and Accessibility Architecture](docs/architecture/presentation-internationalisation-accessibility-v01.md)
+- [Layer Interface Standard](docs/contracts/layer-interface-standard-v01.md)
+- [Capability Manifest](docs/contracts/capability-manifest-v01.md)
+- [Identity and Authorisation Architecture](docs/identity/identity-authorization-architecture-v01.md)
+- [Group Model Definition](docs/identity/group-model-definition-v01.md)
+- [Security Architecture](docs/security/security-architecture-v01.md)
+- [Privacy Architecture](docs/privacy/privacy-architecture-v01.md)
+- [Layer Repository Standard](docs/standards/layer-repository-standard-v01.md)
+- [Compatibility and Versioning Standard](docs/standards/compatibility-versioning-v01.md)
+- [Layer Consumption Workflow](docs/standards/layer-consumption-workflow-v01.md)
+- [Data Store Security Standard](docs/standards/data-store-security-v01.md)
+- [Capability Catalogue](docs/catalogue/capability-catalogue.md)
+- [Plan](docs/PLAN.md)
+- [Resources](docs/RESOURCES.md)
 - [ADR-0001 — Capability Repositories and Thin Composition Shells](docs/decisions/ADR-0001-capability-repositories-and-composition-shells.md)
 - [ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas](docs/decisions/ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md)
 - [ADR-0003 — Group Model and Identity Before Logging](docs/decisions/ADR-0003-group-model-and-identity-first.md)
@@ -79,7 +80,3 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [ADR-0010 — Documentation Style](docs/decisions/ADR-0010-documentation-style.md)
 - [ADR-0011 — Shared Rich Text and Configurable Copy](docs/decisions/ADR-0011-shared-rich-text-and-configurable-copy.md)
 - [ADR-0012 — Trivial Composition](docs/decisions/ADR-0012-trivial-composition.md)
-
-## Status
-
-Version 0.1 establishes the initial architectural baseline. It is intentionally technology-aware but avoids binding domain contracts to replaceable infrastructure providers.
