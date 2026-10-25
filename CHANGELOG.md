@@ -4,6 +4,8 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-25
 
+- One architecture overview (`docs/architecture/architecture.md`) replaces the platform architecture and the composition and dependency model.
+
 - One layer standard (`docs/standards/layer-standard.md`) replaces the layer architecture, layer interface standard, capability manifest, layer repository standard, layer consumption workflow and compatibility and versioning standard.
 
 - Documents consolidated: `docs/RESOURCES.md`, `docs/PLAN.md`, `CONTRIBUTING.md` (replacing `AI_DEVELOPMENT.md`) and this changelog added; the headless migration plan removed; the capability catalogue reduced to existing capabilities.
