@@ -17,7 +17,7 @@ Each layer is finished in its own repository against versioned contracts. The su
 1. **One layer at a time.** A change is delivered in the repository that owns it, against the other members' published contracts. Members never import one another; they connect only through the integration repository's adapters. A change that needs another member's contract to change waits for that member's release.
 2. **Versioned ports.** From 1.0, every capability follows semantic versioning. A change that breaks its contract needs a new contract version and a major release; consumers and adapters pin a tag, never a moving branch. Each release is listed in the repository's `CHANGELOG.md`.
 3. **Composition at release.** `platform-test-harness` is pinned to released tags, and is recomposed and run when a member releases, not for each pull request. A member's own CI proves its contract with its own tests and conformance suites.
-4. **Design before code.** Design questions are put to the project owner before code is generated ([AI-Driven Development](../../AI_DEVELOPMENT.md)).
+4. **Design before code.** Design questions are put to the project owner before code is generated ([Contributing](../../CONTRIBUTING.md)).
 5. **One draft pull request per repository** for each piece of work. Its CI is fixed until green.
 6. **Minimal monitoring.** Pull requests are not watched or polled by default. The project owner reports merges and asks for follow-up when it is needed.
 7. **Reproducible builds.** CI uses the ECR Public mirror of PostgreSQL (`public.ecr.aws/docker/library/postgres`). Lockfiles record Git dependencies as `codeload.github.com` tarballs, never `git@github.com`.

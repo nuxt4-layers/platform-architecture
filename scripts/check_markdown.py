@@ -1,4 +1,4 @@
-"""Validate Markdown headings, repository-local links and pinned cross-repository links."""
+"""Validate Markdown headings and local links; external links only in docs/RESOURCES.md, pinned (ADR-0010)."""
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
@@ -31,7 +31,11 @@ for file in files:
             if moving_ref.match(href):
                 errors.append(f"{file.relative_to(root)}:{number}: unpinned link to a moving branch {href}")
                 continue
-            if parsed.scheme or parsed.netloc or not parsed.path:
+            if parsed.scheme or parsed.netloc:
+                if file.relative_to(root).as_posix() != "docs/RESOURCES.md":
+                    errors.append(f"{file.relative_to(root)}:{number}: external link outside docs/RESOURCES.md {href}")
+                continue
+            if not parsed.path:
                 continue
             target = (file.parent / unquote(parsed.path)).resolve()
             if not target.is_relative_to(root) or not target.exists():
@@ -39,4 +43,4 @@ for file in files:
 if errors:
     print("\n".join(errors), file=sys.stderr)
     sys.exit(1)
-print(f"Checked {len(files)} Markdown files for headings, local links and pinned links")
+print(f"Checked {len(files)} Markdown files for headings, local links and external links")

@@ -1,21 +1,17 @@
 # Security Policy
 
-## Reporting vulnerabilities
+## Reporting a vulnerability
 
-Do not report security vulnerabilities in public issues, discussions or pull requests. Use [GitHub private vulnerability reporting](https://github.com/nuxt4-layers/platform-architecture/security/advisories/new) if enabled. Otherwise contact a repository maintainer privately to arrange a secure reporting channel; do not disclose exploit details publicly.
+Do not report a suspected vulnerability in a public issue, discussion or pull request. Use this repository's GitHub private vulnerability reporting (the Security tab). If it is unavailable, contact a maintainer privately and do not publish details.
 
-Include the affected document or commit, security impact and reproduction details. Do not include credentials, tokens or personal data.
+Include the affected document or commit, the security impact and how to reproduce it. Do not include credentials, tokens or personal data.
 
 ## Scope
 
-This repository governs architecture and contracts rather than a deployed application. Reports concerning insecure normative guidance, vulnerable contract designs or inadvertently disclosed secrets are in scope. Implementation defects should be reported privately to the affected capability repository.
-
-## Supported versions
-
-The current `master` branch is maintained. Historical documents are not independently supported security releases.
+This repository holds architecture and contracts, not a deployed application. Insecure normative guidance, vulnerable contract designs and disclosed secrets are in scope. Defects in a capability's code are reported to that capability's repository.
 
 ## Response
 
-Maintainers will investigate privately and coordinate any cross-capability remediation and responsible disclosure. No fixed response-time commitment is made.
+Maintainers investigate privately and coordinate any remediation and disclosure across capabilities. No fixed response time is promised.
 
-See [Security Architecture](docs/security/security-architecture-v01.md) for the normative baseline.
+The normative baseline is the [Security Architecture](docs/security/security-architecture-v01.md).
