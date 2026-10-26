@@ -14,7 +14,7 @@ Keeping every capability in one host repository would make independent reuse and
 
 ## The decision
 
-The `nuxt4-layers` organisation will host separately versioned repositories for cohesive bounded capabilities where independent development provides material value.
+The `nuxt-layers` organisation will host separately versioned repositories for cohesive bounded capabilities where independent development provides material value.
 
 Nuxt applications will remain lightweight composition roots. They select compatible capability versions, provide application and deployment configuration, connect infrastructure and own application-specific routing and branding.
 

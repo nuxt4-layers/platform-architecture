@@ -10,7 +10,7 @@
 
 The [group model](../identity.md) was added as a proposed extension to the Identity and Authorisation architecture. It defines personal (unary) groups, single-parent group hierarchies, membership lifecycle, the separation of ownership from creator provenance and of tenants from groups, the absence of implicit hierarchy inheritance, and revocation on departure. It required an accepted ADR before its invariants became normative. It is now part of [Identity and Access](../identity.md).
 
-The Authorisation capability (`nuxt4-layers/authorisation`, contract version 2) has already been reconciled with that definition: hierarchy inheritance is opt-in per role assignment, tenant isolation is a separate check, creator provenance grants nothing, only active memberships count, and its directory port carries a revocation consistency guarantee.
+The Authorisation capability (`nuxt-layers/authorisation`, contract version 2) has already been reconciled with that definition: hierarchy inheritance is opt-in per role assignment, tenant isolation is a separate check, creator provenance grants nothing, only active memberships count, and its directory port carries a revocation consistency guarantee.
 
 The capability catalogue v0.3 ([Resources](../../RESOURCES.md): *Catalogue v0.3*) §10 placed Logging Service next. Authorisation's persistence and server functions, and Authentication's principal-to-actor integration, cannot be completed against a real implementation until Identity provides users, groups, hierarchy and memberships.
 

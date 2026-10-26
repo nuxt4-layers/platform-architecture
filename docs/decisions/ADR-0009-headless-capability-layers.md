@@ -50,7 +50,7 @@ Theme Manager is headless too. Its themes, tokens, contrast checks and preferenc
 | Who | Does what |
 |---|---|
 | **A layer's presentation part** | Its own capability's standard screens, as above. The default for screens every application needs, such as sign-in, account, security and profile |
-| **`nuxt4-layers/ui`** | Generic, fully styled components on Theme Manager's tokens, which layers' presentation parts, kits and applications may share. No component knows a capability. Nothing is required to move into it |
+| **`nuxt-layers/ui`** | Generic, fully styled components on Theme Manager's tokens, which layers' presentation parts, kits and applications may share. No component knows a capability. Nothing is required to move into it |
 | **Composition kits** | One journey across several capabilities, such as managing users; created when a second application needs it. No data or services of their own |
 | **Applications** | Compose capabilities and use, override or replace their screens; own everything specific to the product, and every screen no layer offers |
 

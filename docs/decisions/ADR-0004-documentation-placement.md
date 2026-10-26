@@ -19,9 +19,9 @@ A document lives with whoever is responsible for keeping it true.
 
 | Location | Holds |
 |---|---|
-| `nuxt4-layers/platform-architecture` | Ecosystem-wide principles and invariants; cross-cutting standards; Architecture Decision Records; the capability catalogue as an index of one line per capability |
+| `nuxt-layers/platform-architecture` | Ecosystem-wide principles and invariants; cross-cutting standards; Architecture Decision Records; the capability catalogue as an index of one line per capability |
 | Each capability repository, under `docs/` | Its `CONTRACT.md` and longer contract, data model, threat model and control register, `PLAN.md`, and the processes it owns |
-| A suite's integration repository, e.g. `nuxt4-layers/iam-integration`, under `docs/` | The suite's architecture and the processes that span several of its capabilities |
+| A suite's integration repository, e.g. `nuxt-layers/iam-integration`, under `docs/` | The suite's architecture and the processes that span several of its capabilities |
 
 Rules:
 
@@ -43,6 +43,6 @@ The documentation authority order in the README is unchanged: an ADR outranks th
 
 ## Guardrails
 
-- The Markdown check rejects external links outside `RESOURCES.md`, and links there to a `nuxt4-layers` repository that point at a moving branch.
+- The Markdown check rejects external links outside `RESOURCES.md`, and links there to a `nuxt-layers` repository that point at a moving branch.
 - The [group model](../identity.md) stays here: it binds Identity, Authorisation and every capability that uses groups ([ADR-0003](ADR-0003-group-model-and-identity-first.md)).
 - The capability catalogue is an index; definitions longer than one line belong in the capability's own README.

@@ -22,7 +22,7 @@ A label, name, title or setting is a **plain string** with a maximum length, val
 
 ### 2. One format for formatted text, in a small library
 
-The platform has one rich-text format: a safe subset of Markdown. It lives in **`nuxt4-layers/rich-text`**, a stateless library, not a layer: no pages, routes, storage or ports. It holds:
+The platform has one rich-text format: a safe subset of Markdown. It lives in **`nuxt-layers/rich-text`**, a stateless library, not a layer: no pages, routes, storage or ports. It holds:
 
 - the format's rules: which constructs and links are allowed;
 - the parser, which turns text into a **safe tree** that can never carry markup;
@@ -47,7 +47,7 @@ The capability that owns a field checks every save against its profile, using `r
 
 ### 5. The editor where formatting needs it
 
-**`nuxt4-layers/content-editor`** is the platform's editing component for formatted fields, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools. The field editor edits text and hands it back, knowing nothing about the capability that stores it; content-editor's own screens for Publisher's documents work through the functions the host passes, never by importing Publisher.
+**`nuxt-layers/content-editor`** is the platform's editing component for formatted fields, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools. The field editor edits text and hands it back, knowing nothing about the capability that stores it; content-editor's own screens for Publisher's documents work through the functions the host passes, never by importing Publisher.
 
 A screen uses it only where a field's formatting needs more than a standard control can give. A plain `<textarea>` remains a valid choice for any formatted field: safety comes from the storing layer's checks, never from the editor.
 
@@ -64,7 +64,7 @@ Text a person reads is data, never code.
 
 ### 7. Capabilities may depend on stateless libraries
 
-A capability may depend on a `nuxt4-layers` library that holds no state, no ports and no screens, such as `rich-text`, as it depends on `zod`. Capabilities still never depend on one another ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
+A capability may depend on a `nuxt-layers` library that holds no state, no ports and no screens, such as `rich-text`, as it depends on `zod`. Capabilities still never depend on one another ([ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md)).
 
 ## Adopting it
 
