@@ -2,15 +2,18 @@
 
 **Status:** Accepted  
 **Date:** 2026-10-11  
+**Amended:** 2026-10-26: brought in line with ADR-0010 and later decisions
 **Accepted:** 2026-10-23
 
-## Context
+> **In short:** each layer is finished in its own repository against versioned contracts, with one draft pull request per repository, and the suite is composed and verified at release rather than on every change.
+
+## Why
 
 [ADR-0001](ADR-0001-capability-repositories-and-composition-shells.md) gives each capability its own repository, and [ADR-0005](ADR-0005-iam-suite.md) connects the IAM suite's members only through ports and an integration repository. In practice, building the suite drifted towards changing every member at once: each phase opened pull requests in four or five repositories, recomposed `platform-test-harness` against each merge commit, and watched every pull request until CI was green. That cost far more AI tokens and CI minutes than the work needed, and it tied the members' release cadence together.
 
 A monorepo was considered and rejected: it would make the members one large layer in practice, and lose the independence ADR-0001 exists to protect.
 
-## Decision
+## The decision
 
 Each layer is finished in its own repository against versioned contracts. The suite is composed and verified at release, not on every change.
 
@@ -22,22 +25,16 @@ Each layer is finished in its own repository against versioned contracts. The su
 6. **Minimal monitoring.** Pull requests are not watched or polled by default. The project owner reports merges and asks for follow-up when it is needed.
 7. **Reproducible builds.** CI uses the ECR Public mirror of PostgreSQL (`public.ecr.aws/docker/library/postgres`). Lockfiles record Git dependencies as `codeload.github.com` tarballs, never `git@github.com`.
 
-## Consequences
+## What follows
 
-### Positive
-
-- Each piece of work touches the fewest repositories, which reduces tokens, CI minutes and review effort.
-- Members release on their own cadence; a host upgrades one member at a time.
-- Contracts become the real boundary, because nothing else can be relied on between releases.
-
-### Costs
-
-- A defect that only shows when members are composed is found at release rather than at merge. Conformance suites and adapter type checks narrow the gap.
-- A cross-member change takes one release per member, in dependency order.
-- Unwatched pull requests depend on the project owner to report failures and merges.
+| Gains | Costs |
+|---|---|
+| Each piece of work touches the fewest repositories, which reduces tokens, CI minutes and review effort | A defect that only shows when members are composed is found at release rather than at merge. Conformance suites and adapter type checks narrow the gap |
+| Members release on their own cadence; a host upgrades one member at a time | A cross-member change takes one release per member, in dependency order |
+| Contracts become the real boundary, because nothing else can be relied on between releases | Unwatched pull requests depend on the project owner to report failures and merges |
 
 ## Guardrails
 
 - The integration repository's adapters state structurally what they need of each member, so a host's type check shows when a release no longer fits.
 - A member's release that changes a port's shape is a major release, and the harness is recomposed against it before the integration repository's pin moves.
-- [ADR-0004](ADR-0004-documentation-placement.md) still applies: links to other repositories' documents are pinned to a tag or commit.
+- [ADR-0004](ADR-0004-documentation-placement.md) and [ADR-0010](ADR-0010-documentation-style.md) still apply: other repositories' documents are named through `docs/RESOURCES.md`, pinned to a tag or commit.
