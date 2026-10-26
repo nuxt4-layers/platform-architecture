@@ -47,7 +47,7 @@ Implementation is evidence of current behaviour; it is not automatically archite
 
 ## Where to find things
 
-This repository holds what applies to the whole ecosystem: principles, cross-cutting standards, Architecture Decision Records and the capability catalogue as an index. A capability's own contracts, data model, threat model, roadmap and processes live in its repository's `docs/`; a suite's architecture and cross-capability processes live in the suite's integration repository, such as `nuxt4-layers/iam-integration`. Documents in other repositories are listed, with why and where, in [Resources](docs/RESOURCES.md). This repository holds no plans or status: those belong to each capability's and application's own `docs/PLAN.md`. See [ADR-0004](docs/decisions/ADR-0004-documentation-placement.md) and [ADR-0010](docs/decisions/ADR-0010-documentation-style.md).
+This repository holds what applies to the whole ecosystem: principles, cross-cutting standards, Architecture Decision Records and the capability catalogue as an index. A capability's own contracts, data model, threat model, roadmap and processes live in its repository's `docs/`; a suite's architecture and cross-capability processes live in the suite's integration repository, such as `nuxt4-layers/iam-integration`. Documents in other repositories are listed, with why and where, in [Resources](RESOURCES.md). This repository holds no plans or status: those belong to each capability's and application's own `docs/PLAN.md`. See [ADR-0004](docs/decisions/ADR-0004-documentation-placement.md) and [ADR-0010](docs/decisions/ADR-0010-documentation-style.md).
 
 ## Documentation map
 
@@ -58,5 +58,5 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Privacy](docs/privacy.md)
 - [Layer Standard](docs/layer-standard.md)
 - [Capability Catalogue](docs/catalogue.md)
-- [Resources](docs/RESOURCES.md)
+- [Resources](RESOURCES.md)
 - [Decisions](docs/decisions/README.md)

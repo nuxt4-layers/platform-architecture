@@ -4,6 +4,8 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-26
 
+- `RESOURCES.md` moved to the repository root, beside `README.md`, `CHANGELOG.md` and `CONTRACT.md` (ADR-0010 amended).
+
 - ADRs reviewed for consistency: ADR-0001 to ADR-0008 follow ADR-0010's order (*In short*, Why, The decision, What follows); references to replaced documents updated; ADR-0004 and ADR-0010 amended for `docs/RESOURCES.md` and `CONTRACT.md`; ADR-0011 amended for the amended ADR-0009 and content-editor's design.
 
 ## 2026-10-25

@@ -1,4 +1,4 @@
-"""Validate Markdown headings and local links; external links only in docs/RESOURCES.md, pinned (ADR-0010)."""
+"""Validate Markdown headings and local links; external links only in RESOURCES.md, pinned (ADR-0010)."""
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
@@ -32,8 +32,8 @@ for file in files:
                 errors.append(f"{file.relative_to(root)}:{number}: unpinned link to a moving branch {href}")
                 continue
             if parsed.scheme or parsed.netloc:
-                if file.relative_to(root).as_posix() != "docs/RESOURCES.md":
-                    errors.append(f"{file.relative_to(root)}:{number}: external link outside docs/RESOURCES.md {href}")
+                if file.relative_to(root).as_posix() != "RESOURCES.md":
+                    errors.append(f"{file.relative_to(root)}:{number}: external link outside RESOURCES.md {href}")
                 continue
             if not parsed.path:
                 continue
