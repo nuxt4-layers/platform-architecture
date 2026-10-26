@@ -59,4 +59,4 @@ This repository holds what applies to the whole ecosystem: principles, cross-cut
 - [Layer Standard](docs/layer-standard.md)
 - [Capability Catalogue](docs/catalogue.md)
 - [Resources](RESOURCES.md)
-- [Decisions](docs/decisions/README.md)
+- [Decisions](docs/decisions/), one file per Architecture Decision Record, in number order
