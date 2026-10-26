@@ -1,6 +1,8 @@
 # Privacy
 
-**Status:** Normative baseline
+> **In short:** data protection is designed in, not added as a banner. Capabilities collect only what their purpose needs, classify every storage and tracking technology, ask for consent before anything that needs it, and support access, export, correction, deletion and retention without manual searching.
+
+**Status:** Normative
 
 ## 1. Principle
 
@@ -8,27 +10,15 @@ Privacy and data protection are part of the platform architecture. Compliance MU
 
 ## 2. Scope
 
-The architecture must be capable of governing:
-
-- cookies;
-- browser/local storage;
-- similar client storage/access technologies;
-- telemetry and analytics;
-- third-party integrations;
-- personal-data collection and purpose;
-- consent/preferences where consent is the applicable basis;
-- retention;
-- export/access;
-- deletion;
-- auditability of privacy choices.
+The architecture governs cookies, browser storage and similar technologies; telemetry and analytics; third-party integrations; what personal data is collected and why; consent and preferences, where consent is the basis; retention; access and export; deletion; and a record of people's privacy choices.
 
 ## 3. Data minimisation
 
 Capabilities MUST collect and retain only data justified by their documented purposes. Optional telemetry SHOULD be absent by default in the initial platform unless a defined need justifies it.
 
-## 4. Storage/access classification
+## 4. Classifying storage and tracking
 
-Client storage/access mechanisms MUST be inventoried and classified by purpose and necessity. Mechanisms requiring consent MUST NOT be activated before valid consent.
+Client storage and access mechanisms MUST be inventoried and classified by purpose and necessity. Mechanisms requiring consent MUST NOT be activated before valid consent.
 
 Technically necessary mechanisms MUST still be documented transparently.
 
@@ -36,11 +26,11 @@ Technically necessary mechanisms MUST still be documented transparently.
 
 Reusable capability contracts SHOULD avoid hard-coding the rules of one jurisdiction. Applications MAY provide policies or adapters for the jurisdictions they need to support.
 
-The initial personal platform is expected to design first for applicable UK data-protection and electronic-communications requirements while preserving extension points for other jurisdictions.
+The first applications are designed for UK data-protection and electronic-communications law, keeping room for other jurisdictions.
 
 ## 6. User rights and lifecycle
 
-The architecture SHOULD support data access/export, correction where applicable, deletion/erasure workflows, retention rules, and account closure without requiring domain data to be manually discovered.
+The architecture SHOULD support access and export, correction, erasure, retention rules and account closure, without anyone having to search for a person's data by hand.
 
 ## 7. Security relationship
 

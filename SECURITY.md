@@ -1,5 +1,7 @@
 # Security Policy
 
+> **In short:** report suspected vulnerabilities privately, never in public issues or pull requests.
+
 ## Reporting a vulnerability
 
 Do not report a suspected vulnerability in a public issue, discussion or pull request. Use this repository's GitHub private vulnerability reporting (the Security tab). If it is unavailable, contact a maintainer privately and do not publish details.
