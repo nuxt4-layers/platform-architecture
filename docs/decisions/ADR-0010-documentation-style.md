@@ -4,7 +4,7 @@
 **Date:** 2026-10-21  
 **Accepted:** 2026-10-22  
 **Amended:** 2026-10-25: documents that stay true without upkeep; one file for external links, one for plans  
-**Amended:** 2026-10-26: `CONTRACT.md` listed with the other files; `RESOURCES.md` and `PLAN.md` at the repository root
+**Amended:** 2026-10-26: `CONTRACT.md` listed with the other files; `RESOURCES.md` and `PLAN.md` at the repository root; the documentation style standard folded in
 
 > **In short:** every document should be quick to read and hard to misread, and should stay true without being edited. Brevity comes first. Versions, commits and status are written in one place per repository, never spread through its documents.
 
@@ -14,15 +14,22 @@ Our documents are accurate but often long and dense. Readers, human and AI alike
 
 ## The decision
 
-Every document in the ecosystem follows the [Documentation Style standard](../documentation-style.md). Documents are:
+Every document in the ecosystem follows these rules:
 
-| Quality | Means |
+| Rule | In practice |
 |---|---|
-| **Clear** | Plain words; a term is explained where it first appears |
-| **Concise** | Nothing said twice; no sentence that adds nothing |
-| **Complete** | Every rule a reader needs is stated, once |
-| **General** | Principles first; examples only where they help |
-| **Pleasant** | Easy prose and a visual structure the eye can scan |
+| **Summary first** | Open with a one-line *In short* |
+| **Brevity** | Cut every word that does not change the meaning |
+| **Plain language** | Everyday words; a term or piece of jargon is explained where it first appears |
+| **Say it once** | Every rule a reader needs is stated once, in one place; elsewhere, link to it |
+| **Principles first** | Examples only where they help |
+| **Short sections** | One idea each, under a clear heading |
+| **Tables for comparisons** | Options, owners, gains and costs side by side |
+| **Lists for steps and sets** | Numbered for order, bullets otherwise |
+| **Bold for key terms** | Sparingly, so the eye can scan |
+| **British spelling** | Throughout |
+
+An ADR reads in this order: *In short*, **Why**, **The decision**, **Adopting it**, **What follows** (gains and costs, as a table), and **Guardrails** where needed.
 
 ### Documents that stay true
 

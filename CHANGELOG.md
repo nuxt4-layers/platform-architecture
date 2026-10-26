@@ -4,6 +4,7 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-26
 
+- The documentation style standard folded into ADR-0010.
 - `PLAN.md`, where a repository has one, also lives at the root; ADR-0010's table of files that stay true tidied.
 - `RESOURCES.md` moved to the repository root, beside `README.md`, `CHANGELOG.md` and `CONTRACT.md` (ADR-0010 amended).
 
