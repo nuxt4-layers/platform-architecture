@@ -3,13 +3,15 @@
 **Status:** Accepted  
 **Date:** 2026-10-09
 
-## Context
+> **In short:** capabilities may use stores other than PostgreSQL behind ports, provided each piece of data has one owner and system of record, authorisation is decided before any store is queried, every store enforces tenant isolation, and personal data stays in Profile.
+
+## Why
 
 [ADR-0002](ADR-0002-composition-supplied-persistence-and-capability-owned-schemas.md) settles relational persistence: the host supplies a PostgreSQL connection, and each capability owns its schema and migrations. Some capabilities will be better served by other kinds of store: a graph database for relationship-heavy domains, a search index, an object store for files, a cache, or a time-series store for metrics. ADR-0002 does not say whether these are allowed, who owns them, or how authorisation and tenant isolation reach data that never passes through PostgreSQL.
 
 Two risks follow if this is left open. A capability may adopt a store whose own access model (for example a search index queried directly from the browser, or a vector store with no tenant filter) bypasses the server-side authorisation the platform requires. And data copied into a secondary store may escape revocation, erasure and data-region rules that its owner applies to the primary copy.
 
-## Decision
+## The decision
 
 1. **Other stores are allowed, behind ports.** A capability MAY use a non-relational store when its access pattern justifies one. It declares a port for it, as ADR-0002 requires for PostgreSQL; the host supplies the client. ADR-0002's rules on ownership, failing closed, provider SDKs and credentials apply unchanged to every kind of store.
 2. **One owner, one system of record.** Each piece of data has exactly one owning capability and one authoritative store. Other stores hold derived copies (projections, indexes, caches) that the owner can rebuild and must keep consistent with revocation and erasure.
@@ -24,22 +26,16 @@ Two risks follow if this is left open. A capability may adopt a store whose own 
 
 The concrete controls are in [Security](../security.md) §16.
 
-## Consequences
+## What follows
 
-### Positive
-
-- Capabilities can choose the store that suits them without weakening authorisation, isolation or privacy.
-- Revocation, erasure and data-region rules have one owner for each piece of data.
-- Authorisation stays the single source of access decisions, including for stores that cannot run its policy.
-
-### Costs
-
-- Authorisation must provide a scopes query, and hosts must make it available to capabilities that use non-relational stores.
-- Each derived copy needs a rebuild and erasure path, with tests.
-- Hosts operate more kinds of infrastructure, each needing credentials, TLS, backups and monitoring.
+| Gains | Costs |
+|---|---|
+| Capabilities can choose the store that suits them without weakening authorisation, isolation or privacy | Authorisation must provide a scopes query, and hosts must make it available to capabilities that use non-relational stores |
+| Revocation, erasure and data-region rules have one owner for each piece of data | Each derived copy needs a rebuild and erasure path, with tests |
+| Authorisation stays the single source of access decisions, including for stores that cannot run its policy | Hosts operate more kinds of infrastructure, each needing credentials, TLS, backups and monitoring |
 
 ## Guardrails
 
-- A capability that adds a store documents it in its composition contract and threat model, with the store's port, what it holds, its system of record and its erasure path.
+- A capability that adds a store documents it in its `CONTRACT.md` and threat model, with the store's port, what it holds, its system of record and its erasure path.
 - Isolation tests ([Security](../security.md) §6) cover every store a capability uses, not only PostgreSQL.
 - Changes to these rules require a new ADR.

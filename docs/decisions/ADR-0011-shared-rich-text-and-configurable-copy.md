@@ -3,7 +3,8 @@
 **Status:** Accepted  
 **Date:** 2026-10-21  
 **Amended:** 2026-10-21: plain text is not rich text; `rich-text` is a library, not a layer; the editor is used only where formatting is allowed  
-**Amended and accepted:** 2026-10-22: `ui` draws safe trees; wording keys placed; Profile and Configuration adopt it in their headless releases
+**Amended and accepted:** 2026-10-22: `ui` draws safe trees; wording keys placed; Profile and Configuration adopt it in their headless releases  
+**Amended:** 2026-10-26: in line with the amended ADR-0009 (layers keep their screens) and content-editor's design
 
 > **In short:** every piece of copy is data. Plain text is an ordinary string in an ordinary form control. Formatted text is written in one shared format, checked by the layer that stores it, and edited, where a screen wants it, through one editor that offers exactly what the field allows.
 
@@ -46,7 +47,7 @@ The capability that owns a field checks every save against its profile, using `r
 
 ### 5. The editor where formatting needs it
 
-**`nuxt4-layers/content-editor`** is the platform's editing component for formatted fields, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools. It edits text and hands it back; it knows nothing about the capability that stores it.
+**`nuxt4-layers/content-editor`** is the platform's editing component for formatted fields, built on `ui` and `rich-text`. It reads a field's profile and offers only those tools. The field editor edits text and hands it back, knowing nothing about the capability that stores it; content-editor's own screens for Publisher's documents work through the functions the host passes, never by importing Publisher.
 
 A screen uses it only where a field's formatting needs more than a standard control can give. A plain `<textarea>` remains a valid choice for any formatted field: safety comes from the storing layer's checks, never from the editor.
 
@@ -59,7 +60,7 @@ Text a person reads is data, never code.
 | Published content | The publisher |
 | A person's own words | Profile |
 | A site's or organisation's text | Configuration |
-| Interface labels and messages | `ui` and kits, keyed by the codes and `messageKey`s capabilities publish; the application overrides any of them ([ADR-0009](ADR-0009-headless-capability-layers.md)) |
+| Interface labels and messages | The message catalogue of whichever presentation part draws them (a layer's own, `ui` or a kit), keyed by the codes and `messageKey`s capabilities publish; the application overrides any of them ([ADR-0009](ADR-0009-headless-capability-layers.md)) |
 
 ### 7. Capabilities may depend on stateless libraries
 
@@ -72,7 +73,7 @@ A capability may depend on a `nuxt4-layers` library that holds no state, no port
 | `rich-text` | Created from the publisher's existing dialect, with the three profiles added |
 | `publisher` | Uses `rich-text` for formatted fields before its 1.0 release; its own dialect is removed |
 | `content-editor` | Built on `ui` and `rich-text` as a presentation layer ([ADR-0009](ADR-0009-headless-capability-layers.md)) |
-| Profile and Configuration | Move fields longer than a label to `rich-text` in the same major release that removes their screens, so their contracts break once; plain fields stay as they are |
+| Profile and Configuration | Move fields longer than a label to `rich-text` in their next major release, so their contracts break once; plain fields stay as they are |
 | Others | Use `rich-text` for formatted fields in their next major release |
 
 ## What follows

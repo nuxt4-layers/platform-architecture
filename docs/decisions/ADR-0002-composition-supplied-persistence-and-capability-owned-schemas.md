@@ -1,19 +1,16 @@
 # ADR-0002 — Composition-Supplied Persistence and Capability-Owned Schemas
 
 **Status:** Accepted  
-**Date:** 2026-10-03
+**Date:** 2026-10-03  
+**Amended:** 2026-10-26: brought in line with ADR-0010 and later decisions
 
-## Context
+> **In short:** there is no shared persistence layer. The host supplies each capability's database connection; each capability owns its own schema and migrations, fails closed without its connection, and never touches another's schema or a hosting provider's proprietary services.
+
+## Why
 
 Several capabilities need durable relational storage: authentication (credentials, sessions, MFA factors), identity, authorisation, theme management and future domain capabilities.
 
-The Platform Architecture already establishes that:
-
-- the host application is the composition root and connects infrastructure adapters (Composition and Dependency Model §1);
-- PostgreSQL is the preferred relational database (Platform Architecture §7);
-- infrastructure providers must be replaceable where practical (Platform Architecture invariant 10);
-- consumers must not depend on another capability's internal database schema (Layer Architecture §4);
-- the dependency graph must remain acyclic (Composition and Dependency Model §2).
+The [Architecture](../architecture.md) already establishes that the host is the composition root, PostgreSQL is the preferred relational database, infrastructure is replaceable where practical, no consumer depends on another capability's internal schema, and the dependency graph is acyclic (invariants 2, 3 and 9).
 
 Two approaches were considered for giving capabilities a database:
 
@@ -24,11 +21,11 @@ The first approach makes one capability a mandatory dependency of almost every o
 
 Hosted database products also offer their own SDKs, authentication services and data APIs. Using those directly inside a capability would bind its contract to one provider.
 
-## Decision
+## The decision
 
 ### 1. No shared persistence capability
 
-There is no ecosystem-wide data-access layer. A capability that needs persistence declares its own persistence port as part of its public composition contract.
+There is no ecosystem-wide data-access layer. A capability that needs persistence declares its own persistence port as part of its public contract (its `CONTRACT.md`, [ADR-0012](ADR-0012-trivial-composition.md)).
 
 ### 2. The composition root supplies the connection
 
@@ -60,25 +57,18 @@ Connection strings and database credentials are secrets supplied through runtime
 
 Automated tests and CI SHOULD use a disposable local PostgreSQL instance rather than a shared hosted database.
 
-## Consequences
+## What follows
 
-### Positive
-
-- no mandatory persistence dependency shared by every capability;
-- capability data models stay private and evolve independently;
-- hosts can change database vendor, topology or pooling without capability releases;
-- capability tests can run against a disposable database with no external service;
-- the dependency graph stays acyclic.
-
-### Costs
-
-- each persistence-using capability maintains its own migrations;
-- the host must apply several capabilities' migrations in a defined order;
-- cross-capability reporting requires contracts or events rather than SQL joins;
-- each capability documents its provider function and expected connection type.
+| Gains | Costs |
+|---|---|
+| No mandatory persistence dependency shared by every capability | Each persistence-using capability maintains its own migrations |
+| Capability data models stay private and evolve independently | The host must apply several capabilities' migrations in a defined order |
+| Hosts can change database vendor, topology or pooling without capability releases | Cross-capability reporting requires contracts or events rather than SQL joins |
+| Capability tests can run against a disposable database with no external service | Each capability documents its provider function and expected connection type |
+| The dependency graph stays acyclic |  |
 
 ## Guardrails
 
-- A capability's persistence port is documented in its composition contract, including the expected connection type and the migration procedure.
-- Migrations are additive within a release line; destructive schema changes follow the Compatibility and Versioning Standard.
+- A capability's persistence port is documented in its `CONTRACT.md`, including the expected connection type and the migration procedure.
+- Migrations are additive within a release line; destructive schema changes follow the [Layer Standard](../layer-standard.md) §7.
 - Each capability's security tests include a negative test showing it fails closed when its persistence provider is absent.
