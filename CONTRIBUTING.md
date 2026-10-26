@@ -1,5 +1,7 @@
 # Contributing
 
+> **In short:** focused pull requests, checked and accepted by the project owner; AI does the engineering under human direction, to the same standards as any contribution.
+
 Changes come as focused branches and pull requests, each passing `python3 scripts/check_markdown.py`, and are accepted by the project owner. This repository's documents follow [ADR-0010](docs/decisions/ADR-0010-documentation-style.md). How the work is done is described below.
 
 ## AI-driven development

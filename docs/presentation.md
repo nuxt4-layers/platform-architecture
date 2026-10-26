@@ -1,6 +1,8 @@
 # Presentation, Internationalisation and Accessibility
 
-**Status:** Normative baseline
+> **In short:** every screen is built from Theme Manager's semantic tokens, works in any language through BCP 47, CLDR and ECMA-402, meets WCAG 2.2 AA in light and dark mode, and uses semantic HTML. Preferences never break accessibility, and every screen passes the checklist in §8.
+
+**Status:** Normative
 
 ## 1. Purpose
 
@@ -18,7 +20,7 @@ User customisation MUST NOT break mandatory accessibility requirements. Theme an
 
 Internationalisation is a standard platform capability, built on these standards:
 
-- **BCP 47** language tags identify every locale, in configuration, routes, `lang` attributes and message catalogues (for example `en-GB`);
+- **BCP 47** language tags identify every locale (for example `en-GB`) in configuration, routes, `lang` attributes and message catalogues;
 - **Unicode CLDR** locale data, through **ECMA-402** (the JavaScript `Intl` API), formats dates, times, numbers, currencies, plurals, lists and sorting; nothing is formatted by hand;
 - the **W3C Internationalization** guidance applies to markup: language and direction declared, and right-to-left scripts not prevented.
 
@@ -30,7 +32,7 @@ Locale-aware routing and translated metadata SHOULD be supported where public co
 
 WCAG 2.2 Level AA is the minimum accessibility engineering target for web presentation produced by the ecosystem.
 
-Accessibility is a component and capability acceptance criterion. Implementations MUST account for applicable semantic HTML, keyboard operation, visible/predictable focus, accessible names and labels, contrast, text resizing/reflow, target sizing, reduced motion, status/error communication, language metadata and assistive-technology compatibility.
+Accessibility is a component and capability acceptance criterion. Implementations MUST account for semantic HTML, keyboard operation, visible and predictable focus, accessible names and labels, contrast, text resizing and reflow, target size, reduced motion, status and error messages, language metadata and assistive technology.
 
 ARIA MUST supplement native semantics where necessary and MUST NOT replace suitable native HTML semantics without justification.
 
@@ -46,7 +48,7 @@ Metadata, canonical URLs, locale alternates and structured data SHOULD be genera
 
 ## 6. Layer responsibilities
 
-The UI capability owns reusable presentation primitives, design-token consumption and component-level accessibility behaviour. Theme Manager alone owns the effective theme and its token vocabulary.
+`ui` owns reusable presentation primitives and their accessibility behaviour; each layer's presentation part owns its own screens ([ADR-0009](decisions/ADR-0009-headless-capability-layers.md)). Theme Manager alone owns the effective theme and its token vocabulary.
 
 Internationalisation, semantic metadata and user-preference persistence MAY be separately bounded capabilities or integrations where their responsibilities justify separation. Their public contracts MUST remain independent of any single replaceable implementation library.
 
@@ -60,11 +62,11 @@ Internationalisation tests SHOULD include missing-message behaviour and locale-s
 
 ## 8. Screen checklist
 
-Every screen that `ui`, a kit or an application draws over a capability MUST meet this list, and the drawing repository's tests MUST prove it.
+Every screen over a capability, whether a layer's presentation part, `ui`, a kit or an application draws it, MUST meet this list, and the drawing repository's tests MUST prove it.
 
 | Check | Proved by |
 |---|---|
-| Each item in the capability's *Headless surface* section | The kit's or application's tests, against that contract version |
+| Each item in the capability's *Headless surface* section | The drawing repository's tests, against that contract version |
 | No serious or critical axe finding, in light and dark mode | Browser tests per page |
 | Keyboard operation, visible focus and one `<main>` per screen | Browser tests per workflow |
 | Administration and credential screens are never framed, cached or sent as a Referer | A test of the response headers |
