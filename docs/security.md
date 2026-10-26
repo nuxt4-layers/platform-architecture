@@ -22,7 +22,7 @@ The platform uses one coordinated security-control programme rather than treatin
 - NIST SP 800-218 Secure Software Development Framework informs secure-development practice;
 - OWASP ASVS 5.0 provides the application-security verification baseline;
 - NIST SP 800-63-4 provides digital-identity assurance guidance;
-- NIST SP 800-53, ABAC and Zero Trust guidance MAY be used as design/control references;
+- NIST SP 800-53, ABAC and Zero Trust guidance MAY be used as design and control references;
 - ISO/IEC 27001:2022, Cyber Essentials, NHS DSPT/DTAC and HITRUST MAY be mapped as assurance or future compliance frameworks when applicable.
 
 Reference to a framework MUST NOT be represented as certification, formal compliance or regulatory applicability unless that status has actually been established.
@@ -53,7 +53,7 @@ The platform does not claim AAL3 merely because individual AAL3-style controls a
 
 ## 5. Web and session controls
 
-Applications MUST implement applicable ASVS baseline controls. The architecture MUST support, as applicable, secure session cookies, CSRF protection, input validation, context-appropriate output encoding, Content Security Policy and security headers, abuse controls, contemporary password protection where passwords are supported, session expiry/rotation/server-side revocation, reauthentication or step-up authentication for sensitive operations, and protection against account enumeration and credential abuse.
+Applications MUST implement applicable ASVS baseline controls. The architecture MUST support, as applicable, secure session cookies, CSRF protection, input validation, context-appropriate output encoding, Content Security Policy and security headers, abuse controls, contemporary password protection where passwords are supported, session expiry, rotation and server-side revocation, reauthentication or step-up authentication for sensitive operations, and protection against account enumeration and credential abuse.
 
 Client-side access controls are user-experience mechanisms only and MUST NOT constitute the authoritative security boundary.
 
@@ -69,15 +69,15 @@ Isolation controls MUST have negative tests demonstrating that one principal or 
 
 ## 7. Trust boundaries and threat modelling
 
-Threat modelling MUST consider, as applicable, browser/untrusted input, Nuxt/Nitro server, persistence, identity providers, third parties, CI/CD, source control, package supply chain, deployment platform, administrator boundaries and tenant boundaries.
+Threat modelling MUST consider, as applicable, the browser and other untrusted input, the Nuxt and Nitro server, persistence, identity providers, third parties, CI/CD, source control, package supply chain, deployment platform, administrator boundaries and tenant boundaries.
 
 Security-critical capabilities MUST maintain a threat model proportionate to their risk.
 
 ## 8. Secrets and cryptography
 
-Secrets MUST be supplied through appropriate deployment/runtime secret management and MUST NOT be exposed through public client runtime configuration.
+Secrets MUST be supplied through appropriate deployment or runtime secret management and MUST NOT be exposed through public client runtime configuration.
 
-Cryptographic design MUST use contemporary, reviewed mechanisms and provider/platform primitives where suitable. Custom cryptographic algorithms or protocols MUST NOT be introduced.
+Cryptographic design MUST use contemporary, reviewed mechanisms and provider and platform primitives where suitable. Custom cryptographic algorithms or protocols MUST NOT be introduced.
 
 Key ownership, rotation, revocation and recovery requirements MUST be explicit where application-managed cryptographic keys exist.
 
@@ -89,19 +89,19 @@ Authentication events, authorisation-policy changes, privileged actions and secu
 
 ## 10. Secure development and supply chain
 
-Repositories and delivery pipelines SHOULD implement proportionate controls including protected default branches and pull-request workflows, dependency/vulnerability scanning, secret scanning, static analysis, SBOM generation where useful, security-header/configuration tests, dynamic web scanning where appropriate, automated authorisation/isolation tests and dependency update discipline.
+Repositories and delivery pipelines SHOULD implement proportionate controls including protected default branches and pull-request workflows, dependency and vulnerability scanning, secret scanning, static analysis, SBOM generation where useful, security-header and configuration tests, dynamic web scanning where appropriate, automated authorisation and isolation tests and dependency update discipline.
 
 Security verification MUST be part of normal development rather than a pre-release-only activity.
 
 ## 11. Control register and evidence
 
-The ecosystem SHOULD maintain a unified security control register mapping implemented controls to applicable ASVS, NIST and other assurance-framework requirements. Each control SHOULD identify status, implementation/evidence, responsible capability, verification mechanism, known gaps and risk treatment.
+The ecosystem SHOULD maintain a unified security control register mapping implemented controls to applicable ASVS, NIST and other assurance-framework requirements. Each control SHOULD identify status, implementation and evidence, responsible capability, verification mechanism, known gaps and risk treatment.
 
 ## 12. Cost constraints and deferred controls
 
 Cost may affect how or when a security control is implemented, but it MUST NOT silently weaken a required security standard.
 
-A required control that cannot yet be implemented MUST be recorded as a known gap with its rationale, affected assets/data/capabilities, risk, compensating controls where available and intended treatment or acceptance decision.
+A required control that cannot yet be implemented MUST be recorded as a known gap with its rationale, affected assets, data and capabilities, risk, compensating controls where available and intended treatment or acceptance decision.
 
 Paid certification, commercial security products and external assurance are not baseline requirements unless required by risk, contract or law.
 
