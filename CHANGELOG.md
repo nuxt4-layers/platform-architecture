@@ -4,6 +4,7 @@ Major changes, newest first. This repository has no releases; each entry is date
 
 ## 2026-10-26
 
+- The organisation renamed from `nuxt4-layers` to `nuxt-layers`, and the package scope from `@nuxt4-layers/` to `@nuxt-layers/`, so neither names a Nuxt release.
 - Slash-joined phrases in the security baseline written out in full.
 - Final readability pass: the README rewritten around principles, authority and a table of documents; *In short* lines added where missing; the privacy and presentation baselines tidied; the Markdown check now requires an *In short* in every document under `docs/`.
 - `docs/decisions/README.md` removed: the README points to the folder of decisions instead of a hand-kept index.

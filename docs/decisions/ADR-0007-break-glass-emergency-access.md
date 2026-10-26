@@ -41,5 +41,5 @@ Relaxing a security control requires a documented risk treatment. This ADR is th
 ## Guardrails
 
 - Adding any capability to break-glass accounts beyond §4 requires a new ADR.
-- The emergency process is specified in `nuxt4-layers/iam-integration` (approvals, pausing and suspension, recovery).
+- The emergency process is specified in `nuxt-layers/iam-integration` (approvals, pausing and suspension, recovery).
 - Break-glass use is a test case in each affected capability's security tests: allowed for the two actions, refused for everything else.

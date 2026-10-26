@@ -8,9 +8,9 @@ Changes come as focused branches and pull requests, each passing `python3 script
 
 ### Purpose and scope
 
-Nuxt 4 Layers is an experimental, AI-driven, specification-led open-source software engineering initiative. This document explains its development methodology, accountability model and quality expectations.
+Nuxt Layers is an experimental, AI-driven, specification-led open-source software engineering initiative. This document explains its development methodology, accountability model and quality expectations.
 
-It applies to repositories in the `nuxt4-layers` organisation and to the independent consumer and integration repositories that adopt it.
+It applies to repositories in the `nuxt-layers` organisation and to the independent consumer and integration repositories that adopt it.
 
 This document describes **development process**, not new architectural authority. The established documentation hierarchy, accepted ADRs, repository standards and security policies remain authoritative.
 

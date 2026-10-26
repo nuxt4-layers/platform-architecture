@@ -63,7 +63,7 @@ Rules:
 └── package.json
 ```
 
-Only the directories the capability needs exist. Packages use the `@nuxt4-layers/` scope; repository names are short capability names, and repository and package boundaries align. Every imported dependency is declared.
+Only the directories the capability needs exist. Packages use the `@nuxt-layers/` scope; repository names are short capability names, and repository and package boundaries align. Every imported dependency is declared.
 
 Each independently versioned layer documents:
 
@@ -82,7 +82,7 @@ Each independently versioned layer ships `capability.json`, so tooling and hosts
 ```json
 {
   "schemaVersion": "1",
-  "name": "@nuxt4-layers/example",
+  "name": "@nuxt-layers/example",
   "version": "1.0.0",
   "classification": "foundation",
   "provides": [{ "capability": "ExampleService", "contractVersion": "1" }],

@@ -1,8 +1,8 @@
-# Nuxt 4 Layers Platform Architecture
+# Nuxt Layers Platform Architecture
 
-> **In short:** the rules every `nuxt4-layers` capability and application follows: principles, cross-cutting standards and Architecture Decision Records. A capability's own detail lives in its own repository.
+> **In short:** the rules every `nuxt-layers` capability and application follows: principles, cross-cutting standards and Architecture Decision Records. A capability's own detail lives in its own repository.
 
-> **AI-driven development.** Nuxt 4 Layers is an experimental initiative in which AI does the principal architecture, development, testing, security assessment and documentation, under human direction. The project owner decides requirements, governance, acceptance and releases. Every contribution meets the same standards, whatever its origin. See [Contributing](CONTRIBUTING.md).
+> **AI-driven development.** Nuxt Layers is an experimental initiative in which AI does the principal architecture, development, testing, security assessment and documentation, under human direction. The project owner decides requirements, governance, acceptance and releases. Every contribution meets the same standards, whatever its origin. See [Contributing](CONTRIBUTING.md).
 
 ## Principles
 
@@ -30,7 +30,7 @@ Where documents conflict, authority descends in this order:
 
 ## Where things live
 
-This repository holds only what applies to the whole ecosystem. A capability's contracts, data model, threat model, plan and processes live in its own repository; a suite's architecture and cross-capability processes live in its integration repository, such as `nuxt4-layers/iam-integration` ([ADR-0004](docs/decisions/ADR-0004-documentation-placement.md)). Documents elsewhere are listed in [Resources](RESOURCES.md). This repository holds no plans or status ([ADR-0010](docs/decisions/ADR-0010-documentation-style.md)).
+This repository holds only what applies to the whole ecosystem. A capability's contracts, data model, threat model, plan and processes live in its own repository; a suite's architecture and cross-capability processes live in its integration repository, such as `nuxt-layers/iam-integration` ([ADR-0004](docs/decisions/ADR-0004-documentation-placement.md)). Documents elsewhere are listed in [Resources](RESOURCES.md). This repository holds no plans or status ([ADR-0010](docs/decisions/ADR-0010-documentation-style.md)).
 
 ## Documents
 
