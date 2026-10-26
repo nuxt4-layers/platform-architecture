@@ -37,4 +37,4 @@ Each layer is finished in its own repository against versioned contracts. The su
 
 - The integration repository's adapters state structurally what they need of each member, so a host's type check shows when a release no longer fits.
 - A member's release that changes a port's shape is a major release, and the harness is recomposed against it before the integration repository's pin moves.
-- [ADR-0004](ADR-0004-documentation-placement.md) and [ADR-0010](ADR-0010-documentation-style.md) still apply: other repositories' documents are named through `docs/RESOURCES.md`, pinned to a tag or commit.
+- [ADR-0004](ADR-0004-documentation-placement.md) and [ADR-0010](ADR-0010-documentation-style.md) still apply: other repositories' documents are named through `RESOURCES.md`, pinned to a tag or commit.
